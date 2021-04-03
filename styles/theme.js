@@ -12,6 +12,7 @@ const palette = {
 const colors = {
   // common
   text: palette.black,
+  link: palette.disco,
   separator: transparentize(0.9, palette.black),
   // button
   buttonBaseBackground: palette.white,
