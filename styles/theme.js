@@ -7,7 +7,7 @@ const colors = {
 };
 
 const fonts = {
-  default: 'sans-serif',
+  default: 'Roboto,sans-serif',
 };
 
 const shadows = {};
