@@ -2,19 +2,20 @@ import * as R from 'ramda';
 import { useState, useCallback } from 'react';
 import Image from 'next/image';
 import styled, { css } from 'styled-components';
-import { Step1 } from './Step1';
 import { Step } from './Step';
+import { Step1 } from './Step1';
+import { Step2 } from './Step2';
 
 const STEPS = [
   Step1,
-  Step1,
+  Step2,
   Step1,
   Step1,
   Step1,
 ];
 const INITAL_STEPS_DATA = [
   { acceptTerms: false },
-  { acceptTerms: false },
+  { talkTitle: '', talkLength: 'standard' },
   { acceptTerms: false },
   { acceptTerms: false },
   { acceptTerms: false },
@@ -40,7 +41,6 @@ const Logo = styled.div`
   display: flex;
   flex-direction: column;
   align-items: center;
-  justify-content: center;
   border-right: 0.062rem solid ${({ theme }) => theme.colors.separator};
 `;
 
