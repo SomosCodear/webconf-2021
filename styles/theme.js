@@ -1,6 +1,7 @@
 import { transparentize } from 'polished';
 
 const palette = {
+  white: '#FFFFFF',
   black: '#000000',
   darkGray: '#1F1F1F',
   gray: '#C4C4C4',
@@ -45,6 +46,7 @@ const colors = {
   cfpProgressCompletedStepBackground: palette.jakarta,
   cfpProgressArrow: palette.disco,
   cfpStepTitle: palette.jakarta,
+  cfpStepFieldDescription: palette.darkGray,
 };
 
 const fonts = {
