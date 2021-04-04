@@ -39,6 +39,10 @@ const colors = {
   // input
   inputBorder: palette.gray,
   inputPlaceholder: transparentize(0.65, palette.darkGray),
+  // textarea
+  textareaBackground: palette.white,
+  textareaBorder: palette.gray,
+  textareaPlaceholder: transparentize(0.65, palette.darkGray),
   // CFP
   cfpProgressTitle: palette.jakarta,
   cfpProgressIncompleteStepBorder: palette.gray,
