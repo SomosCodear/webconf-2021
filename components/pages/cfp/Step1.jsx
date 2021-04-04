@@ -18,21 +18,15 @@ export const Step1 = () => {
 
   return (
     <>
-      <Step.Title>
-        Antes de continuar...
-      </Step.Title>
+      <Step.Title>Antes de continuar...</Step.Title>
       <TermsDescription>
-        Te pedimos que te asegures de haber leído todos los lineamientos de selección expuestos en
-        {' '}
+        Te pedimos que te asegures de haber leído todos los lineamientos de selección expuestos en{' '}
         <a href="https://codear.org" target="_blank" rel="noreferrer">
           nuestra web
         </a>
         .
       </TermsDescription>
-      <TermsCheckbox
-        id="terms-checkbox"
-        {...register('acceptTerms', { required: true })}
-      >
+      <TermsCheckbox id="terms-checkbox" {...register('acceptTerms', { required: true })} autoFocus>
         Declaro que leí los lineamientos de selección.
       </TermsCheckbox>
     </>

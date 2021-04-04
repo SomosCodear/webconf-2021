@@ -61,6 +61,7 @@ export const Step3 = () => {
               placeholder="Mi charla es..."
               rows="4"
               {...register('talkShortDescription', { required: true, maxLength: 200 })}
+              autoFocus
             />
           </ShortDescriptionSpeechBubble>
           <Image src="/images/cfp-twitter.svg" width="66" height="54" />

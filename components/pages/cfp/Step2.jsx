@@ -7,16 +7,11 @@ export const Step2 = () => {
 
   return (
     <>
-      <Step.Title>
-        Contanos sobre tu charla.
-      </Step.Title>
+      <Step.Title>Contanos sobre tu charla.</Step.Title>
       <Step.FieldContainer>
-        <Step.FieldTitle>
-          ¿Qué título le pondrías?
-        </Step.FieldTitle>
+        <Step.FieldTitle>¿Qué título le pondrías?</Step.FieldTitle>
         <Step.FieldDescription>
-          No hace falta que sea el título final, pensá en algo interesante, que genere atracción y
-          {' '}
+          No hace falta que sea el título final, pensá en algo interesante, que genere atracción y{' '}
           que llame la atención al público.
         </Step.FieldDescription>
         <Step.Field>
@@ -24,13 +19,12 @@ export const Step2 = () => {
             type="text"
             placeholder="Fantástico título de charla"
             {...register('talkTitle', { required: true })}
+            autoFocus
           />
         </Step.Field>
       </Step.FieldContainer>
       <Step.FieldContainer>
-        <Step.FieldTitle>
-          ¿Qué tan larga es tu charla?
-        </Step.FieldTitle>
+        <Step.FieldTitle>¿Qué tan larga es tu charla?</Step.FieldTitle>
         <Step.Field>
           <Controller
             control={control}

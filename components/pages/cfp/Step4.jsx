@@ -25,7 +25,10 @@ export const Step4 = () => {
           Ahora sí, contanos en todo el detalle que quieras de qué se trata tu propuesta.
         </Step.FieldDescription>
         <TalkDescriptionField>
-          <Textarea {...register('talkShortDescription', { required: true, maxLength: 200 })} />
+          <Textarea
+            {...register('talkShortDescription', { required: true, maxLength: 200 })}
+            autoFocus
+          />
         </TalkDescriptionField>
       </TalkDescriptionFieldContainer>
     </>
