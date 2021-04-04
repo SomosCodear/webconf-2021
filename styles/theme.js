@@ -2,7 +2,7 @@ import { transparentize } from 'polished';
 
 const palette = {
   black: '#000000',
-  white: '#FFFFFF',
+  darkGray: '#1F1F1F',
   gray: '#C4C4C4',
   jakarta: '#3C467E',
   disco: '#A70050',
@@ -35,6 +35,9 @@ const colors = {
   checkboxDisabledBackground: palette.gray,
   checkboxDisabledCheckedBackground: palette.gray,
   checkboxDisabledTextBackground: palette.gray,
+  // input
+  inputBorder: palette.gray,
+  inputPlaceholder: palette.darkGray,
   // CFP
   cfpProgressTitle: palette.jakarta,
   cfpProgressIncompleteStepBorder: palette.gray,
