@@ -26,6 +26,11 @@ const Container = styled.button`
   cursor: pointer;
   border-color: ${({ variant, theme }) => theme.colors[`button${v.capitalize(variant)}Border`]};
   color: ${({ variant, theme }) => theme.colors[`button${v.capitalize(variant)}Text`]};
+
+  &:disabled {
+    border-color: ${({ theme }) => theme.colors.buttonDisabledBorder};
+    cursor: not-allowed;
+  }
 `;
 
 const DefaultContent = styled.div`
@@ -36,6 +41,10 @@ const DefaultContent = styled.div`
   font-weight: 700;
   text-transform: uppercase;
   background-color: ${({ variant, theme }) => theme.colors[`button${v.capitalize(variant)}Background`]};
+
+  ${Container}:disabled & {
+    background-color: ${({ theme }) => theme.colors.buttonDisabledBackground};
+  }
 `;
 
 const PopOutContent = styled(DefaultContent)`
@@ -43,12 +52,12 @@ const PopOutContent = styled(DefaultContent)`
   transition: transform 600ms cubic-bezier(0.3, 0.7, 0.4, 1);
   transform: translate(6px, 6px);
 
-  ${Container}:hover & {
+  ${Container}:hover:not([disabled]) & {
     transform: translate(4px, 4px);
     transition: transform 250ms cubic-bezier(0.3, 0.7, 0.4, 1.5);
   }
 
-  ${Container}:active & {
+  ${Container}:active:not([disabled]) & {
     transform: translate(2px, 2px);
     transition: transform 35ms;
   }

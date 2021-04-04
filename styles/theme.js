@@ -16,6 +16,8 @@ const colors = {
   separator: transparentize(0.9, palette.black),
   // button
   buttonBaseBackground: palette.white,
+  buttonDisabledBackground: palette.gray,
+  buttonDisabledBorder: palette.gray,
   buttonDefaultBorder: palette.disco,
   buttonDefaultBackground: palette.transparent,
   buttonDefaultText: palette.disco,
