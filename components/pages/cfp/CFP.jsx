@@ -1,4 +1,4 @@
-import { useState } from 'react';
+import { useState, useCallback } from 'react';
 import Image from 'next/image';
 import styled, { css } from 'styled-components';
 import { Button } from '~/components/common';
@@ -72,18 +72,24 @@ const ProgressArrow = styled.div`
   border-bottom: 1.25rem solid ${({ theme }) => theme.colors.cfpProgressArrow};
 `;
 
-const Step = styled.section`
-  grid-area: step;
-`;
-
 const Actions = styled.footer`
   grid-area: actions;
+  display: flex;
+  flex-direction: row-reverse;
+  justify-content: space-between;
 `;
 
 export const CFP = () => {
   // eslint-disable-next-line no-unused-vars
   const [currentStep, setCurrentStep] = useState(0);
   const CurrentStepComponent = STEPS[currentStep];
+
+  const nextStep = useCallback(() => {
+    setCurrentStep((oldStep) => Math.min(oldStep + 1, STEPS.length - 1));
+  }, [setCurrentStep]);
+  const previousStep = useCallback(() => {
+    setCurrentStep((oldStep) => Math.max(oldStep - 1, 0));
+  }, [setCurrentStep]);
 
   return (
     <Container>
@@ -102,11 +108,28 @@ export const CFP = () => {
         </ProgressBar>
         <ProgressArrow currentStep={currentStep} />
       </Progress>
-      <Step>
-        <CurrentStepComponent />
-      </Step>
+      <CurrentStepComponent />
       <Actions>
-        <Button type="secondary">Continuar</Button>
+        {currentStep < STEPS.length - 1 ? (
+          <Button
+            type="secondary"
+            onClick={nextStep}
+          >
+            Continuar
+          </Button>
+        ) : null}
+        {currentStep === STEPS.length - 1 ? (
+          <Button type="primary">
+            Enviar charla
+          </Button>
+        ) : null}
+        {currentStep > 0 ? (
+          <Button
+            onClick={previousStep}
+          >
+            Atrás
+          </Button>
+        ) : null}
       </Actions>
     </Container>
   );

@@ -31,6 +31,7 @@ const colors = {
   cfpProgressCompleteStepBorder: palette.jakarta,
   cfpProgressCompletedStepBackground: palette.jakarta,
   cfpProgressArrow: palette.disco,
+  cfpStepTitle: palette.jakarta,
 };
 
 const fonts = {
