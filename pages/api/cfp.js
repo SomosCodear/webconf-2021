@@ -25,8 +25,8 @@ const ERRORS = {
     required: 'Falta la descripción de la charla',
   },
   speakerName: {
-    minLength: 'La descripción de la charla debe tener más de 10 caracteres',
-    required: 'Falta la descripción de la charla',
+    minLength: 'Tu nombre debe tener más de 5 caracteres',
+    required: 'Falta tu nombre',
   },
   speakerIsAdult: {
     required: 'Tenes que ser mayor de edad',
@@ -78,7 +78,7 @@ const schema = joi.object({
       'string.base': ERRORS.talkSummary.required,
       'any.required': ERRORS.talkSummary.required,
     }),
-  speakerName: joi.string().min(10).required()
+  speakerName: joi.string().min(5).required()
     .messages({
       'string.min': ERRORS.speakerName.minLength,
       'string.base': ERRORS.speakerName.required,
