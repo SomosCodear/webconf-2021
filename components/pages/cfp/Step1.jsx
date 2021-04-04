@@ -1,5 +1,5 @@
 import PropTypes from 'prop-types';
-import { Controller, useFormContext } from 'react-hook-form';
+import { useFormContext } from 'react-hook-form';
 import styled from 'styled-components';
 import { Checkbox } from '~/components/common';
 import { Step } from './Step';
@@ -15,7 +15,7 @@ const TermsCheckbox = styled(Checkbox)`
 `;
 
 export const Step1 = ({ defaults }) => {
-  const { control } = useFormContext();
+  const { register } = useFormContext();
 
   return (
     <>
@@ -30,21 +30,13 @@ export const Step1 = ({ defaults }) => {
         </a>
         .
       </TermsDescription>
-      <Controller
-        name="acceptTerms"
-        control={control}
-        defaultValue={defaults.acceptTerms}
-        rules={{ required: true }}
-        render={({ field: { value, ...field } }) => (
-          <TermsCheckbox
-            id="terms-checkbox"
-            {...field}
-            checked={value}
-          >
-            Declaro que leí los lineamientos de selección.
-          </TermsCheckbox>
-        )}
-      />
+      <TermsCheckbox
+        id="terms-checkbox"
+        defaultChecked={defaults.acceptTerms}
+        {...register('acceptTerms', { required: true })}
+      >
+        Declaro que leí los lineamientos de selección.
+      </TermsCheckbox>
     </>
   );
 };

@@ -32,6 +32,7 @@ export const Step = ({
   children,
 }) => {
   const form = useForm({ mode: 'onChange' });
+
   return (
     <FormProvider {...form}>
       <Container

@@ -1,4 +1,4 @@
-import { forwardRef, useCallback } from 'react';
+import { forwardRef } from 'react';
 import PropTypes from 'prop-types';
 import styled, { css } from 'styled-components';
 
@@ -92,52 +92,37 @@ export const Checkbox = forwardRef(({
   className,
   labelPosition,
   children,
-  checked,
-  onChange,
   onMouseEnter,
   onMouseLeave,
   ...props
-}, ref) => {
-  const handleKeyDown = useCallback((event) => {
-    if (['Enter', ' '].includes(event.key)) {
-      event.preventDefault();
-      onChange(!checked);
-    }
-  }, [checked, onChange]);
-
-  return (
-    <Label
-      htmlFor={id}
-      className={className}
-      childrenPosition={labelPosition}
-      onKeyDown={handleKeyDown}
-      onMouseEnter={onMouseEnter}
-      onMouseLeave={onMouseLeave}
+}, ref) => (
+  <Label
+    htmlFor={id}
+    className={className}
+    childrenPosition={labelPosition}
+    onMouseEnter={onMouseEnter}
+    onMouseLeave={onMouseLeave}
+  >
+    <RealCheckbox
+      id={id}
+      type="checkbox"
       ref={ref}
-    >
-      <RealCheckbox
-        id={id}
-        type="checkbox"
-        checked={checked}
-        onChange={onChange}
-        {...props}
-      />
-      <FakeCheckbox>
-        <CheckMark />
-      </FakeCheckbox>
-      <Text>
-        {children}
-      </Text>
-    </Label>
-  );
-});
+      {...props}
+    />
+    <FakeCheckbox>
+      <CheckMark />
+    </FakeCheckbox>
+    <Text>
+      {children}
+    </Text>
+  </Label>
+));
 
 Checkbox.propTypes = {
   id: PropTypes.string.isRequired,
   className: PropTypes.string,
   labelPosition: PropTypes.oneOf(Object.keys(childrenPositionStyles)),
   children: PropTypes.node,
-  checked: PropTypes.bool,
   onChange: PropTypes.func,
   onMouseEnter: PropTypes.func,
   onMouseLeave: PropTypes.func,
@@ -147,8 +132,7 @@ Checkbox.defaultProps = {
   className: null,
   labelPosition: 'after',
   children: null,
-  checked: false,
-  onChange: () => {},
+  onChange: () => { },
   onMouseEnter: null,
   onMouseLeave: null,
 };
