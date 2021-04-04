@@ -6,13 +6,14 @@ import { Step } from './Step';
 import { Step1 } from './Step1';
 import { Step2 } from './Step2';
 import { Step3 } from './Step3';
+import { Step4 } from './Step4';
 
-const STEPS = [Step1, Step2, Step3, Step1, Step1];
+const STEPS = [Step1, Step2, Step3, Step4, Step1];
 const INITAL_STEPS_DATA = [
   { acceptTerms: false },
   { talkTitle: '', talkLength: 'standard' },
   { talkShortDescription: '', talkHashtags: '' },
-  { acceptTerms: false },
+  { talkDescription: '' },
   { acceptTerms: false },
 ];
 
