@@ -32,6 +32,8 @@ const BaseCheckMark = (props) => (
   </svg>
 );
 const CheckMark = styled(BaseCheckMark)`
+  display: none;
+
   path {
     stroke: ${({ theme }) => theme.colors.checkboxCheckmark};
     stroke-width: 4;
