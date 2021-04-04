@@ -1,9 +1,4 @@
-import {
-  forwardRef,
-  useCallback,
-  useRef,
-  useImperativeHandle,
-} from 'react';
+import { forwardRef, useCallback, useRef, useImperativeHandle, useEffect } from 'react';
 import PropTypes from 'prop-types';
 import styled, { css } from 'styled-components';
 
@@ -26,13 +21,7 @@ const Label = styled.label.attrs(() => ({
 `;
 
 const BaseCheckMark = (props) => (
-  <svg
-    width="24"
-    height="20"
-    viewBox="0 0 24 20"
-    fill="none"
-    {...props}
-  >
+  <svg width="24" height="20" viewBox="0 0 24 20" fill="none" {...props}>
     <path d="M2 10.2949L7.87156 16.1935L22 2" />
   </svg>
 );
@@ -74,7 +63,7 @@ const RealCheckbox = styled.input.attrs(() => ({
 
   &:checked ~ ${FakeCheckbox} {
     background-color: ${({ theme }) => theme.colors.checkboxCheckedBackground};
-    ${CheckMark}  {
+    ${CheckMark} {
       display: block;
     }
   }
@@ -92,58 +81,69 @@ const RealCheckbox = styled.input.attrs(() => ({
   }
 `;
 
-export const Checkbox = forwardRef(({
-  id,
-  className,
-  labelPosition,
-  children,
-  onMouseEnter,
-  onMouseLeave,
-  onKeyDown,
-  ...props
-}, forwardedRef) => {
-  const ref = useRef();
-  useImperativeHandle(forwardedRef, () => ref.current);
+export const Checkbox = forwardRef(
+  (
+    {
+      id,
+      className,
+      labelPosition,
+      children,
+      autoFocus,
+      onMouseEnter,
+      onMouseLeave,
+      onKeyDown,
+      ...props
+    },
+    forwardedRef,
+  ) => {
+    const labelRef = useRef();
+    const inputRef = useRef();
+    useImperativeHandle(forwardedRef, () => inputRef.current);
 
-  const handleKeyDown = useCallback((event) => {
-    onKeyDown(event);
+    const handleKeyDown = useCallback(
+      (event) => {
+        onKeyDown(event);
 
-    if (['Enter', ' '].includes(event.key)) {
-      event.preventDefault();
-      ref.current.click();
-    }
-  }, [onKeyDown, ref]);
+        if (['Enter', ' '].includes(event.key)) {
+          event.preventDefault();
+          inputRef.current.click();
+        }
+      },
+      [onKeyDown, inputRef],
+    );
 
-  return (
-    <Label
-      htmlFor={id}
-      className={className}
-      childrenPosition={labelPosition}
-      onKeyDown={handleKeyDown}
-      onMouseEnter={onMouseEnter}
-      onMouseLeave={onMouseLeave}
-    >
-      <RealCheckbox
-        id={id}
-        type="checkbox"
-        ref={ref}
-        {...props}
-      />
-      <FakeCheckbox>
-        <CheckMark />
-      </FakeCheckbox>
-      <Text>
-        {children}
-      </Text>
-    </Label>
-  );
-});
+    useEffect(() => {
+      if (autoFocus) {
+        labelRef.current.focus();
+      }
+    }, [labelRef]); // eslint-disable-line react-hooks/exhaustive-deps
+
+    return (
+      <Label
+        htmlFor={id}
+        className={className}
+        childrenPosition={labelPosition}
+        onKeyDown={handleKeyDown}
+        onMouseEnter={onMouseEnter}
+        onMouseLeave={onMouseLeave}
+        ref={labelRef}
+      >
+        <RealCheckbox id={id} type="checkbox" ref={inputRef} {...props} />
+        <FakeCheckbox>
+          <CheckMark />
+        </FakeCheckbox>
+        <Text>{children}</Text>
+      </Label>
+    );
+  },
+);
 
 Checkbox.propTypes = {
   id: PropTypes.string.isRequired,
   className: PropTypes.string,
   labelPosition: PropTypes.oneOf(Object.keys(childrenPositionStyles)),
   children: PropTypes.node,
+  autoFocus: PropTypes.bool,
   onKeyDown: PropTypes.func,
   onMouseEnter: PropTypes.func,
   onMouseLeave: PropTypes.func,
@@ -153,7 +153,8 @@ Checkbox.defaultProps = {
   className: null,
   labelPosition: 'after',
   children: null,
-  onKeyDown: () => { },
+  autoFocus: false,
+  onKeyDown: () => {},
   onMouseEnter: null,
   onMouseLeave: null,
 };
