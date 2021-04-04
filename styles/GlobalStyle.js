@@ -27,7 +27,7 @@ export const GlobalStyle = createGlobalStyle`
     text-decoration: none;
   }
 
-  button, input {
+  button, input, textarea {
     font-family: inherit;
     font-size: inherit;
   }
