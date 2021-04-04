@@ -3,7 +3,7 @@ import { forwardRef } from 'react';
 import PropTypes from 'prop-types';
 import styled, { css } from 'styled-components';
 
-const CONTAINER_TYPES = {
+const CONTAINER_VARIANTS = {
   default: css`
   `,
   primary: css`
@@ -24,8 +24,8 @@ const Container = styled.button`
   background-color: ${({ theme }) => theme.colors.buttonBaseBackground};
   outline-offset: 0.125rem;
   cursor: pointer;
-  border-color: ${({ type, theme }) => theme.colors[`button${v.capitalize(type)}Border`]};
-  color: ${({ type, theme }) => theme.colors[`button${v.capitalize(type)}Text`]};
+  border-color: ${({ variant, theme }) => theme.colors[`button${v.capitalize(variant)}Border`]};
+  color: ${({ variant, theme }) => theme.colors[`button${v.capitalize(variant)}Text`]};
 `;
 
 const DefaultContent = styled.div`
@@ -35,7 +35,7 @@ const DefaultContent = styled.div`
   font-size: 1.5rem;
   font-weight: 700;
   text-transform: uppercase;
-  background-color: ${({ theme, type }) => theme.colors[`button${v.capitalize(type)}Background`]};
+  background-color: ${({ variant, theme }) => theme.colors[`button${v.capitalize(variant)}Background`]};
 `;
 
 const PopOutContent = styled(DefaultContent)`
@@ -54,16 +54,16 @@ const PopOutContent = styled(DefaultContent)`
   }
 `;
 
-export const Button = forwardRef(({ children, type, ...props }, forwardedRef) => {
-  const Content = type === 'default' ? DefaultContent : PopOutContent;
+export const Button = forwardRef(({ children, variant, ...props }, forwardedRef) => {
+  const Content = variant === 'default' ? DefaultContent : PopOutContent;
 
   return (
     <Container
       ref={forwardedRef}
-      type={type}
+      variant={variant}
       {...props}
     >
-      <Content type={type}>
+      <Content variant={variant}>
         {children}
       </Content>
     </Container>
@@ -72,10 +72,10 @@ export const Button = forwardRef(({ children, type, ...props }, forwardedRef) =>
 
 Button.propTypes = {
   children: PropTypes.node,
-  type: PropTypes.oneOf(Object.keys(CONTAINER_TYPES)),
+  variant: PropTypes.oneOf(Object.keys(CONTAINER_VARIANTS)),
 };
 
 Button.defaultProps = {
   children: null,
-  type: 'default',
+  variant: 'default',
 };
