@@ -38,7 +38,7 @@ const colors = {
   checkboxDisabledTextBackground: palette.gray,
   // input
   inputBorder: palette.gray,
-  inputPlaceholder: palette.darkGray,
+  inputPlaceholder: transparentize(0.65, palette.darkGray),
   // CFP
   cfpProgressTitle: palette.jakarta,
   cfpProgressIncompleteStepBorder: palette.gray,
@@ -46,7 +46,7 @@ const colors = {
   cfpProgressCompletedStepBackground: palette.jakarta,
   cfpProgressArrow: palette.disco,
   cfpStepTitle: palette.jakarta,
-  cfpStepFieldDescription: palette.darkGray,
+  cfpStepFieldDescription: transparentize(0.3, palette.darkGray),
 };
 
 const fonts = {
