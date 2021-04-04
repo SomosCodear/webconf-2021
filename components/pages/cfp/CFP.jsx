@@ -4,13 +4,7 @@ import styled, { css } from 'styled-components';
 import { Button } from '~/components/common';
 import { Terms } from './Terms';
 
-const STEPS = [
-  Terms,
-  Terms,
-  Terms,
-  Terms,
-  Terms,
-];
+const STEPS = [Terms, Terms, Terms, Terms, Terms];
 
 const Container = styled.main`
   height: 100%;
@@ -87,23 +81,17 @@ const Actions = styled.footer`
 `;
 
 export const CFP = () => {
+  // eslint-disable-next-line no-unused-vars
   const [currentStep, setCurrentStep] = useState(0);
   const CurrentStepComponent = STEPS[currentStep];
 
   return (
     <Container>
       <Logo>
-        <Image
-          src="/logo.svg"
-          alt="Webconf Logo"
-          width="288"
-          height="332"
-        />
+        <Image src="/logo.svg" alt="Webconf Logo" width="288" height="332" />
       </Logo>
       <Progress>
-        <h1>
-          ¡Proponé tu charla para WebConf 2021!
-        </h1>
+        <h1>¡Proponé tu charla para WebConf 2021!</h1>
         <ProgressBar>
           {STEPS.map((_, index) => (
             <ProgressBit
@@ -118,9 +106,7 @@ export const CFP = () => {
         <CurrentStepComponent />
       </Step>
       <Actions>
-        <Button type="secondary">
-          Continuar
-        </Button>
+        <Button type="secondary">Continuar</Button>
       </Actions>
     </Container>
   );

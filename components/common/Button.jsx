@@ -30,18 +30,12 @@ const Container = styled.button`
 
 const displacedStyles = css`
   will-change: transform;
-  transition:
-    transform
-    600ms
-    cubic-bezier(.3, .7, .4, 1);
+  transition: transform 600ms cubic-bezier(0.3, 0.7, 0.4, 1);
   transform: translate(6px, 6px);
 
   ${Container}:hover & {
     transform: translate(4px, 4px);
-    transition:
-      transform
-      250ms
-      cubic-bezier(.3, .7, .4, 1.5);
+    transition: transform 250ms cubic-bezier(0.3, 0.7, 0.4, 1.5);
   }
 
   ${Container}:active & {
@@ -75,14 +69,8 @@ const Content = styled.div`
 `;
 
 export const Button = forwardRef(({ children, type, ...props }, forwardedRef) => (
-  <Container
-    ref={forwardedRef}
-    type={type}
-    {...props}
-  >
-    <Content type={type}>
-      {children}
-    </Content>
+  <Container ref={forwardedRef} type={type} {...props}>
+    <Content type={type}>{children}</Content>
   </Container>
 ));
 
