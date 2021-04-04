@@ -1,22 +1,35 @@
+import * as R from 'ramda';
 import { useState, useCallback } from 'react';
 import Image from 'next/image';
 import styled, { css } from 'styled-components';
-import { Button } from '~/components/common';
 import { Terms } from './Terms';
+import { Step } from './Step';
 
-const STEPS = [Terms, Terms, Terms, Terms, Terms];
+const STEPS = [
+  Terms,
+  Terms,
+  Terms,
+  Terms,
+  Terms,
+];
+const INITAL_STEPS_DATA = [
+  { acceptTerms: false },
+  { acceptTerms: false },
+  { acceptTerms: false },
+  { acceptTerms: false },
+  { acceptTerms: false },
+];
 
 const Container = styled.main`
-  height: 100%;
+  min-height: 100%;
   padding: 3.75rem 7.5rem;
   box-sizing: border-box;
   display: grid;
   grid-template-areas:
     'logo progress'
-    'logo   step  '
-    'logo actions ';
+    'logo   step  ';
   grid-template-columns: max-content 1fr;
-  grid-template-rows: max-content 1fr max-content;
+  grid-template-rows: max-content 1fr;
   grid-gap: 4.375rem;
 `;
 
@@ -72,24 +85,23 @@ const ProgressArrow = styled.div`
   border-bottom: 1.25rem solid ${({ theme }) => theme.colors.cfpProgressArrow};
 `;
 
-const Actions = styled.footer`
-  grid-area: actions;
-  display: flex;
-  flex-direction: row-reverse;
-  justify-content: space-between;
-`;
-
 export const CFP = () => {
   // eslint-disable-next-line no-unused-vars
   const [currentStep, setCurrentStep] = useState(0);
+  const [stepsData, setStepsData] = useState(INITAL_STEPS_DATA);
   const CurrentStepComponent = STEPS[currentStep];
 
-  const nextStep = useCallback(() => {
+  const updateCurrentStepData = useCallback((data) => {
+    setStepsData((oldStepsData) => R.update(currentStep, data, oldStepsData));
+  }, [currentStep, setStepsData]);
+  const nextStep = useCallback((data) => {
+    updateCurrentStepData(data);
     setCurrentStep((oldStep) => Math.min(oldStep + 1, STEPS.length - 1));
-  }, [setCurrentStep]);
-  const previousStep = useCallback(() => {
+  }, [updateCurrentStepData, setCurrentStep]);
+  const previousStep = useCallback((data) => {
+    updateCurrentStepData(data);
     setCurrentStep((oldStep) => Math.max(oldStep - 1, 0));
-  }, [setCurrentStep]);
+  }, [updateCurrentStepData, setCurrentStep]);
 
   return (
     <Container>
@@ -108,29 +120,17 @@ export const CFP = () => {
         </ProgressBar>
         <ProgressArrow currentStep={currentStep} />
       </Progress>
-      <CurrentStepComponent />
-      <Actions>
-        {currentStep < STEPS.length - 1 ? (
-          <Button
-            type="secondary"
-            onClick={nextStep}
-          >
-            Continuar
-          </Button>
-        ) : null}
-        {currentStep === STEPS.length - 1 ? (
-          <Button type="primary">
-            Enviar charla
-          </Button>
-        ) : null}
-        {currentStep > 0 ? (
-          <Button
-            onClick={previousStep}
-          >
-            Atrás
-          </Button>
-        ) : null}
-      </Actions>
+      <Step
+        key={currentStep}
+        onNext={nextStep}
+        onPrevious={previousStep}
+        isFirst={currentStep === 0}
+        isLaste={currentStep === STEPS.length - 1}
+      >
+        <CurrentStepComponent
+          defaults={stepsData[currentStep]}
+        />
+      </Step>
     </Container>
   );
 };
