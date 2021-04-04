@@ -1,4 +1,3 @@
-import PropTypes from 'prop-types';
 import { useFormContext } from 'react-hook-form';
 import styled from 'styled-components';
 import { Checkbox } from '~/components/common';
@@ -14,7 +13,7 @@ const TermsCheckbox = styled(Checkbox)`
   margin-top: 3rem;
 `;
 
-export const Step1 = ({ defaults }) => {
+export const Step1 = () => {
   const { register } = useFormContext();
 
   return (
@@ -32,17 +31,10 @@ export const Step1 = ({ defaults }) => {
       </TermsDescription>
       <TermsCheckbox
         id="terms-checkbox"
-        defaultChecked={defaults.acceptTerms}
         {...register('acceptTerms', { required: true })}
       >
         Declaro que leí los lineamientos de selección.
       </TermsCheckbox>
     </>
   );
-};
-
-Step1.propTypes = {
-  defaults: PropTypes.shape({
-    acceptTerms: PropTypes.bool.isRequired,
-  }).isRequired,
 };

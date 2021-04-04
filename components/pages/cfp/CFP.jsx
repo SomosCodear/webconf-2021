@@ -99,7 +99,9 @@ export const CFP = () => {
     setCurrentStep((oldStep) => Math.min(oldStep + 1, STEPS.length - 1));
   }, [updateCurrentStepData, setCurrentStep]);
   const previousStep = useCallback((data) => {
-    updateCurrentStepData(data);
+    if (data) {
+      updateCurrentStepData(data);
+    }
     setCurrentStep((oldStep) => Math.max(oldStep - 1, 0));
   }, [updateCurrentStepData, setCurrentStep]);
 
@@ -126,10 +128,9 @@ export const CFP = () => {
         onPrevious={previousStep}
         isFirst={currentStep === 0}
         isLaste={currentStep === STEPS.length - 1}
+        defaultValues={stepsData[currentStep]}
       >
-        <CurrentStepComponent
-          defaults={stepsData[currentStep]}
-        />
+        <CurrentStepComponent />
       </Step>
     </Container>
   );

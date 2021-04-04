@@ -29,9 +29,10 @@ export const Step = ({
   onPrevious,
   isFirst,
   isLast,
+  defaultValues,
   children,
 }) => {
-  const form = useForm({ mode: 'onChange' });
+  const form = useForm({ mode: 'onChange', defaultValues });
 
   return (
     <FormProvider {...form}>
@@ -53,7 +54,7 @@ export const Step = ({
           ) : null}
           {!isFirst ? (
             <Button
-              onClick={form.handleSubmit(onPrevious, onPrevious)}
+              onClick={form.handleSubmit(onPrevious, () => onPrevious())}
             >
               Atrás
             </Button>
@@ -70,9 +71,11 @@ Step.propTypes = {
   onPrevious: PropTypes.func.isRequired,
   isFirst: PropTypes.bool,
   isLast: PropTypes.bool,
+  defaultValues: PropTypes.shape({}),
 };
 
 Step.defaultProps = {
   isFirst: false,
   isLast: false,
+  defaultValues: {},
 };
