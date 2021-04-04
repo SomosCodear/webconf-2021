@@ -26,7 +26,8 @@ const Container = styled.main`
     'logo   step  ';
   grid-template-columns: max-content 1fr;
   grid-template-rows: max-content 1fr;
-  grid-gap: 4.375rem;
+  grid-row-gap: 1.5rem;
+  grid-column-gap: 4.375rem;
 `;
 
 const Logo = styled.div`

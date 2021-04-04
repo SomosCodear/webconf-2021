@@ -9,7 +9,7 @@ const Container = styled.form`
   flex-direction: column;
 `;
 
-const Fields = styled.div`
+const Content = styled.div`
   flex: 1;
   display: flex;
   flex-direction: column;
@@ -24,24 +24,13 @@ const Actions = styled.div`
   justify-content: space-between;
 `;
 
-export const Step = ({
-  onNext,
-  onPrevious,
-  isFirst,
-  isLast,
-  defaultValues,
-  children,
-}) => {
+export const Step = ({ onNext, onPrevious, isFirst, isLast, defaultValues, children }) => {
   const form = useForm({ mode: 'onChange', defaultValues });
 
   return (
     <FormProvider {...form}>
-      <Container
-        onSubmit={form.handleSubmit(onNext)}
-      >
-        <Fields>
-          {children}
-        </Fields>
+      <Container onSubmit={form.handleSubmit(onNext)}>
+        <Content>{children}</Content>
         <Actions>
           {!isLast ? (
             <Button
@@ -53,11 +42,7 @@ export const Step = ({
             </Button>
           ) : null}
           {!isFirst ? (
-            <Button
-              onClick={form.handleSubmit(onPrevious, () => onPrevious())}
-            >
-              Atrás
-            </Button>
+            <Button onClick={form.handleSubmit(onPrevious, () => onPrevious())}>Atrás</Button>
           ) : null}
         </Actions>
       </Container>
