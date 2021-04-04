@@ -34,8 +34,9 @@ const Container = styled.main`
 `;
 
 const Logo = styled.div`
-  padding-right: 6rem;
   grid-area: logo;
+  padding-right: 6rem;
+  padding-top: calc(50vh - 226px);
   display: flex;
   flex-direction: column;
   align-items: center;
