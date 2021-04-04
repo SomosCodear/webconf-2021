@@ -1,4 +1,11 @@
 import * as joi from 'joi';
+import AWSSDK from 'aws-sdk';
+import nodemailer from 'nodemailer';
+
+const CONFIG = {
+  address: process.env.CFP_NOTIFICATIONS_EMAIL || 'contenido@codear.org',
+  notificationsSubject: 'Alguien mando una propuesta de charla!',
+};
 
 const ERRORS = {
   checkGuidelines: {
@@ -105,7 +112,16 @@ const schema = joi.object({
   extra: joi.string(),
 });
 
-export default (req, res) => {
+const mailer = nodemailer.createTransport({
+  SES: new AWSSDK.SES(),
+});
+
+const keyToLabel = (key) => {
+  const label = key.replace(/([a-z])([A-Z])/g, '$1 $2');
+  return `${label[0].toUpperCase()}${label.substr(1).toLowerCase()}`;
+};
+
+export default async (req, res) => {
   const data = schema.validate(req.body, { stripUnknown: true });
   if (data.error) {
     return res
@@ -115,5 +131,31 @@ export default (req, res) => {
       });
   }
 
-  return res.status(200).json({ name: 'John Doe' });
+  const report = Object.entries(data.value)
+    .reduce(
+      (acc, [key, value]) => [
+        ...acc,
+        `<strong>${keyToLabel(key)}:</strong><br />${value}`,
+      ],
+      [],
+    )
+    .join('<br /><br />')
+    .replace(/(?:<br \/>)+$/, '');
+
+  try {
+    await mailer.sendMail({
+      from: CONFIG.address,
+      to: CONFIG.address,
+      subject: CONFIG.notificationsSubject,
+      html: report,
+    });
+
+    return res.status(200).json({ success: true });
+  } catch (error) {
+    return res
+      .status(500)
+      .json({
+        error: error.message,
+      });
+  }
 };
