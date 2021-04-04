@@ -1,11 +1,10 @@
+import v from 'voca';
 import { forwardRef } from 'react';
 import PropTypes from 'prop-types';
 import styled, { css } from 'styled-components';
 
 const CONTAINER_TYPES = {
   default: css`
-    border-color: ${({ theme }) => theme.colors.buttonDefaultBorder};
-    color: ${({ theme }) => theme.colors.buttonDefaultText};
   `,
   primary: css`
     border-color: ${({ theme }) => theme.colors.buttonPrimaryBorder};
@@ -25,10 +24,21 @@ const Container = styled.button`
   background-color: ${({ theme }) => theme.colors.buttonBaseBackground};
   outline-offset: 0.125rem;
   cursor: pointer;
-  ${({ type }) => CONTAINER_TYPES[type]}
+  border-color: ${({ type, theme }) => theme.colors[`button${v.capitalize(type)}Border`]};
+  color: ${({ type, theme }) => theme.colors[`button${v.capitalize(type)}Text`]};
 `;
 
-const displacedStyles = css`
+const DefaultContent = styled.div`
+  padding: 0.65rem 2rem;
+  border-radius: 2rem;
+  text-align: center;
+  font-size: 1.5rem;
+  font-weight: 700;
+  text-transform: uppercase;
+  background-color: ${({ theme, type }) => theme.colors[`button${v.capitalize(type)}Background`]};
+`;
+
+const PopOutContent = styled(DefaultContent)`
   will-change: transform;
   transition: transform 600ms cubic-bezier(0.3, 0.7, 0.4, 1);
   transform: translate(6px, 6px);
@@ -44,35 +54,21 @@ const displacedStyles = css`
   }
 `;
 
-const CONTENT_TYPES = {
-  default: css`
-    background-color: ${({ theme }) => theme.colors.buttonDefaultBackground};
-  `,
-  primary: css`
-    background-color: ${({ theme }) => theme.colors.buttonPrimaryBackground};
-    ${displacedStyles}
-  `,
-  secondary: css`
-    background-color: ${({ theme }) => theme.colors.buttonSecondaryBackground};
-    ${displacedStyles}
-  `,
-};
+export const Button = forwardRef(({ children, type, ...props }, forwardedRef) => {
+  const Content = type === 'default' ? DefaultContent : PopOutContent;
 
-const Content = styled.div`
-  padding: 0.65rem 2rem;
-  border-radius: 2rem;
-  text-align: center;
-  font-size: 1.5rem;
-  font-weight: 700;
-  text-transform: uppercase;
-  ${({ type }) => CONTENT_TYPES[type]}
-`;
-
-export const Button = forwardRef(({ children, type, ...props }, forwardedRef) => (
-  <Container ref={forwardedRef} type={type} {...props}>
-    <Content type={type}>{children}</Content>
-  </Container>
-));
+  return (
+    <Container
+      ref={forwardedRef}
+      type={type}
+      {...props}
+    >
+      <Content type={type}>
+        {children}
+      </Content>
+    </Container>
+  );
+});
 
 Button.propTypes = {
   children: PropTypes.node,
