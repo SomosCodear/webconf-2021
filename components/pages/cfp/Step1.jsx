@@ -14,7 +14,7 @@ const TermsCheckbox = styled(Checkbox)`
   margin-top: 3rem;
 `;
 
-export const Terms = ({ defaults }) => {
+export const Step1 = ({ defaults }) => {
   const { control } = useFormContext();
 
   return (
@@ -49,7 +49,7 @@ export const Terms = ({ defaults }) => {
   );
 };
 
-Terms.propTypes = {
+Step1.propTypes = {
   defaults: PropTypes.shape({
     acceptTerms: PropTypes.bool.isRequired,
   }).isRequired,

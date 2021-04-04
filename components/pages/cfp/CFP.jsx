@@ -2,15 +2,15 @@ import * as R from 'ramda';
 import { useState, useCallback } from 'react';
 import Image from 'next/image';
 import styled, { css } from 'styled-components';
-import { Terms } from './Terms';
+import { Step1 } from './Step1';
 import { Step } from './Step';
 
 const STEPS = [
-  Terms,
-  Terms,
-  Terms,
-  Terms,
-  Terms,
+  Step1,
+  Step1,
+  Step1,
+  Step1,
+  Step1,
 ];
 const INITAL_STEPS_DATA = [
   { acceptTerms: false },
