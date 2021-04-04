@@ -1,4 +1,9 @@
-import { forwardRef } from 'react';
+import {
+  forwardRef,
+  useCallback,
+  useRef,
+  useImperativeHandle,
+} from 'react';
 import PropTypes from 'prop-types';
 import styled, { css } from 'styled-components';
 
@@ -94,36 +99,52 @@ export const Checkbox = forwardRef(({
   children,
   onMouseEnter,
   onMouseLeave,
+  onKeyDown,
   ...props
-}, ref) => (
-  <Label
-    htmlFor={id}
-    className={className}
-    childrenPosition={labelPosition}
-    onMouseEnter={onMouseEnter}
-    onMouseLeave={onMouseLeave}
-  >
-    <RealCheckbox
-      id={id}
-      type="checkbox"
-      ref={ref}
-      {...props}
-    />
-    <FakeCheckbox>
-      <CheckMark />
-    </FakeCheckbox>
-    <Text>
-      {children}
-    </Text>
-  </Label>
-));
+}, forwardedRef) => {
+  const ref = useRef();
+  useImperativeHandle(forwardedRef, () => ref.current);
+
+  const handleKeyDown = useCallback((event) => {
+    onKeyDown(event);
+
+    if (['Enter', ' '].includes(event.key)) {
+      event.preventDefault();
+      ref.current.click();
+    }
+  }, [onKeyDown, ref]);
+
+  return (
+    <Label
+      htmlFor={id}
+      className={className}
+      childrenPosition={labelPosition}
+      onKeyDown={handleKeyDown}
+      onMouseEnter={onMouseEnter}
+      onMouseLeave={onMouseLeave}
+    >
+      <RealCheckbox
+        id={id}
+        type="checkbox"
+        ref={ref}
+        {...props}
+      />
+      <FakeCheckbox>
+        <CheckMark />
+      </FakeCheckbox>
+      <Text>
+        {children}
+      </Text>
+    </Label>
+  );
+});
 
 Checkbox.propTypes = {
   id: PropTypes.string.isRequired,
   className: PropTypes.string,
   labelPosition: PropTypes.oneOf(Object.keys(childrenPositionStyles)),
   children: PropTypes.node,
-  onChange: PropTypes.func,
+  onKeyDown: PropTypes.func,
   onMouseEnter: PropTypes.func,
   onMouseLeave: PropTypes.func,
 };
@@ -132,7 +153,7 @@ Checkbox.defaultProps = {
   className: null,
   labelPosition: 'after',
   children: null,
-  onChange: () => { },
+  onKeyDown: () => { },
   onMouseEnter: null,
   onMouseLeave: null,
 };
