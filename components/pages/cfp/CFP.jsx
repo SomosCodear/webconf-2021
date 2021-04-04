@@ -5,18 +5,13 @@ import styled, { css } from 'styled-components';
 import { Step } from './Step';
 import { Step1 } from './Step1';
 import { Step2 } from './Step2';
+import { Step3 } from './Step3';
 
-const STEPS = [
-  Step1,
-  Step2,
-  Step1,
-  Step1,
-  Step1,
-];
+const STEPS = [Step1, Step2, Step3, Step1, Step1];
 const INITAL_STEPS_DATA = [
   { acceptTerms: false },
   { talkTitle: '', talkLength: 'standard' },
-  { acceptTerms: false },
+  { talkShortDescription: '', talkHashtags: '' },
   { acceptTerms: false },
   { acceptTerms: false },
 ];
@@ -92,19 +87,28 @@ export const CFP = () => {
   const [stepsData, setStepsData] = useState(INITAL_STEPS_DATA);
   const CurrentStepComponent = STEPS[currentStep];
 
-  const updateCurrentStepData = useCallback((data) => {
-    setStepsData((oldStepsData) => R.update(currentStep, data, oldStepsData));
-  }, [currentStep, setStepsData]);
-  const nextStep = useCallback((data) => {
-    updateCurrentStepData(data);
-    setCurrentStep((oldStep) => Math.min(oldStep + 1, STEPS.length - 1));
-  }, [updateCurrentStepData, setCurrentStep]);
-  const previousStep = useCallback((data) => {
-    if (data) {
+  const updateCurrentStepData = useCallback(
+    (data) => {
+      setStepsData((oldStepsData) => R.update(currentStep, data, oldStepsData));
+    },
+    [currentStep, setStepsData],
+  );
+  const nextStep = useCallback(
+    (data) => {
       updateCurrentStepData(data);
-    }
-    setCurrentStep((oldStep) => Math.max(oldStep - 1, 0));
-  }, [updateCurrentStepData, setCurrentStep]);
+      setCurrentStep((oldStep) => Math.min(oldStep + 1, STEPS.length - 1));
+    },
+    [updateCurrentStepData, setCurrentStep],
+  );
+  const previousStep = useCallback(
+    (data) => {
+      if (data) {
+        updateCurrentStepData(data);
+      }
+      setCurrentStep((oldStep) => Math.max(oldStep - 1, 0));
+    },
+    [updateCurrentStepData, setCurrentStep],
+  );
 
   return (
     <Container>
