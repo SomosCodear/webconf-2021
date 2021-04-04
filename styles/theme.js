@@ -25,6 +25,14 @@ const colors = {
   buttonSecondaryBackground: palette.disco,
   buttonSecondaryBorder: palette.disco,
   buttonSecondaryText: palette.white,
+  // checkbox
+  checkboxCheckmark: palette.disco,
+  checkboxBorder: palette.gray,
+  checkboxBackground: palette.white,
+  checkboxCheckedBackground: palette.white,
+  checkboxDisabledBackground: palette.gray,
+  checkboxDisabledCheckedBackground: palette.gray,
+  checkboxDisabledTextBackground: palette.gray,
   // CFP
   cfpProgressTitle: palette.jakarta,
   cfpProgressIncompleteStepBorder: palette.gray,
