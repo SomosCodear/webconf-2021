@@ -7,15 +7,10 @@ import { Step1 } from './Step1';
 import { Step2 } from './Step2';
 import { Step3 } from './Step3';
 import { Step4 } from './Step4';
+import { Step5 } from './Step5';
 
-const STEPS = [Step1, Step2, Step3, Step4, Step1];
-const INITAL_STEPS_DATA = [
-  { acceptTerms: false },
-  { talkTitle: '', talkLength: 'standard' },
-  { talkShortDescription: '', talkHashtags: '' },
-  { talkDescription: '' },
-  { acceptTerms: false },
-];
+const STEPS = [Step1, Step2, Step3, Step4, Step5];
+const INITAL_STEPS_DATA = [{}, { talkLength: 'standard' }, {}, {}, { speakerIsAdult: true }];
 
 const Container = styled.main`
   min-height: 100%;
