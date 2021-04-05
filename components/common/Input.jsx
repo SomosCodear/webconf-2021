@@ -6,9 +6,16 @@ export const Input = styled.input`
   border: none;
   border-bottom: 0.062rem solid ${({ theme }) => theme.colors.inputBorder};
   font-size: 2rem;
-  outline-offset: 0.25rem;
+  margin-bottom: 0.124rem;
+  transition: all 150ms linear;
 
   &::placeholder {
     color: ${({ theme }) => theme.colors.inputPlaceholder};
+  }
+
+  &:focus {
+    outline: none;
+    border-bottom: 0.186rem solid ${({ theme }) => theme.colors.inputBorderFocused};
+    margin-bottom: 0;
   }
 `;

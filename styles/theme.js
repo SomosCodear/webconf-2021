@@ -39,6 +39,7 @@ const colors = {
   checkboxDisabledTextBackground: palette.gray,
   // input
   inputBorder: palette.gray,
+  inputBorderFocused: palette.jakarta,
   inputPlaceholder: transparentize(0.65, palette.darkGray),
   // textarea
   textareaBackground: palette.white,
