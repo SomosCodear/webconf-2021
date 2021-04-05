@@ -52,6 +52,7 @@ const colors = {
   cfpStepTitle: palette.jakarta,
   cfpStepFieldTitleSmall: transparentize(0.3, palette.darkGray),
   cfpStepFieldDescription: transparentize(0.3, palette.darkGray),
+  cfpStepFieldHelp: transparentize(0.65, palette.darkGray),
 };
 
 const fonts = {

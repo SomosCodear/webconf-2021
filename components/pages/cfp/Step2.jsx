@@ -1,6 +1,15 @@
 import { useFormContext, Controller } from 'react-hook-form';
+import styled from 'styled-components';
 import { Checkbox, Input } from '~/components/common';
 import { Step } from './Step';
+
+const TalkLengthField = styled(Step.Field)`
+  flex-direction: row;
+
+  > * + * {
+    margin-left: 2rem;
+  }
+`;
 
 export const Step2 = () => {
   const { register, control } = useFormContext();
@@ -25,7 +34,7 @@ export const Step2 = () => {
       </Step.FieldContainer>
       <Step.FieldContainer>
         <Step.FieldTitle>¿Qué tan larga es tu charla?</Step.FieldTitle>
-        <Step.Field>
+        <TalkLengthField>
           <Controller
             control={control}
             name="talkLength"
@@ -52,7 +61,7 @@ export const Step2 = () => {
               </>
             )}
           />
-        </Step.Field>
+        </TalkLengthField>
       </Step.FieldContainer>
     </>
   );

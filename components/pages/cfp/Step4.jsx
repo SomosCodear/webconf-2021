@@ -12,6 +12,10 @@ const TalkDescriptionFieldContainer = styled(Step.FieldContainer)`
 
 const TalkDescriptionField = styled(Step.Field)`
   flex: 1;
+
+  ${Textarea} {
+    flex: 1;
+  }
 `;
 
 export const Step4 = () => {

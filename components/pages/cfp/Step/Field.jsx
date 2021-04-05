@@ -1,11 +1,13 @@
 import styled from 'styled-components';
 
 export const Field = styled.div`
-  margin-top: 2rem;
+  margin-top: 1.5rem;
   display: flex;
-  flex-direction: row;
+  flex-direction: column;
+  align-items: stretch;
 
-  > * + * {
-    margin-left: 2rem;
+  p {
+    margin-top: 0.75rem;
+    color: ${({ theme }) => theme.colors.cfpStepFieldHelp};
   }
 `;
