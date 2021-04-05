@@ -15,11 +15,11 @@ export const CheckMark = (props) => (
 );
 
 CheckMark.propTypes = {
-  width: PropTypes.number,
-  height: PropTypes.number,
+  width: PropTypes.string,
+  height: PropTypes.string,
 };
 
 CheckMark.defaultProps = {
-  width: 24,
-  height: 20,
+  width: '24',
+  height: '20',
 };
