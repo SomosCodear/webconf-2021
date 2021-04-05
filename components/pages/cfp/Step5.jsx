@@ -65,11 +65,7 @@ export const Step5 = () => {
       <Step.FieldContainer>
         <Step.FieldTitle variant="small">¿De qué ciudad sos?</Step.FieldTitle>
         <Step.Field>
-          <Input
-            placeholder="Ciudad, País"
-            {...register('speakerCity', { required: true })}
-            autoFocus
-          />
+          <Input placeholder="Ciudad, País" {...register('speakerCity', { required: true })} />
         </Step.Field>
       </Step.FieldContainer>
       <Step.FieldContainer>
@@ -77,7 +73,7 @@ export const Step5 = () => {
           ¿Nos dejas una dirección de correo electrónico?
         </Step.FieldTitle>
         <Step.Field>
-          <Input type="email" {...register('speakerEmail', { required: true })} autoFocus />
+          <Input type="email" {...register('speakerEmail', { required: true })} />
           <p>
             Prometemos utilizar esta información pura y exclusivamente para comunicarnos contigo
             acerca de la conferencia, como lo indica nuestra política de privacidad.
