@@ -1,6 +1,7 @@
 import { forwardRef, useCallback, useRef, useImperativeHandle, useEffect } from 'react';
 import PropTypes from 'prop-types';
 import styled, { css } from 'styled-components';
+import { CheckMark as BaseCheckMark } from '~/components/icons';
 
 const childrenPositionStyles = {
   before: css`
@@ -20,23 +21,13 @@ const Label = styled.label.attrs(() => ({
   ${({ labelPosition }) => childrenPositionStyles[labelPosition]}
 `;
 
-const BaseCheckMark = (props) => (
-  <svg width="24" height="20" viewBox="0 0 24 20" fill="none" {...props}>
-    <path d="M2 10.2949L7.87156 16.1935L22 2" />
-  </svg>
-);
 const CheckMark = styled(BaseCheckMark)`
   display: none;
-
-  path {
-    stroke: ${({ theme }) => theme.colors.checkboxCheckmark};
-    stroke-width: 4;
-  }
 `;
 
 const FakeCheckbox = styled.div`
-  width: 2.75rem;
-  height: 2.75rem;
+  min-width: 2.75rem;
+  min-height: 2.75rem;
   margin-right: 1.5rem;
   box-sizing: border-box;
   display: flex;

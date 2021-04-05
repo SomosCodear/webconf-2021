@@ -15,6 +15,8 @@ const colors = {
   text: palette.black,
   link: palette.disco,
   separator: transparentize(0.9, palette.black),
+  // checkmark
+  checkmarkPath: palette.disco,
   // button
   buttonBaseBackground: palette.white,
   buttonDisabledBackground: palette.gray,
@@ -29,7 +31,6 @@ const colors = {
   buttonSecondaryBorder: palette.disco,
   buttonSecondaryText: palette.white,
   // checkbox
-  checkboxCheckmark: palette.disco,
   checkboxBorder: palette.gray,
   checkboxBackground: palette.white,
   checkboxCheckedBackground: palette.white,
