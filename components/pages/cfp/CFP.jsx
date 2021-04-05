@@ -1,7 +1,7 @@
 import * as R from 'ramda';
 import { useState, useCallback } from 'react';
 import Image from 'next/image';
-import styled, { css } from 'styled-components';
+import styled from 'styled-components';
 import { Step } from './Step';
 import { Step1 } from './Step1';
 import { Step2 } from './Step2';
@@ -48,25 +48,31 @@ const Progress = styled.header`
 `;
 
 const ProgressBar = styled.div`
+  position: relative;
   height: 1rem;
   margin-top: 1.625rem;
   display: flex;
   flex-direction: row;
 `;
 
-const completeStyle = css`
-  background-color: ${({ theme }) => theme.colors.cfpProgressCompletedStepBackground};
-  border-color: ${({ theme }) => theme.colors.cfpProgressCompletedStepBorder};
-`;
-
-const ProgressBit = styled.div`
+const ProgressStep = styled.div`
   flex: 1;
   border: 0.062rem solid ${({ theme }) => theme.colors.cfpProgressIncompleteStepBorder};
-  ${({ completed }) => (completed ? completeStyle : '')}
 
   & + & {
     border-left: none;
   }
+`;
+
+const ProgressFill = styled.div`
+  position: absolute;
+  top: 0;
+  bottom: 0;
+  left: 0;
+  right: ${({ currentStep }) => 100 - (100 / STEPS.length) * (currentStep + 1)}%;
+  background-color: ${({ theme }) => theme.colors.cfpProgressFillBackground};
+  will-change: right;
+  transition: right 600ms cubic-bezier(0.3, 0.7, 0.4, 1);
 `;
 
 const ProgressArrow = styled.div`
@@ -77,6 +83,8 @@ const ProgressArrow = styled.div`
   border-left: 0.75rem solid transparent;
   border-right: 0.75rem solid transparent;
   border-bottom: 1.25rem solid ${({ theme }) => theme.colors.cfpProgressArrow};
+  will-change: margin-left;
+  transition: margin-left 600ms cubic-bezier(0.3, 0.7, 0.4, 1);
 `;
 
 export const CFP = () => {
@@ -117,11 +125,9 @@ export const CFP = () => {
         <h1>¡Proponé tu charla para WebConf 2021!</h1>
         <ProgressBar>
           {STEPS.map((_, index) => (
-            <ProgressBit
-              key={index /* eslint-disable-line react/no-array-index-key */}
-              completed={index <= currentStep}
-            />
+            <ProgressStep key={index /* eslint-disable-line react/no-array-index-key */} />
           ))}
+          <ProgressFill currentStep={currentStep} />
         </ProgressBar>
         <ProgressArrow currentStep={currentStep} />
       </Progress>

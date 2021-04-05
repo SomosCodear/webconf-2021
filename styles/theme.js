@@ -46,8 +46,7 @@ const colors = {
   // CFP
   cfpProgressTitle: palette.jakarta,
   cfpProgressIncompleteStepBorder: palette.gray,
-  cfpProgressCompleteStepBorder: palette.jakarta,
-  cfpProgressCompletedStepBackground: palette.jakarta,
+  cfpProgressFillBackground: palette.jakarta,
   cfpProgressArrow: palette.disco,
   cfpStepTitle: palette.jakarta,
   cfpStepFieldTitleSmall: transparentize(0.3, palette.darkGray),
