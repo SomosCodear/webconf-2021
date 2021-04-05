@@ -53,7 +53,7 @@ export const Step5 = () => {
                   id="no-adult-checkbox"
                   type="radio"
                   onChange={() => onChange(false)}
-                  checked={!value}
+                  checked={value === false}
                 >
                   No
                 </Checkbox>
@@ -83,5 +83,3 @@ export const Step5 = () => {
     </>
   );
 };
-
-Step5.defaultStepValues = { speakerIsAdult: true };
