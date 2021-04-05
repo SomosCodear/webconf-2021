@@ -50,6 +50,7 @@ const colors = {
   cfpProgressCompletedStepBackground: palette.jakarta,
   cfpProgressArrow: palette.disco,
   cfpStepTitle: palette.jakarta,
+  cfpStepFieldTitleSmall: transparentize(0.3, palette.darkGray),
   cfpStepFieldDescription: transparentize(0.3, palette.darkGray),
 };
 
