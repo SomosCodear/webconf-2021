@@ -1,7 +1,8 @@
 import * as R from 'ramda';
 import { useState, useCallback } from 'react';
-import Image from 'next/image';
+import { useMutation } from 'react-query';
 import styled from 'styled-components';
+import Image from 'next/image';
 import { Step } from './Step';
 import { Step1 } from './Step1';
 import { Step2 } from './Step2';
@@ -9,6 +10,8 @@ import { Step3 } from './Step3';
 import { Step4 } from './Step4';
 import { Step5 } from './Step5';
 import { Step6 } from './Step6';
+import { Submitting } from './Submitting';
+import { Success } from './Success';
 
 const STEPS = [Step1, Step2, Step3, Step4, Step5, Step6];
 const INITAL_STEPS_DATA = R.map(R.propOr({}, 'defaultStepValues'))(STEPS);
@@ -93,6 +96,10 @@ export const CFP = () => {
   const [stepsData, setStepsData] = useState(INITAL_STEPS_DATA);
   const CurrentStepComponent = STEPS[currentStep];
 
+  const { isLoading, isSuccess, mutate: submit, reset: resetSubmitState } = useMutation(() =>
+    fetch('/api/hello'),
+  );
+
   const updateCurrentStepData = useCallback(
     (data) => {
       setStepsData((oldStepsData) => R.update(currentStep, data, oldStepsData));
@@ -102,9 +109,14 @@ export const CFP = () => {
   const nextStep = useCallback(
     (data) => {
       updateCurrentStepData(data);
-      setCurrentStep((oldStep) => Math.min(oldStep + 1, STEPS.length - 1));
+
+      if (currentStep === STEPS.length - 1) {
+        submit();
+      } else {
+        setCurrentStep(currentStep + +1);
+      }
     },
-    [updateCurrentStepData, setCurrentStep],
+    [currentStep, submit, updateCurrentStepData, setCurrentStep],
   );
   const previousStep = useCallback(
     (data) => {
@@ -115,32 +127,43 @@ export const CFP = () => {
     },
     [updateCurrentStepData, setCurrentStep],
   );
+  const reset = useCallback(() => {
+    setStepsData(INITAL_STEPS_DATA);
+    resetSubmitState();
+    setCurrentStep(0);
+  }, [setStepsData, resetSubmitState, setCurrentStep]);
 
   return (
     <Container>
       <Logo>
         <Image src="/logo.svg" alt="Webconf Logo" width="288" height="332" />
       </Logo>
-      <Progress>
-        <h1>¡Proponé tu charla para WebConf 2021!</h1>
-        <ProgressBar>
-          {STEPS.map((_, index) => (
-            <ProgressStep key={index /* eslint-disable-line react/no-array-index-key */} />
-          ))}
-          <ProgressFill currentStep={currentStep} />
-        </ProgressBar>
-        <ProgressArrow currentStep={currentStep} />
-      </Progress>
-      <Step
-        key={currentStep}
-        onNext={nextStep}
-        onPrevious={previousStep}
-        isFirst={currentStep === 0}
-        isLast={currentStep === STEPS.length - 1}
-        defaultValues={stepsData[currentStep]}
-      >
-        <CurrentStepComponent />
-      </Step>
+      {!isLoading && !isSuccess ? (
+        <>
+          <Progress>
+            <h1>¡Proponé tu charla para WebConf 2021!</h1>
+            <ProgressBar>
+              {STEPS.map((_, index) => (
+                <ProgressStep key={index /* eslint-disable-line react/no-array-index-key */} />
+              ))}
+              <ProgressFill currentStep={currentStep} />
+            </ProgressBar>
+            <ProgressArrow currentStep={currentStep} />
+          </Progress>
+          <Step
+            key={currentStep}
+            onNext={nextStep}
+            onPrevious={previousStep}
+            isFirst={currentStep === 0}
+            isLast={currentStep === STEPS.length - 1}
+            defaultValues={stepsData[currentStep]}
+          >
+            <CurrentStepComponent />
+          </Step>
+        </>
+      ) : null}
+      {isLoading ? <Submitting /> : null}
+      {isSuccess ? <Success onReset={reset} /> : null}
     </Container>
   );
 };

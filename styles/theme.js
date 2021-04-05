@@ -55,6 +55,7 @@ const colors = {
   cfpStepFieldTitleSmall: transparentize(0.3, palette.darkGray),
   cfpStepFieldDescription: transparentize(0.3, palette.darkGray),
   cfpStepFieldHelp: transparentize(0.65, palette.darkGray),
+  cfpSuccessNote: transparentize(0.3, palette.darkGray),
 };
 
 const fonts = {
