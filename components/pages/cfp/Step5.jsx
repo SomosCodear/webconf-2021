@@ -83,3 +83,5 @@ export const Step5 = () => {
     </>
   );
 };
+
+Step5.defaultStepValues = { speakerIsAdult: true };

@@ -11,7 +11,7 @@ import { Step5 } from './Step5';
 import { Step6 } from './Step6';
 
 const STEPS = [Step1, Step2, Step3, Step4, Step5, Step6];
-const INITAL_STEPS_DATA = [{}, { talkLength: 'standard' }, {}, {}, { speakerIsAdult: true }, {}];
+const INITAL_STEPS_DATA = R.map(R.propOr({}, 'defaultStepValues'))(STEPS);
 
 const Container = styled.main`
   min-height: 100%;

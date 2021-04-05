@@ -66,3 +66,5 @@ export const Step2 = () => {
     </>
   );
 };
+
+Step2.defaultStepValues = { talkLength: 'standard' };
