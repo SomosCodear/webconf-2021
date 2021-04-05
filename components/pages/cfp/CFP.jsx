@@ -134,7 +134,7 @@ export const CFP = () => {
         onNext={nextStep}
         onPrevious={previousStep}
         isFirst={currentStep === 0}
-        isLaste={currentStep === STEPS.length - 1}
+        isLast={currentStep === STEPS.length - 1}
         defaultValues={stepsData[currentStep]}
       >
         <CurrentStepComponent />

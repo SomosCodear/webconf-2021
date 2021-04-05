@@ -32,15 +32,13 @@ export const Step = ({ onNext, onPrevious, isFirst, isLast, defaultValues, child
       <Container onSubmit={form.handleSubmit(onNext)}>
         <Content>{children}</Content>
         <Actions>
-          {!isLast ? (
-            <Button
-              type="submit"
-              variant={isLast ? 'primary' : 'secondary'}
-              disabled={!form.formState.isValid}
-            >
-              {isLast ? 'Enviar charla' : 'Continuar'}
-            </Button>
-          ) : null}
+          <Button
+            type="submit"
+            variant={isLast ? 'primary' : 'secondary'}
+            disabled={!form.formState.isValid}
+          >
+            {isLast ? 'Enviar charla' : 'Continuar'}
+          </Button>
           {!isFirst ? (
             <Button onClick={form.handleSubmit(onPrevious, () => onPrevious())}>Atrás</Button>
           ) : null}
