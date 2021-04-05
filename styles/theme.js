@@ -44,6 +44,8 @@ const colors = {
   textareaBackground: palette.white,
   textareaBorder: palette.gray,
   textareaPlaceholder: transparentize(0.65, palette.darkGray),
+  // loading
+  loadingBackground: palette.disco,
   // CFP
   cfpProgressTitle: palette.jakarta,
   cfpProgressIncompleteStepBorder: palette.gray,
