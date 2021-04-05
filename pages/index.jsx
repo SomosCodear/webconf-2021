@@ -1,7 +1,3 @@
-const Home = () => (
-  <div>
-    Wahoo!
-  </div>
-);
+const Home = () => <div>Wahoo!</div>;
 
 export default Home;

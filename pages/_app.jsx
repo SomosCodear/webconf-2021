@@ -6,9 +6,7 @@ import { GlobalStyle, theme } from '~/styles';
 const WebconfApp = ({ Component, pageProps }) => (
   <ThemeProvider theme={theme}>
     <Head>
-      <title>
-        Webconf
-      </title>
+      <title>Webconf</title>
     </Head>
     <GlobalStyle />
     <Component {...pageProps} />
