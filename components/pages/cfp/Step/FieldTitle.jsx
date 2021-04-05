@@ -13,7 +13,6 @@ const VARIANTS = {
   `,
 };
 export const FieldTitle = styled.h3`
-  line-height: 115%;
   ${({ variant }) => VARIANTS[variant]};
 `;
 

@@ -7,6 +7,7 @@ export const GlobalStyle = createGlobalStyle`
     margin: 0;
     font-family: ${({ theme }) => theme.fonts.default};
     font-size: 16px;
+    line-height: 1.15;
     color: ${({ theme }) => theme.colors.text};
   }
 
