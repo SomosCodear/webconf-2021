@@ -45,7 +45,7 @@ export const Step5 = () => {
                   id="yes-adult-checkbox"
                   type="radio"
                   onChange={() => onChange(true)}
-                  checked={value}
+                  checked={value === true}
                 >
                   Sí
                 </Checkbox>
