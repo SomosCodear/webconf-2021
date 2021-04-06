@@ -5,8 +5,13 @@ import { Button } from '~/components/common';
 
 const Container = styled.form`
   grid-area: step;
+  padding: 0 2.5rem;
   display: flex;
   flex-direction: column;
+
+  @media (min-width: ${({ theme }) => theme.breakpoints.desktop}) {
+    padding: 0;
+  }
 `;
 
 const Content = styled.div`
@@ -24,6 +29,22 @@ const Actions = styled.div`
   justify-content: space-between;
 `;
 
+const ForwardButton = styled(Button)`
+  flex: 1;
+
+  @media (min-width: ${({ theme }) => theme.breakpoints.desktop}) {
+    flex: 0;
+  }
+`;
+
+const BackButton = styled(Button)`
+  display: none;
+
+  @media (min-width: ${({ theme }) => theme.breakpoints.desktop}) {
+    display: initial;
+  }
+`;
+
 export const Step = ({ onNext, onPrevious, isFirst, isLast, defaultValues, children }) => {
   const form = useForm({ mode: 'onChange', defaultValues });
 
@@ -32,15 +53,17 @@ export const Step = ({ onNext, onPrevious, isFirst, isLast, defaultValues, child
       <Container onSubmit={form.handleSubmit(onNext)}>
         <Content>{children}</Content>
         <Actions>
-          <Button
+          <ForwardButton
             type="submit"
             variant={isLast ? 'primary' : 'secondary'}
             disabled={!form.formState.isValid}
           >
             {isLast ? 'Enviar charla' : 'Continuar'}
-          </Button>
+          </ForwardButton>
           {!isFirst ? (
-            <Button onClick={form.handleSubmit(onPrevious, () => onPrevious())}>Atrás</Button>
+            <BackButton onClick={form.handleSubmit(onPrevious, () => onPrevious())}>
+              Atrás
+            </BackButton>
           ) : null}
         </Actions>
       </Container>

@@ -15,10 +15,16 @@ const Label = styled.label.attrs(() => ({
   tabIndex: '0',
 }))`
   display: flex;
-  align-items: center;
+  align-items: flex-start;
   cursor: pointer;
-  font-size: 1.75rem;
+  font-size: 1rem;
+  font-weight: 400;
   ${({ labelPosition }) => childrenPositionStyles[labelPosition]}
+
+  @media (min-width: ${({ theme }) => theme.breakpoints.desktop}) {
+    align-items: center;
+    font-size: 1.75rem;
+  }
 `;
 
 const CheckMark = styled(BaseCheckMark)`
@@ -26,17 +32,34 @@ const CheckMark = styled(BaseCheckMark)`
 `;
 
 const FakeCheckbox = styled.div`
-  min-width: 2.75rem;
-  min-height: 2.75rem;
-  margin-right: 1.5rem;
+  min-width: 1.375rem;
+  min-height: 1.375rem;
+  margin-right: 1rem;
   box-sizing: border-box;
   display: flex;
   flex-direction: row;
   align-items: center;
   justify-content: center;
   border: 0.0625rem solid ${({ theme }) => theme.colors.checkboxBorder};
-  border-radius: 1rem;
+  border-radius: 0.375rem;
   background-color: ${({ theme }) => theme.colors.checkboxBackground};
+
+  @media (min-width: ${({ theme }) => theme.breakpoints.desktop}) {
+    min-width: 2.75rem;
+    min-height: 2.75rem;
+    margin-right: 1.5rem;
+    border-radius: 1rem;
+  }
+`;
+
+const StyledCheckMark = styled(CheckMark)`
+  width: 1rem;
+  height: 0.75rem;
+
+  @media (min-width: ${({ theme }) => theme.breakpoints.desktop}) {
+    width: 1.5rem;
+    height: 1.25rem;
+  }
 `;
 
 const Text = styled.div`
@@ -54,7 +77,7 @@ const RealCheckbox = styled.input.attrs(() => ({
 
   &:checked ~ ${FakeCheckbox} {
     background-color: ${({ theme }) => theme.colors.checkboxCheckedBackground};
-    ${CheckMark} {
+    ${StyledCheckMark} {
       display: block;
     }
   }
@@ -121,7 +144,7 @@ export const Checkbox = forwardRef(
       >
         <RealCheckbox id={id} type="checkbox" ref={inputRef} {...props} />
         <FakeCheckbox>
-          <CheckMark />
+          <StyledCheckMark />
         </FakeCheckbox>
         <Text>{children}</Text>
       </Label>

@@ -65,8 +65,13 @@ const fonts = {
 
 const shadows = {};
 
+const breakpoints = {
+  desktop: '1024px',
+};
+
 export const theme = {
   colors,
   fonts,
   shadows,
+  breakpoints,
 };

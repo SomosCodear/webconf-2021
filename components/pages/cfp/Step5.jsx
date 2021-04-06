@@ -4,19 +4,29 @@ import { Input, Checkbox } from '~/components/common';
 import { Step } from './Step';
 
 const AdultFieldContainer = styled(Step.FieldContainer)`
-  margin-top: 3rem;
-  margin-bottom: 1rem;
-  display: flex;
-  flex-direction: row;
-  align-items: center;
-
   ${Step.Field} {
-    margin: 0;
-    margin-left: 2.5rem;
     flex-direction: row;
 
     > * + * {
       margin-left: 2rem;
+    }
+  }
+
+  @media (min-width: ${({ theme }) => theme.breakpoints.desktop}) {
+    margin-top: 3rem;
+    margin-bottom: 1rem;
+    display: flex;
+    flex-direction: row;
+    align-items: center;
+
+    ${Step.Field} {
+      margin: 0;
+      margin-left: 2.5rem;
+      flex-direction: row;
+
+      > * + * {
+        margin-left: 2rem;
+      }
     }
   }
 `;

@@ -4,10 +4,19 @@ import { Checkbox, Input } from '~/components/common';
 import { Step } from './Step';
 
 const TalkLengthField = styled(Step.Field)`
-  flex-direction: row;
+  flex-direction: column;
 
   > * + * {
-    margin-left: 2rem;
+    margin-top: 1rem;
+  }
+
+  @media (min-width: ${({ theme }) => theme.breakpoints.desktop}) {
+    flex-direction: row;
+
+    > * + * {
+      margin-top: 0;
+      margin-left: 2rem;
+    }
   }
 `;
 

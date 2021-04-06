@@ -4,13 +4,14 @@ import { Checkbox } from '~/components/common';
 import { Step } from './Step';
 
 const TermsDescription = styled.p`
-  margin-top: 2rem;
-  font-size: 1.75rem;
+  margin-top: 1rem;
+  font-size: 1.25rem;
   font-weight: 400;
-`;
 
-const TermsCheckbox = styled(Checkbox)`
-  margin-top: 3rem;
+  @media (min-width: ${({ theme }) => theme.breakpoints.desktop}) {
+    margin-top: 2rem;
+    font-size: 1.75rem;
+  }
 `;
 
 export const Step1 = () => {
@@ -26,9 +27,11 @@ export const Step1 = () => {
         </a>
         .
       </TermsDescription>
-      <TermsCheckbox id="terms-checkbox" {...register('acceptTerms', { required: true })} autoFocus>
-        Declaro que leí los lineamientos de selección.
-      </TermsCheckbox>
+      <Step.FieldContainer>
+        <Checkbox id="terms-checkbox" {...register('acceptTerms', { required: true })} autoFocus>
+          Declaro que leí los lineamientos de selección.
+        </Checkbox>
+      </Step.FieldContainer>
     </>
   );
 };

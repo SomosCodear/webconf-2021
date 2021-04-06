@@ -18,44 +18,97 @@ const INITAL_STEPS_DATA = R.map(R.propOr({}, 'defaultStepValues'))(STEPS);
 
 const Container = styled.main`
   min-height: 100%;
-  padding: 3.75rem 7.5rem;
+  padding: 2.5rem 0;
   box-sizing: border-box;
   display: grid;
   grid-template-areas:
-    'logo progress'
-    'logo   step  ';
-  grid-template-columns: max-content 1fr;
-  grid-template-rows: max-content 1fr;
+    '  logo  '
+    'progress'
+    '  step  ';
+  grid-template-columns: 1fr;
+  grid-template-rows: max-content max-content 1fr;
   grid-row-gap: 1.5rem;
-  grid-column-gap: 4.375rem;
+
+  @media (min-width: ${({ theme }) => theme.breakpoints.desktop}) {
+    padding: 3.75rem 7.5rem;
+    grid-template-areas:
+      'logo progress'
+      'logo   step  ';
+    grid-template-columns: max-content 1fr;
+    grid-template-rows: max-content 1fr;
+    grid-row-gap: 1.5rem;
+    grid-column-gap: 4.375rem;
+  }
 `;
 
 const Logo = styled.div`
   grid-area: logo;
-  padding-right: 6rem;
-  padding-top: calc(50vh - 226px);
   display: flex;
   flex-direction: column;
   align-items: center;
-  border-right: 0.062rem solid ${({ theme }) => theme.colors.separator};
+
+  @media (min-width: ${({ theme }) => theme.breakpoints.desktop}) {
+    padding-right: 6rem;
+    padding-top: calc(50vh - 226px);
+    border-right: 0.062rem solid ${({ theme }) => theme.colors.separator};
+  }
+`;
+
+const DesktopLogoContainer = styled.span`
+  display: none;
+
+  @media (min-width: ${({ theme }) => theme.breakpoints.desktop}) {
+    display: initial;
+  }
+`;
+
+const MobileLogoContainer = styled.span`
+  display: flex;
+  flex-direction: row;
+  align-items: center;
+  justify-content: center;
+
+  hr {
+    width: 1rem;
+    border: 0;
+  }
+
+  @media (min-width: ${({ theme }) => theme.breakpoints.desktop}) {
+    display: none;
+  }
 `;
 
 const Progress = styled.header`
   grid-area: progress;
+  display: flex;
+  flex-direction: column;
+  align-items: stretch;
 
   h1 {
+    align-self: center;
     color: ${({ theme }) => theme.colors.cfpProgressTitle};
-    font-size: 1.625rem;
+    font-size: inherit;
     font-weight: 900;
+  }
+
+  @media (min-width: ${({ theme }) => theme.breakpoints.desktop}) {
+    h1 {
+      font-size: 1.625rem;
+    }
   }
 `;
 
 const ProgressBar = styled.div`
   position: relative;
-  height: 1rem;
-  margin-top: 1.625rem;
+  height: 0.5rem;
+  margin-top: 0.5rem;
   display: flex;
   flex-direction: row;
+
+  @media (min-width: ${({ theme }) => theme.breakpoints.desktop}) {
+    height: 1rem;
+    margin-top: 1.625rem;
+  }
 `;
 
 const ProgressStep = styled.div`
@@ -79,15 +132,25 @@ const ProgressFill = styled.div`
 `;
 
 const ProgressArrow = styled.div`
-  margin-top: 0.5rem;
-  margin-left: calc(${({ currentStep }) => (100 / STEPS.length) * (currentStep + 1)}% - 0.75rem);
+  display: ${({ currentStep }) => (currentStep === STEPS.length - 1 ? 'none' : 'block')};
+  margin-top: 0.25rem;
+  margin-left: calc(${({ currentStep }) => (100 / STEPS.length) * (currentStep + 1)}% - 0.4375rem);
   width: 0;
   height: 0;
-  border-left: 0.75rem solid transparent;
-  border-right: 0.75rem solid transparent;
-  border-bottom: 1.25rem solid ${({ theme }) => theme.colors.cfpProgressArrow};
+  border-left: 0.4375rem solid transparent;
+  border-right: 0.4375rem solid transparent;
+  border-bottom: 0.875rem solid ${({ theme }) => theme.colors.cfpProgressArrow};
   will-change: margin-left;
   transition: margin-left 600ms cubic-bezier(0.3, 0.7, 0.4, 1);
+
+  @media (min-width: ${({ theme }) => theme.breakpoints.desktop}) {
+    display: block;
+    margin-top: 0.5rem;
+    margin-left: calc(${({ currentStep }) => (100 / STEPS.length) * (currentStep + 1)}% - 0.75rem);
+    border-left-width: 0.75rem;
+    border-right-width: 0.75rem;
+    border-bottom-width: 1.25rem;
+  }
 `;
 
 export const CFP = () => {
@@ -136,7 +199,16 @@ export const CFP = () => {
   return (
     <Container>
       <Logo>
-        <Image src="/logo.svg" alt="Webconf Logo" width="288" height="332" />
+        <DesktopLogoContainer>
+          <Image src="/images/desktop-logo.svg" alt="Webconf Logo" width="288" height="332" />
+        </DesktopLogoContainer>
+        {!isLoading && !isSuccess ? (
+          <MobileLogoContainer>
+            <Image src="/images/mobile-logo-1.svg" alt="Webconf Logo" width="74" height="74" />
+            <hr />
+            <Image src="/images/mobile-logo-2.svg" alt="Webconf Logo" width="184" height="64" />
+          </MobileLogoContainer>
+        ) : null}
       </Logo>
       {!isLoading && !isSuccess ? (
         <>
