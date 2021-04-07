@@ -1,8 +1,9 @@
 import { transparentize } from 'polished';
 
 const palette = {
-  black: '#000000',
   white: '#FFFFFF',
+  black: '#000000',
+  darkGray: '#1F1F1F',
   gray: '#C4C4C4',
   jakarta: '#3C467E',
   disco: '#A70050',
@@ -12,9 +13,14 @@ const palette = {
 const colors = {
   // common
   text: palette.black,
+  link: palette.disco,
   separator: transparentize(0.9, palette.black),
+  // checkmark
+  checkmarkPath: palette.disco,
   // button
   buttonBaseBackground: palette.white,
+  buttonDisabledBackground: palette.gray,
+  buttonDisabledBorder: palette.gray,
   buttonDefaultBorder: palette.disco,
   buttonDefaultBackground: palette.transparent,
   buttonDefaultText: palette.disco,
@@ -24,12 +30,33 @@ const colors = {
   buttonSecondaryBackground: palette.disco,
   buttonSecondaryBorder: palette.disco,
   buttonSecondaryText: palette.white,
+  // checkbox
+  checkboxBorder: palette.gray,
+  checkboxBackground: palette.white,
+  checkboxCheckedBackground: palette.white,
+  checkboxDisabledBackground: palette.gray,
+  checkboxDisabledCheckedBackground: palette.gray,
+  checkboxDisabledTextBackground: palette.gray,
+  // input
+  inputBorder: palette.gray,
+  inputBorderFocused: palette.jakarta,
+  inputPlaceholder: transparentize(0.65, palette.darkGray),
+  // textarea
+  textareaBackground: palette.white,
+  textareaBorder: palette.gray,
+  textareaPlaceholder: transparentize(0.65, palette.darkGray),
+  // loading
+  loadingBackground: palette.disco,
   // CFP
   cfpProgressTitle: palette.jakarta,
   cfpProgressIncompleteStepBorder: palette.gray,
-  cfpProgressCompleteStepBorder: palette.jakarta,
-  cfpProgressCompletedStepBackground: palette.jakarta,
+  cfpProgressFillBackground: palette.jakarta,
   cfpProgressArrow: palette.disco,
+  cfpStepTitle: palette.jakarta,
+  cfpStepFieldTitleSmall: transparentize(0.3, palette.darkGray),
+  cfpStepFieldDescription: transparentize(0.3, palette.darkGray),
+  cfpStepFieldHelp: transparentize(0.65, palette.darkGray),
+  cfpSuccessNote: transparentize(0.3, palette.darkGray),
 };
 
 const fonts = {
@@ -38,8 +65,13 @@ const fonts = {
 
 const shadows = {};
 
+const breakpoints = {
+  desktop: '1024px',
+};
+
 export const theme = {
   colors,
   fonts,
   shadows,
+  breakpoints,
 };

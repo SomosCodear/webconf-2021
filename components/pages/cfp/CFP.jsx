@@ -1,113 +1,241 @@
-import { useState } from 'react';
+import * as R from 'ramda';
+import { useState, useCallback } from 'react';
+import { useMutation } from 'react-query';
+import styled from 'styled-components';
 import Image from 'next/image';
-import styled, { css } from 'styled-components';
-import { Button } from '~/components/common';
-import { Terms } from './Terms';
+import { Step } from './Step';
+import { Step1 } from './Step1';
+import { Step2 } from './Step2';
+import { Step3 } from './Step3';
+import { Step4 } from './Step4';
+import { Step5 } from './Step5';
+import { Step6 } from './Step6';
+import { Submitting } from './Submitting';
+import { Success } from './Success';
 
-const STEPS = [Terms, Terms, Terms, Terms, Terms];
+const STEPS = [Step1, Step2, Step3, Step4, Step5, Step6];
+const INITAL_STEPS_DATA = R.map(R.propOr({}, 'defaultStepValues'))(STEPS);
 
 const Container = styled.main`
-  height: 100%;
-  padding: 3.75rem 7.5rem;
+  min-height: 100%;
+  padding: 2.5rem 0;
   box-sizing: border-box;
   display: grid;
   grid-template-areas:
-    'logo progress'
-    'logo   step  '
-    'logo actions ';
-  grid-template-columns: max-content 1fr;
-  grid-template-rows: max-content 1fr max-content;
-  grid-gap: 4.375rem;
+    '  logo  '
+    'progress'
+    '  step  ';
+  grid-template-columns: 1fr;
+  grid-template-rows: max-content max-content 1fr;
+  grid-row-gap: 1.5rem;
+
+  @media (min-width: ${({ theme }) => theme.breakpoints.desktop}) {
+    padding: 3.75rem 7.5rem;
+    grid-template-areas:
+      'logo progress'
+      'logo   step  ';
+    grid-template-columns: max-content 1fr;
+    grid-template-rows: max-content 1fr;
+    grid-row-gap: 1.5rem;
+    grid-column-gap: 4.375rem;
+  }
 `;
 
 const Logo = styled.div`
-  padding-right: 6rem;
   grid-area: logo;
   display: flex;
   flex-direction: column;
   align-items: center;
+
+  @media (min-width: ${({ theme }) => theme.breakpoints.desktop}) {
+    padding-right: 6rem;
+    padding-top: calc(50vh - 226px);
+    border-right: 0.062rem solid ${({ theme }) => theme.colors.separator};
+  }
+`;
+
+const DesktopLogoContainer = styled.span`
+  display: none;
+
+  @media (min-width: ${({ theme }) => theme.breakpoints.desktop}) {
+    display: initial;
+  }
+`;
+
+const MobileLogoContainer = styled.span`
+  display: flex;
+  flex-direction: row;
+  align-items: center;
   justify-content: center;
-  border-right: 0.062rem solid ${({ theme }) => theme.colors.separator};
+
+  hr {
+    width: 1rem;
+    border: 0;
+  }
+
+  @media (min-width: ${({ theme }) => theme.breakpoints.desktop}) {
+    display: none;
+  }
 `;
 
 const Progress = styled.header`
   grid-area: progress;
+  display: flex;
+  flex-direction: column;
+  align-items: stretch;
 
   h1 {
+    align-self: center;
     color: ${({ theme }) => theme.colors.cfpProgressTitle};
-    font-size: 1.625rem;
+    font-size: inherit;
     font-weight: 900;
+  }
+
+  @media (min-width: ${({ theme }) => theme.breakpoints.desktop}) {
+    h1 {
+      font-size: 1.625rem;
+    }
   }
 `;
 
 const ProgressBar = styled.div`
-  height: 1rem;
-  margin-top: 1.625rem;
+  position: relative;
+  height: 0.5rem;
+  margin-top: 0.5rem;
   display: flex;
   flex-direction: row;
+
+  @media (min-width: ${({ theme }) => theme.breakpoints.desktop}) {
+    height: 1rem;
+    margin-top: 1.625rem;
+  }
 `;
 
-const completeStyle = css`
-  background-color: ${({ theme }) => theme.colors.cfpProgressCompletedStepBackground};
-  border-color: ${({ theme }) => theme.colors.cfpProgressCompletedStepBorder};
-`;
-
-const ProgressBit = styled.div`
+const ProgressStep = styled.div`
   flex: 1;
   border: 0.062rem solid ${({ theme }) => theme.colors.cfpProgressIncompleteStepBorder};
-  ${({ completed }) => (completed ? completeStyle : '')}
 
   & + & {
     border-left: none;
   }
 `;
 
+const ProgressFill = styled.div`
+  position: absolute;
+  top: 0;
+  bottom: 0;
+  left: 0;
+  right: ${({ currentStep }) => 100 - (100 / STEPS.length) * (currentStep + 1)}%;
+  background-color: ${({ theme }) => theme.colors.cfpProgressFillBackground};
+  will-change: right;
+  transition: right 600ms cubic-bezier(0.3, 0.7, 0.4, 1);
+`;
+
 const ProgressArrow = styled.div`
-  margin-top: 0.5rem;
-  margin-left: calc(${({ currentStep }) => (100 / STEPS.length) * (currentStep + 1)}% - 0.75rem);
+  display: ${({ currentStep }) => (currentStep === STEPS.length - 1 ? 'none' : 'block')};
+  margin-top: 0.25rem;
+  margin-left: calc(${({ currentStep }) => (100 / STEPS.length) * (currentStep + 1)}% - 0.4375rem);
   width: 0;
   height: 0;
-  border-left: 0.75rem solid transparent;
-  border-right: 0.75rem solid transparent;
-  border-bottom: 1.25rem solid ${({ theme }) => theme.colors.cfpProgressArrow};
-`;
+  border-left: 0.4375rem solid transparent;
+  border-right: 0.4375rem solid transparent;
+  border-bottom: 0.875rem solid ${({ theme }) => theme.colors.cfpProgressArrow};
+  will-change: margin-left;
+  transition: margin-left 600ms cubic-bezier(0.3, 0.7, 0.4, 1);
 
-const Step = styled.section`
-  grid-area: step;
-`;
-
-const Actions = styled.footer`
-  grid-area: actions;
+  @media (min-width: ${({ theme }) => theme.breakpoints.desktop}) {
+    display: block;
+    margin-top: 0.5rem;
+    margin-left: calc(${({ currentStep }) => (100 / STEPS.length) * (currentStep + 1)}% - 0.75rem);
+    border-left-width: 0.75rem;
+    border-right-width: 0.75rem;
+    border-bottom-width: 1.25rem;
+  }
 `;
 
 export const CFP = () => {
   // eslint-disable-next-line no-unused-vars
   const [currentStep, setCurrentStep] = useState(0);
+  const [stepsData, setStepsData] = useState(INITAL_STEPS_DATA);
   const CurrentStepComponent = STEPS[currentStep];
+
+  const { isLoading, isSuccess, mutate: submit, reset: resetSubmitState } = useMutation(() =>
+    fetch('/api/hello'),
+  );
+
+  const updateCurrentStepData = useCallback(
+    (data) => {
+      setStepsData((oldStepsData) => R.update(currentStep, data, oldStepsData));
+    },
+    [currentStep, setStepsData],
+  );
+  const nextStep = useCallback(
+    (data) => {
+      updateCurrentStepData(data);
+
+      if (currentStep === STEPS.length - 1) {
+        submit();
+      } else {
+        setCurrentStep(currentStep + +1);
+      }
+    },
+    [currentStep, submit, updateCurrentStepData, setCurrentStep],
+  );
+  const previousStep = useCallback(
+    (data) => {
+      if (data) {
+        updateCurrentStepData(data);
+      }
+      setCurrentStep((oldStep) => Math.max(oldStep - 1, 0));
+    },
+    [updateCurrentStepData, setCurrentStep],
+  );
+  const reset = useCallback(() => {
+    setStepsData(INITAL_STEPS_DATA);
+    resetSubmitState();
+    setCurrentStep(0);
+  }, [setStepsData, resetSubmitState, setCurrentStep]);
 
   return (
     <Container>
       <Logo>
-        <Image src="/logo.svg" alt="Webconf Logo" width="288" height="332" />
+        <DesktopLogoContainer>
+          <Image src="/images/desktop-logo.svg" alt="Webconf Logo" width="288" height="332" />
+        </DesktopLogoContainer>
+        {!isLoading && !isSuccess ? (
+          <MobileLogoContainer>
+            <Image src="/images/mobile-logo-1.svg" alt="Webconf Logo" width="74" height="74" />
+            <hr />
+            <Image src="/images/mobile-logo-2.svg" alt="Webconf Logo" width="184" height="64" />
+          </MobileLogoContainer>
+        ) : null}
       </Logo>
-      <Progress>
-        <h1>¡Proponé tu charla para WebConf 2021!</h1>
-        <ProgressBar>
-          {STEPS.map((_, index) => (
-            <ProgressBit
-              key={index /* eslint-disable-line react/no-array-index-key */}
-              completed={index <= currentStep}
-            />
-          ))}
-        </ProgressBar>
-        <ProgressArrow currentStep={currentStep} />
-      </Progress>
-      <Step>
-        <CurrentStepComponent />
-      </Step>
-      <Actions>
-        <Button type="secondary">Continuar</Button>
-      </Actions>
+      {!isLoading && !isSuccess ? (
+        <>
+          <Progress>
+            <h1>¡Proponé tu charla para WebConf 2021!</h1>
+            <ProgressBar>
+              {STEPS.map((_, index) => (
+                <ProgressStep key={index /* eslint-disable-line react/no-array-index-key */} />
+              ))}
+              <ProgressFill currentStep={currentStep} />
+            </ProgressBar>
+            <ProgressArrow currentStep={currentStep} />
+          </Progress>
+          <Step
+            key={currentStep}
+            onNext={nextStep}
+            onPrevious={previousStep}
+            isFirst={currentStep === 0}
+            isLast={currentStep === STEPS.length - 1}
+            defaultValues={stepsData[currentStep]}
+          >
+            <CurrentStepComponent />
+          </Step>
+        </>
+      ) : null}
+      {isLoading ? <Submitting /> : null}
+      {isSuccess ? <Success onReset={reset} /> : null}
     </Container>
   );
 };

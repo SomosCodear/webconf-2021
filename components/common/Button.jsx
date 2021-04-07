@@ -1,12 +1,10 @@
+import v from 'voca';
 import { forwardRef } from 'react';
 import PropTypes from 'prop-types';
 import styled, { css } from 'styled-components';
 
-const CONTAINER_TYPES = {
-  default: css`
-    border-color: ${({ theme }) => theme.colors.buttonDefaultBorder};
-    color: ${({ theme }) => theme.colors.buttonDefaultText};
-  `,
+const CONTAINER_VARIANTS = {
+  default: css``,
   primary: css`
     border-color: ${({ theme }) => theme.colors.buttonPrimaryBorder};
     color: ${({ theme }) => theme.colors.buttonPrimaryText};
@@ -25,61 +23,62 @@ const Container = styled.button`
   background-color: ${({ theme }) => theme.colors.buttonBaseBackground};
   outline-offset: 0.125rem;
   cursor: pointer;
-  ${({ type }) => CONTAINER_TYPES[type]}
-`;
+  border-color: ${({ variant, theme }) => theme.colors[`button${v.capitalize(variant)}Border`]};
+  color: ${({ variant, theme }) => theme.colors[`button${v.capitalize(variant)}Text`]};
 
-const displacedStyles = css`
-  will-change: transform;
-  transition: transform 600ms cubic-bezier(0.3, 0.7, 0.4, 1);
-  transform: translate(6px, 6px);
-
-  ${Container}:hover & {
-    transform: translate(4px, 4px);
-    transition: transform 250ms cubic-bezier(0.3, 0.7, 0.4, 1.5);
-  }
-
-  ${Container}:active & {
-    transform: translate(2px, 2px);
-    transition: transform 35ms;
+  &:disabled {
+    border-color: ${({ theme }) => theme.colors.buttonDisabledBorder};
+    cursor: not-allowed;
   }
 `;
 
-const CONTENT_TYPES = {
-  default: css`
-    background-color: ${({ theme }) => theme.colors.buttonDefaultBackground};
-  `,
-  primary: css`
-    background-color: ${({ theme }) => theme.colors.buttonPrimaryBackground};
-    ${displacedStyles}
-  `,
-  secondary: css`
-    background-color: ${({ theme }) => theme.colors.buttonSecondaryBackground};
-    ${displacedStyles}
-  `,
-};
-
-const Content = styled.div`
+const DefaultContent = styled.div`
   padding: 0.65rem 2rem;
   border-radius: 2rem;
   text-align: center;
   font-size: 1.5rem;
   font-weight: 700;
   text-transform: uppercase;
-  ${({ type }) => CONTENT_TYPES[type]}
+  background-color: ${({ variant, theme }) =>
+    theme.colors[`button${v.capitalize(variant)}Background`]};
+
+  ${Container}:disabled & {
+    background-color: ${({ theme }) => theme.colors.buttonDisabledBackground};
+  }
 `;
 
-export const Button = forwardRef(({ children, type, ...props }, forwardedRef) => (
-  <Container ref={forwardedRef} type={type} {...props}>
-    <Content type={type}>{children}</Content>
-  </Container>
-));
+const PopOutContent = styled(DefaultContent)`
+  will-change: transform;
+  transition: transform 600ms cubic-bezier(0.3, 0.7, 0.4, 1);
+  transform: translate(6px, 6px);
+
+  ${Container}:hover:not([disabled]) & {
+    transform: translate(4px, 4px);
+    transition: transform 250ms cubic-bezier(0.3, 0.7, 0.4, 1.5);
+  }
+
+  ${Container}:active:not([disabled]) & {
+    transform: translate(2px, 2px);
+    transition: transform 35ms;
+  }
+`;
+
+export const Button = forwardRef(({ children, variant, ...props }, forwardedRef) => {
+  const Content = variant === 'default' ? DefaultContent : PopOutContent;
+
+  return (
+    <Container ref={forwardedRef} variant={variant} {...props}>
+      <Content variant={variant}>{children}</Content>
+    </Container>
+  );
+});
 
 Button.propTypes = {
   children: PropTypes.node,
-  type: PropTypes.oneOf(Object.keys(CONTAINER_TYPES)),
+  variant: PropTypes.oneOf(Object.keys(CONTAINER_VARIANTS)),
 };
 
 Button.defaultProps = {
   children: null,
-  type: 'default',
+  variant: 'default',
 };

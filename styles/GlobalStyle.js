@@ -7,7 +7,12 @@ export const GlobalStyle = createGlobalStyle`
     margin: 0;
     font-family: ${({ theme }) => theme.fonts.default};
     font-size: 16px;
+    line-height: 1.15;
     color: ${({ theme }) => theme.colors.text};
+  }
+
+  body {
+    overflow-x: hidden;
   }
 
   #__next {
@@ -19,11 +24,11 @@ export const GlobalStyle = createGlobalStyle`
   }
 
   a {
-    color: ${({ theme }) => theme.colors.text};
+    color: ${({ theme }) => theme.colors.link};
     text-decoration: none;
   }
 
-  button, input {
+  button, input, textarea {
     font-family: inherit;
     font-size: inherit;
   }
