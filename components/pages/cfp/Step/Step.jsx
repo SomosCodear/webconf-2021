@@ -33,7 +33,7 @@ const ForwardButton = styled(Button)`
   flex: 1;
 
   @media (min-width: ${({ theme }) => theme.breakpoints.desktop}) {
-    flex: 0;
+    flex: unset;
   }
 `;
 
