@@ -1,5 +1,5 @@
 import * as R from 'ramda';
-import { useState, useCallback } from 'react';
+import { useState, useCallback, useEffect } from 'react';
 import { useMutation } from 'react-query';
 import styled from 'styled-components';
 import Image from 'next/image';
@@ -159,10 +159,6 @@ export const CFP = () => {
   const [stepsData, setStepsData] = useState(INITAL_STEPS_DATA);
   const CurrentStepComponent = STEPS[currentStep];
 
-  const { isLoading, isSuccess, mutate: submit, reset: resetSubmitState } = useMutation(() =>
-    fetch('/api/hello'),
-  );
-
   const updateCurrentStepData = useCallback(
     (data) => {
       setStepsData((oldStepsData) => R.update(currentStep, data, oldStepsData));
@@ -172,14 +168,9 @@ export const CFP = () => {
   const nextStep = useCallback(
     (data) => {
       updateCurrentStepData(data);
-
-      if (currentStep === STEPS.length - 1) {
-        submit();
-      } else {
-        setCurrentStep(currentStep + +1);
-      }
+      setCurrentStep((oldStep) => oldStep + 1);
     },
-    [currentStep, submit, updateCurrentStepData, setCurrentStep],
+    [updateCurrentStepData, setCurrentStep],
   );
   const previousStep = useCallback(
     (data) => {
@@ -190,11 +181,37 @@ export const CFP = () => {
     },
     [updateCurrentStepData, setCurrentStep],
   );
+
+  const { isLoading, isSuccess, mutate: submit, reset: resetSubmitState } = useMutation(
+    async (data) => {
+      const response = await fetch('/api/cfp', {
+        method: 'post',
+        headers: {
+          Accept: 'application/json',
+          'Content-Type': 'application/json',
+        },
+        body: JSON.stringify(data),
+      });
+
+      if (!response.ok) {
+        const { error } = await response.json();
+        throw new Error(error);
+      }
+    },
+  );
+
   const reset = useCallback(() => {
     setStepsData(INITAL_STEPS_DATA);
     resetSubmitState();
     setCurrentStep(0);
   }, [setStepsData, resetSubmitState, setCurrentStep]);
+
+  useEffect(() => {
+    if (currentStep === STEPS.length && !isSuccess) {
+      const data = R.mergeAll(stepsData);
+      submit(data);
+    }
+  }, [currentStep, isSuccess, stepsData, submit]);
 
   return (
     <Container>
@@ -210,7 +227,7 @@ export const CFP = () => {
           </MobileLogoContainer>
         ) : null}
       </Logo>
-      {!isLoading && !isSuccess ? (
+      {currentStep < STEPS.length ? (
         <>
           <Progress>
             <h1>¡Proponé tu charla para WebConf 2021!</h1>

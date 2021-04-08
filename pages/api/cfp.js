@@ -58,7 +58,7 @@ const ERRORS = {
     minLength: 'El titulo deberia tener un minimo de 5 caracteres',
     required: 'Falta el titulo de la charla',
   },
-  talkStandardLength: {
+  talkLength: {
     required: 'Falta especificar la duración de la charla',
   },
   talkTweet: {
@@ -102,9 +102,9 @@ const schema = joi.object({
     'string.base': ERRORS.talkTitle.required,
     'any.required': ERRORS.talkTitle.required,
   }),
-  talkStandardLength: joi.boolean().required().messages({
-    'boolean.base': ERRORS.talkStandardLength.required,
-    'any.required': ERRORS.talkStandardLength.required,
+  talkLength: joi.string().required().messages({
+    'string.base': ERRORS.talkLength.required,
+    'any.required': ERRORS.talkLength.required,
   }),
   talkTweet: joi.string().min(10).max(200).required().messages({
     'string.min': ERRORS.talkTweet.minLength,

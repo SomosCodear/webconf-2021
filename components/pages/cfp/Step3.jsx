@@ -108,7 +108,7 @@ export const Step3 = () => {
             <Textarea
               placeholder="Mi charla es..."
               rows="4"
-              {...register('talkShortDescription', { required: true, maxLength: 200 })}
+              {...register('talkTweet', { required: true, maxLength: 200 })}
               autoFocus
             />
           </ShortDescriptionSpeechBubble>

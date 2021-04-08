@@ -28,7 +28,11 @@ export const Step1 = () => {
         .
       </TermsDescription>
       <Step.FieldContainer>
-        <Checkbox id="terms-checkbox" {...register('acceptTerms', { required: true })} autoFocus>
+        <Checkbox
+          id="terms-checkbox"
+          {...register('checkGuidelines', { required: true })}
+          autoFocus
+        >
           Declaro que leí los lineamientos de selección.
         </Checkbox>
       </Step.FieldContainer>

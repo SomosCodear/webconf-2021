@@ -57,7 +57,7 @@ export const Step6 = () => {
               como speaker o si ya tuviste otras, explicarnos por qué querés dar esta charla en la
               WebConf, comentarnos si tu charla necesita de algo en particular o si tenés pensada alguna
               dinámica particular o cualquier otra cosa que se te venga a la mente."
-            {...register('misc')}
+            {...register('extra')}
             autoFocus
           />
         </TalkDescriptionField>

@@ -29,7 +29,7 @@ export const Step4 = () => {
           Ahora sí, contanos en todo el detalle que quieras de qué se trata tu propuesta.
         </Step.FieldDescription>
         <TalkDescriptionField>
-          <Textarea {...register('talkShortDescription', { required: true })} autoFocus />
+          <Textarea {...register('talkSummary', { required: true })} autoFocus />
         </TalkDescriptionField>
       </TalkDescriptionFieldContainer>
     </>
