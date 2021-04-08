@@ -8,12 +8,14 @@ const palette = {
   jakarta: '#3C467E',
   disco: '#A70050',
   transparent: 'transparent',
+  red: '#C60226',
 };
 
 const colors = {
   // common
   text: palette.black,
   link: palette.disco,
+  error: palette.red,
   separator: transparentize(0.9, palette.black),
   // checkmark
   checkmarkPath: palette.disco,

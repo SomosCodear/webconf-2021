@@ -40,7 +40,8 @@ const FakeCheckbox = styled.div`
   flex-direction: row;
   align-items: center;
   justify-content: center;
-  border: 0.0625rem solid ${({ theme }) => theme.colors.checkboxBorder};
+  border: 0.0625rem solid
+    ${({ theme, hasError }) => (hasError ? theme.colors.error : theme.colors.checkboxBorder)};
   border-radius: 0.375rem;
   background-color: ${({ theme }) => theme.colors.checkboxBackground};
 
@@ -103,6 +104,7 @@ export const Checkbox = forwardRef(
       labelPosition,
       children,
       autoFocus,
+      hasError,
       onMouseEnter,
       onMouseLeave,
       onKeyDown,
@@ -143,7 +145,7 @@ export const Checkbox = forwardRef(
         ref={labelRef}
       >
         <RealCheckbox id={id} type="checkbox" ref={inputRef} {...props} />
-        <FakeCheckbox>
+        <FakeCheckbox hasError={hasError}>
           <StyledCheckMark />
         </FakeCheckbox>
         <Text>{children}</Text>
@@ -158,6 +160,7 @@ Checkbox.propTypes = {
   labelPosition: PropTypes.oneOf(Object.keys(childrenPositionStyles)),
   children: PropTypes.node,
   autoFocus: PropTypes.bool,
+  hasError: PropTypes.bool,
   onKeyDown: PropTypes.func,
   onMouseEnter: PropTypes.func,
   onMouseLeave: PropTypes.func,
@@ -168,6 +171,7 @@ Checkbox.defaultProps = {
   labelPosition: 'after',
   children: null,
   autoFocus: false,
+  hasError: false,
   onKeyDown: () => {},
   onMouseEnter: null,
   onMouseLeave: null,
