@@ -5,18 +5,9 @@ export const Field = styled.div`
   display: flex;
   flex-direction: column;
   align-items: stretch;
-
-  p {
-    margin-top: 0.5rem;
-    font-size: 0.625rem;
-    color: ${({ theme }) => theme.colors.cfpStepFieldHelp};
-  }
+  position: relative;
 
   @media (min-width: ${({ theme }) => theme.breakpoints.desktop}) {
     margin-top: 1.5rem;
-
-    p {
-      margin-top: 0.75rem;
-    }
   }
 `;

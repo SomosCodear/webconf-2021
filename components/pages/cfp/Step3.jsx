@@ -1,6 +1,8 @@
+import * as R from 'ramda';
 import { useFormContext } from 'react-hook-form';
 import styled from 'styled-components';
 import Image from 'next/image';
+import { cfpFieldValidations } from '~/services/cfp';
 import { Input, Textarea } from '~/components/common';
 import { Step } from './Step';
 
@@ -28,7 +30,8 @@ const ShortDescriptionSpeechBubble = styled.div`
     width: 0;
     height: 0;
     border: 1.25rem solid transparent;
-    border-bottom-color: ${({ theme }) => theme.colors.textareaBorder};
+    border-bottom-color: ${({ theme, hasError }) =>
+      hasError ? theme.colors.error : theme.colors.textareaBorder};
     border-top: 0;
     border-right: 0;
   }
@@ -59,7 +62,8 @@ const ShortDescriptionSpeechBubble = styled.div`
       width: 0;
       height: 0;
       border: 1.75rem solid transparent;
-      border-top-color: ${({ theme }) => theme.colors.textareaBorder};
+      border-top-color: ${({ theme, hasError }) =>
+        hasError ? theme.colors.error : theme.colors.textareaBorder};
       border-bottom: 0;
       border-left: 0;
     }
@@ -77,6 +81,10 @@ const ShortDescriptionSpeechBubble = styled.div`
       border-bottom: 0;
       border-left: 0;
     }
+
+    ${Step.FieldError} {
+      left: 4rem;
+    }
   }
 `;
 
@@ -91,7 +99,10 @@ const ShortDescriptionImageContainer = styled.div`
 `;
 
 export const Step3 = () => {
-  const { register } = useFormContext();
+  const {
+    register,
+    formState: { errors },
+  } = useFormContext();
 
   return (
     <>
@@ -104,13 +115,17 @@ export const Step3 = () => {
           <b>¿Cómo la describirías en menos de 200 caracteres?</b>
         </Step.FieldDescription>
         <ShortDescriptionField>
-          <ShortDescriptionSpeechBubble>
+          <ShortDescriptionSpeechBubble hasError={errors.talkTweet}>
             <Textarea
               placeholder="Mi charla es..."
               rows="4"
-              {...register('talkTweet', { required: true, maxLength: 200 })}
+              {...register('talkTweet')}
+              hasError={errors.talkTweet != null}
               autoFocus
             />
+            {errors.talkTweet ? (
+              <Step.FieldError>{errors.talkTweet.message}</Step.FieldError>
+            ) : null}
           </ShortDescriptionSpeechBubble>
           <ShortDescriptionImageContainer>
             <Image src="/images/cfp-twitter.svg" width="66" height="54" layout="responsive" />
@@ -127,10 +142,16 @@ export const Step3 = () => {
           <Input
             type="text"
             placeholder="#charla #fantástica"
-            {...register('talkHashtags', { required: true })}
+            {...register('talkHashtags')}
+            hasError={errors.talkHashtags != null}
           />
+          {errors.talkHashtags ? (
+            <Step.FieldError>{errors.talkHashtags.message}</Step.FieldError>
+          ) : null}
         </Step.Field>
       </Step.FieldContainer>
     </>
   );
 };
+
+Step3.validationSchema = R.pick(['talkTweet', 'talkHashtags'], cfpFieldValidations);

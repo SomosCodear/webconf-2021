@@ -1,5 +1,7 @@
+import * as R from 'ramda';
 import { useFormContext } from 'react-hook-form';
 import styled from 'styled-components';
+import { cfpFieldValidations } from '~/services/cfp';
 import { Checkbox } from '~/components/common';
 import { Step } from './Step';
 
@@ -15,7 +17,10 @@ const TermsDescription = styled.p`
 `;
 
 export const Step1 = () => {
-  const { register } = useFormContext();
+  const {
+    register,
+    formState: { errors },
+  } = useFormContext();
 
   return (
     <>
@@ -28,14 +33,22 @@ export const Step1 = () => {
         .
       </TermsDescription>
       <Step.FieldContainer>
-        <Checkbox
-          id="terms-checkbox"
-          {...register('checkGuidelines', { required: true })}
-          autoFocus
-        >
-          Declaro que leí los lineamientos de selección.
-        </Checkbox>
+        <Step.Field>
+          <Checkbox
+            id="terms-checkbox"
+            {...register('checkGuidelines')}
+            hasError={errors.checkGuidelines != null}
+            autoFocus
+          >
+            Declaro que leí los lineamientos de selección.
+          </Checkbox>
+          {errors.checkGuidelines ? (
+            <Step.FieldError>{errors.checkGuidelines.message}</Step.FieldError>
+          ) : null}
+        </Step.Field>
       </Step.FieldContainer>
     </>
   );
 };
+
+Step1.validationSchema = R.pick(['checkGuidelines'], cfpFieldValidations);

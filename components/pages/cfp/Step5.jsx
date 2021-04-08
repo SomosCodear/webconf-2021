@@ -1,5 +1,7 @@
+import * as R from 'ramda';
 import { Controller, useFormContext } from 'react-hook-form';
 import styled from 'styled-components';
+import { cfpFieldValidations } from '~/services/cfp';
 import { Input, Checkbox } from '~/components/common';
 import { Step } from './Step';
 
@@ -32,7 +34,11 @@ const AdultFieldContainer = styled(Step.FieldContainer)`
 `;
 
 export const Step5 = () => {
-  const { register, control } = useFormContext();
+  const {
+    register,
+    control,
+    formState: { errors },
+  } = useFormContext();
 
   return (
     <>
@@ -40,7 +46,10 @@ export const Step5 = () => {
       <Step.FieldContainer>
         <Step.FieldTitle variant="small">¿Cuál es tu nombre?</Step.FieldTitle>
         <Step.Field>
-          <Input {...register('speakerName', { required: true })} autoFocus />
+          <Input {...register('speakerName')} hasError={errors.speakerName != null} autoFocus />
+          {errors.speakerName ? (
+            <Step.FieldError>{errors.speakerName.message}</Step.FieldError>
+          ) : null}
         </Step.Field>
       </Step.FieldContainer>
       <AdultFieldContainer>
@@ -56,6 +65,7 @@ export const Step5 = () => {
                   type="radio"
                   onChange={() => onChange(true)}
                   checked={value === true}
+                  hasError={errors.speakerIsAdult != null}
                 >
                   Sí
                 </Checkbox>
@@ -64,18 +74,29 @@ export const Step5 = () => {
                   type="radio"
                   onChange={() => onChange(false)}
                   checked={value === false}
+                  hasError={errors.speakerIsAdult != null}
                 >
                   No
                 </Checkbox>
               </>
             )}
           />
+          {errors.speakerIsAdult ? (
+            <Step.FieldError>{errors.speakerIsAdult.message}</Step.FieldError>
+          ) : null}
         </Step.Field>
       </AdultFieldContainer>
       <Step.FieldContainer>
         <Step.FieldTitle variant="small">¿De qué ciudad sos?</Step.FieldTitle>
         <Step.Field>
-          <Input placeholder="Ciudad, País" {...register('speakerCity', { required: true })} />
+          <Input
+            placeholder="Ciudad, País"
+            {...register('speakerCity')}
+            hasError={errors.speakerCity != null}
+          />
+          {errors.speakerCity ? (
+            <Step.FieldError>{errors.speakerCity.message}</Step.FieldError>
+          ) : null}
         </Step.Field>
       </Step.FieldContainer>
       <Step.FieldContainer>
@@ -83,13 +104,22 @@ export const Step5 = () => {
           ¿Nos dejas una dirección de correo electrónico?
         </Step.FieldTitle>
         <Step.Field>
-          <Input type="email" {...register('speakerEmail', { required: true })} />
-          <p>
-            Prometemos utilizar esta información pura y exclusivamente para comunicarnos contigo
-            acerca de la conferencia, como lo indica nuestra política de privacidad.
-          </p>
+          <Input {...register('speakerEmail')} hasError={errors.speakerEmail != null} />
+          {errors.speakerEmail ? (
+            <Step.FieldError>{errors.speakerEmail.message}</Step.FieldError>
+          ) : (
+            <Step.FieldNote>
+              Prometemos utilizar esta información pura y exclusivamente para comunicarnos contigo
+              acerca de la conferencia, como lo indica nuestra política de privacidad.
+            </Step.FieldNote>
+          )}
         </Step.Field>
       </Step.FieldContainer>
     </>
   );
 };
+
+Step5.validationSchema = R.pick(
+  ['speakerName', 'speakerIsAdult', 'speakerCity', 'speakerEmail'],
+  cfpFieldValidations,
+);

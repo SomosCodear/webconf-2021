@@ -246,6 +246,7 @@ export const CFP = () => {
             isFirst={currentStep === 0}
             isLast={currentStep === STEPS.length - 1}
             defaultValues={stepsData[currentStep]}
+            validationSchema={CurrentStepComponent.validationSchema}
           >
             <CurrentStepComponent />
           </Step>

@@ -1,5 +1,7 @@
+import * as R from 'ramda';
 import { useFormContext } from 'react-hook-form';
 import styled from 'styled-components';
+import { cfpFieldValidations } from '~/services/cfp';
 import { Textarea } from '~/components/common';
 import { Step } from './Step';
 
@@ -65,3 +67,5 @@ export const Step6 = () => {
     </>
   );
 };
+
+Step6.validationSchema = R.pick(['extra'], cfpFieldValidations);

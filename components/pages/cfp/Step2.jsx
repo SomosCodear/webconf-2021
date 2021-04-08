@@ -1,5 +1,7 @@
+import * as R from 'ramda';
 import { useFormContext, Controller } from 'react-hook-form';
 import styled from 'styled-components';
+import { cfpFieldValidations } from '~/services/cfp';
 import { Checkbox, Input } from '~/components/common';
 import { Step } from './Step';
 
@@ -21,7 +23,11 @@ const TalkLengthField = styled(Step.Field)`
 `;
 
 export const Step2 = () => {
-  const { register, control } = useFormContext();
+  const {
+    register,
+    control,
+    formState: { errors },
+  } = useFormContext();
 
   return (
     <>
@@ -36,9 +42,11 @@ export const Step2 = () => {
           <Input
             type="text"
             placeholder="Fantástico título de charla"
-            {...register('talkTitle', { required: true })}
+            {...register('talkTitle')}
+            hasError={errors.talkTitle != null}
             autoFocus
           />
+          {errors.talkTitle ? <Step.FieldError>{errors.talkTitle.message}</Step.FieldError> : null}
         </Step.Field>
       </Step.FieldContainer>
       <Step.FieldContainer>
@@ -77,3 +85,4 @@ export const Step2 = () => {
 };
 
 Step2.defaultStepValues = { talkLength: 'standard' };
+Step2.validationSchema = R.pick(['talkTitle', 'talkLength'], cfpFieldValidations);

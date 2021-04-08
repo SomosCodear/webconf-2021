@@ -1,6 +1,8 @@
 import PropTypes from 'prop-types';
 import styled from 'styled-components';
 import { FormProvider, useForm } from 'react-hook-form';
+import { joiResolver } from '@hookform/resolvers/joi';
+import joi from 'joi';
 import { Button } from '~/components/common';
 
 const Container = styled.form`
@@ -16,6 +18,7 @@ const Container = styled.form`
 
 const Content = styled.div`
   flex: 1;
+  padding-bottom: 1rem;
   display: flex;
   flex-direction: column;
   justify-content: center;
@@ -45,19 +48,27 @@ const BackButton = styled(Button)`
   }
 `;
 
-export const Step = ({ onNext, onPrevious, isFirst, isLast, defaultValues, children }) => {
-  const form = useForm({ mode: 'onChange', defaultValues });
+export const Step = ({
+  onNext,
+  onPrevious,
+  isFirst,
+  isLast,
+  defaultValues,
+  validationSchema,
+  children,
+}) => {
+  const form = useForm({
+    mode: 'onTouched',
+    defaultValues,
+    resolver: joiResolver(joi.object(validationSchema)),
+  });
 
   return (
     <FormProvider {...form}>
       <Container onSubmit={form.handleSubmit(onNext)}>
         <Content>{children}</Content>
         <Actions>
-          <ForwardButton
-            type="submit"
-            variant={isLast ? 'primary' : 'secondary'}
-            disabled={!form.formState.isValid}
-          >
+          <ForwardButton type="submit" variant={isLast ? 'primary' : 'secondary'}>
             {isLast ? 'Enviar charla' : 'Continuar'}
           </ForwardButton>
           {!isFirst ? (
@@ -78,10 +89,12 @@ Step.propTypes = {
   isFirst: PropTypes.bool,
   isLast: PropTypes.bool,
   defaultValues: PropTypes.shape({}),
+  validationSchema: PropTypes.shape({}),
 };
 
 Step.defaultProps = {
   isFirst: false,
   isLast: false,
   defaultValues: {},
+  validationSchema: {},
 };
