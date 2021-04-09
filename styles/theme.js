@@ -6,6 +6,7 @@ const palette = {
   darkGray: '#1F1F1F',
   gray: '#C4C4C4',
   jakarta: '#3C467E',
+  darkBlue: '#272D5B',
   disco: '#A70050',
   transparent: 'transparent',
   red: '#C60226',
@@ -20,7 +21,7 @@ const colors = {
   // checkmark
   checkmarkPath: palette.disco,
   // button
-  buttonBaseBackground: palette.white,
+  buttonBaseBackground: palette.transparent,
   buttonDisabledBackground: palette.gray,
   buttonDisabledBorder: palette.gray,
   buttonDefaultBorder: palette.disco,
@@ -61,6 +62,9 @@ const colors = {
   cfpStepFieldHelp: transparentize(0.65, palette.darkGray),
   cfpGuidelineCheckboxText: palette.darkGray,
   cfpSuccessNote: transparentize(0.3, palette.darkGray),
+  cfpSuccessMobileBackground: palette.darkBlue,
+  cfpSuccessMobileTitle: palette.white,
+  cfpSuccessMobileNote: transparentize(0.5, palette.white),
 };
 
 const fonts = {

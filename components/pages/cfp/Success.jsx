@@ -8,20 +8,27 @@ const Container = styled.div`
   grid-area: step;
   grid-row-start: logo;
   grid-row-end: step;
+  margin: -2.5rem 0;
   padding: 0 2.5rem;
   display: flex;
   flex-direction: column;
   justify-content: center;
   align-items: center;
+  background-color: ${({ theme }) => theme.colors.cfpSuccessMobileBackground};
 
   @media (min-width: ${({ theme }) => theme.breakpoints.desktop}) {
     grid-row-start: progress;
+    background-color: unset;
   }
 `;
 
 const Title = styled(Step.Title)`
   margin-top: 1rem;
   text-align: center;
+
+  @media (max-width: ${({ theme }) => theme.breakpoints.desktop}) {
+    color: ${({ theme }) => theme.colors.cfpSuccessMobileTitle};
+  }
 `;
 
 const Note = styled.p`
@@ -30,10 +37,18 @@ const Note = styled.p`
   text-align: center;
   font-size: 1rem;
   font-weight: 700;
-  color: ${({ theme }) => theme.colors.cfpSuccessNote};
+  color: ${({ theme }) => theme.colors.cfpSuccessMobileNote};
 
   @media (min-width: ${({ theme }) => theme.breakpoints.desktop}) {
     font-size: 1.5rem;
+    color: ${({ theme }) => theme.colors.cfpSuccessNote};
+  }
+`;
+
+const SendAnotherButton = styled(Button)`
+  @media (max-width: ${({ theme }) => theme.breakpoints.desktop}) {
+    color: white;
+    border-color: white;
   }
 `;
 
@@ -42,9 +57,7 @@ export const Success = ({ onReset }) => (
     <CheckMark width="270" height="190" />
     <Title>¡Tu propuesta ha sido enviada!</Title>
     <Note>Nos comunicaremos pronto con más información.</Note>
-    <Button variant="primary" onClick={onReset}>
-      Enviar otra charla
-    </Button>
+    <SendAnotherButton onClick={onReset}>Enviar otra</SendAnotherButton>
   </Container>
 );
 
