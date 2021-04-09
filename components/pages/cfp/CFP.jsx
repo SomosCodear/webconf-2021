@@ -2,6 +2,7 @@ import * as R from 'ramda';
 import { useState, useCallback, useEffect } from 'react';
 import { useMutation } from 'react-query';
 import styled from 'styled-components';
+import Link from 'next/link';
 import Image from 'next/image';
 import { Step } from './Step';
 import { Step1 } from './Step1';
@@ -154,7 +155,6 @@ const ProgressArrow = styled.div`
 `;
 
 export const CFP = () => {
-  // eslint-disable-next-line no-unused-vars
   const [currentStep, setCurrentStep] = useState(0);
   const [stepsData, setStepsData] = useState(INITAL_STEPS_DATA);
   const CurrentStepComponent = STEPS[currentStep];
@@ -216,16 +216,21 @@ export const CFP = () => {
   return (
     <Container>
       <Logo>
-        <DesktopLogoContainer>
-          <Image src="/images/desktop-logo.svg" alt="Webconf Logo" width="288" height="332" />
-        </DesktopLogoContainer>
-        {!isLoading && !isSuccess ? (
-          <MobileLogoContainer>
-            <Image src="/images/mobile-logo-1.svg" alt="Webconf Logo" width="74" height="74" />
-            <hr />
-            <Image src="/images/mobile-logo-2.svg" alt="Webconf Logo" width="184" height="64" />
-          </MobileLogoContainer>
-        ) : null}
+        <Link href="/">
+          {/* eslint-disable-next-line jsx-a11y/anchor-is-valid */}
+          <a target="_blank">
+            <DesktopLogoContainer>
+              <Image src="/images/desktop-logo.svg" alt="Webconf Logo" width="288" height="332" />
+            </DesktopLogoContainer>
+            {!isLoading && !isSuccess ? (
+              <MobileLogoContainer>
+                <Image src="/images/mobile-logo-1.svg" alt="Webconf Logo" width="74" height="74" />
+                <hr />
+                <Image src="/images/mobile-logo-2.svg" alt="Webconf Logo" width="184" height="64" />
+              </MobileLogoContainer>
+            ) : null}
+          </a>
+        </Link>
       </Logo>
       {currentStep < STEPS.length ? (
         <>
