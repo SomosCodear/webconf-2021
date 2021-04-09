@@ -24,6 +24,7 @@ const TalkDescriptionField = styled(Step.Field)`
   flex: 1;
 
   ${Textarea} {
+    resize: none;
     flex: 1;
   }
 
