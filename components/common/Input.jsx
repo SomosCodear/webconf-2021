@@ -11,6 +11,7 @@ export const Input = styled.input`
   font-size: 1rem;
 
   &::placeholder {
+    opacity: 1;
     color: ${({ theme }) => theme.colors.inputPlaceholder};
   }
 
