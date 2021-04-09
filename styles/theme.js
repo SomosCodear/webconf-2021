@@ -33,7 +33,7 @@ const colors = {
   buttonSecondaryBorder: palette.disco,
   buttonSecondaryText: palette.white,
   // checkbox
-  checkboxText: palette.darkGray,
+  checkboxText: transparentize(0.3, palette.darkGray),
   checkboxBorder: palette.gray,
   checkboxBackground: palette.white,
   checkboxCheckedBackground: palette.white,
@@ -59,6 +59,7 @@ const colors = {
   cfpStepFieldTitleSmall: transparentize(0.3, palette.darkGray),
   cfpStepFieldDescription: transparentize(0.3, palette.darkGray),
   cfpStepFieldHelp: transparentize(0.65, palette.darkGray),
+  cfpGuidelineCheckboxText: palette.darkGray,
   cfpSuccessNote: transparentize(0.3, palette.darkGray),
 };
 

@@ -17,6 +17,7 @@ const GuidelinesDescription = styled.p`
 `;
 
 const GuidelinesCheckbox = styled(Checkbox)`
+  color: ${({ theme }) => theme.colors.cfpGuidelineCheckboxText};
   font-weight: 500;
 `;
 
