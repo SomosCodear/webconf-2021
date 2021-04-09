@@ -18,6 +18,7 @@ const ShortDescriptionField = styled(Step.Field)`
 
 const ShortDescriptionSpeechBubble = styled.div`
   flex: 1;
+  display: flex;
   margin-left: 1.5rem;
   align-self: stretch;
   position: relative;
@@ -49,18 +50,18 @@ const ShortDescriptionSpeechBubble = styled.div`
     border-right: 0;
   }
 
+  ${Textarea} {
+    resize: none;
+  }
+
   @media (min-width: ${({ theme }) => theme.breakpoints.desktop}) {
     margin-left: 3rem;
     margin-bottom: 1.75rem;
 
     &:before {
-      content: '';
-      position: absolute;
       top: auto;
-      bottom: -1.65rem;
+      bottom: -1.7rem;
       left: 1.5rem;
-      width: 0;
-      height: 0;
       border: 1.75rem solid transparent;
       border-top-color: ${({ theme, hasError }) =>
         hasError ? theme.colors.error : theme.colors.textareaBorder};
@@ -69,13 +70,9 @@ const ShortDescriptionSpeechBubble = styled.div`
     }
 
     &:after {
-      content: '';
-      position: absolute;
       top: auto;
       left: 1.55rem;
-      bottom: -1.5rem;
-      width: 0;
-      height: 0;
+      bottom: -1.55rem;
       border: 1.75rem solid transparent;
       border-top-color: ${({ theme }) => theme.colors.textareaBackground};
       border-bottom: 0;
