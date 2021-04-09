@@ -125,7 +125,13 @@ export const Step3 = () => {
             ) : null}
           </ShortDescriptionSpeechBubble>
           <ShortDescriptionImageContainer>
-            <Image src="/images/cfp-twitter.svg" width="66" height="54" layout="responsive" />
+            <Image
+              src="/images/cfp-twitter.svg"
+              width="66"
+              height="54"
+              layout="responsive"
+              aria-hidden="true"
+            />
           </ShortDescriptionImageContainer>
         </ShortDescriptionField>
       </Step.FieldContainer>
