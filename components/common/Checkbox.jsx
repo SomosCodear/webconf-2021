@@ -19,6 +19,7 @@ const Label = styled.label.attrs(() => ({
   cursor: pointer;
   font-size: 1rem;
   font-weight: 400;
+  color: ${({ theme }) => theme.colors.checkboxText};
   ${({ labelPosition }) => childrenPositionStyles[labelPosition]}
 
   @media (min-width: ${({ theme }) => theme.breakpoints.desktop}) {

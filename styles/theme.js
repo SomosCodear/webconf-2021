@@ -33,6 +33,7 @@ const colors = {
   buttonSecondaryBorder: palette.disco,
   buttonSecondaryText: palette.white,
   // checkbox
+  checkboxText: palette.darkGray,
   checkboxBorder: palette.gray,
   checkboxBackground: palette.white,
   checkboxCheckedBackground: palette.white,
