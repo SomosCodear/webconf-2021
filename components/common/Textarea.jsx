@@ -12,6 +12,7 @@ export const Textarea = styled.textarea`
 
   &::placeholder {
     color: ${({ theme }) => theme.colors.textareaPlaceholder};
+    opacity: 1;
   }
 
   @media (min-width: ${({ theme }) => theme.breakpoints.desktop}) {
