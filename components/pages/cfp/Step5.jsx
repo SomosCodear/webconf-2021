@@ -33,6 +33,14 @@ const AdultFieldContainer = styled(Step.FieldContainer)`
   }
 `;
 
+const EmailFieldContainer = styled(Step.FieldContainer)`
+  margin-bottom: 1rem;
+
+  @media (min-width: ${({ theme }) => theme.breakpoints.desktop}) {
+    margin-bottom: 1.5rem;
+  }
+`;
+
 export const Step5 = () => {
   const {
     register,
@@ -99,7 +107,7 @@ export const Step5 = () => {
           ) : null}
         </Step.Field>
       </Step.FieldContainer>
-      <Step.FieldContainer>
+      <EmailFieldContainer>
         <Step.FieldTitle variant="small">
           ¿Nos dejas una dirección de correo electrónico?
         </Step.FieldTitle>
@@ -114,7 +122,7 @@ export const Step5 = () => {
             </Step.FieldNote>
           )}
         </Step.Field>
-      </Step.FieldContainer>
+      </EmailFieldContainer>
     </>
   );
 };
