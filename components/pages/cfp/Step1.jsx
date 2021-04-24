@@ -5,13 +5,13 @@ import { cfpFieldValidations } from '~/services/cfp';
 import { Checkbox } from '~/components/common';
 import { Step } from './Step';
 
-const GuidelinesDescription = styled.p`
+const GuidelinesDescription = styled.div`
   margin-top: 1rem;
   font-size: 1.25rem;
   font-weight: 400;
 
   @media (min-width: ${({ theme }) => theme.breakpoints.desktop}) {
-    margin-top: 2rem;
+    margin-top: 1.5rem;
     font-size: 1.75rem;
   }
 `;
@@ -37,7 +37,7 @@ const GuidelinesFeatures = styled.div`
   }
 `;
 
-const GuidelinesFeature = styled.p`
+const GuidelinesFeature = styled.div`
   margin-bottom: 1rem;
   text-align: left;
 `;
@@ -57,11 +57,6 @@ export const Step1 = () => {
     <>
       <Step.Title>Antes de continuar...</Step.Title>
       <GuidelinesDescription>
-        {/* Te pedimos que te asegures de haber leído todos los lineamientos de selección expuestos en{' '}
-        <a href="https://codear.org" target="_blank" rel="noreferrer">
-          nuestra web
-        </a>
-  . */}
         Te pedimos que te asegures de haber leído nuestros lineamientos de selección:
         <GuidelinesFeatures>
           <GuidelinesFeature>
