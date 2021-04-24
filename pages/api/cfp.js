@@ -34,7 +34,7 @@ const CONFIG = {
 /* eslint-disable max-len */
 const CONFIRMATION_TEMPLATE = [
   '<p>¡Hola!</p>',
-  '<p>Queremos agradecerte por habernos mandado tu propuesta para la WebConf 2020; nos pone súper-contentos ver la confianza y el interés que mostrás en esta nueva edición de la conferencia.</p>',
+  '<p>Queremos agradecerte por habernos mandado tu propuesta para la WebConf 2021; nos pone súper-contentos ver la confianza y el interés que mostrás en esta nueva edición de la conferencia.</p>',
   '<p>Durante las próximas semanas vamos a estar analizando tu charla para entender en profundidad la temática que propusiste. Te contactaremos nuevamente acercándote novedades, dudas o feedback sobre tu postulación.</p>',
   '<p>Te pedimos que tengas paciencia y estés pendiente de nuestros mails. Dependiendo del volumen de propuestas puede que tardemos en contactarnos, pero nuestra intención es la de tener una buena cadencia para avanzar con el proceso lo más rápido posible.</p>',
   '<p>De nuevo, ¡muchas gracias por animarte y seguimos en contacto!</p>',
