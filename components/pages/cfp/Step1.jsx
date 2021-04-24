@@ -100,7 +100,6 @@ export const Step1 = () => {
             id="terms-checkbox"
             {...register('checkGuidelines')}
             hasError={errors.checkGuidelines != null}
-            autoFocus
           >
             Declaro que leí los lineamientos de selección.
           </GuidelinesCheckbox>
