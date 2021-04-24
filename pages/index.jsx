@@ -24,7 +24,7 @@ const Home = () => (
       <img
         src="/images/desktop-logo.svg"
         alt="WebConf LATAM 2021"
-        style={{ width: '100%', height: '100%' }}
+        style={{ width: '65%', height: '65%' }}
       />
     </div>
     <Button
