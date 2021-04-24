@@ -11,7 +11,7 @@ const WebconfApp = ({ Component, pageProps }) => (
   <QueryClientProvider client={queryClient}>
     <ThemeProvider theme={theme}>
       <Head>
-        <title>Webconf</title>
+        <title>WebConf LATAM 2021 | Un evento de CoDeAr</title>
       </Head>
       <GlobalStyle />
       <Component {...pageProps} />
