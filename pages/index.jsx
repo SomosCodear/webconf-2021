@@ -18,9 +18,14 @@ const Home = () => (
         placeItems: 'center',
         width: '320px',
         height: '320px',
+        padding: '10px',
       }}
     >
-      <img src="/images/desktop-logo.svg" alt="WebConf LATAM 2021" />
+      <img
+        src="/images/desktop-logo.svg"
+        alt="WebConf LATAM 2021"
+        style={{ width: '100%', height: '100%' }}
+      />
     </div>
     <Button
       onClick={() => {
