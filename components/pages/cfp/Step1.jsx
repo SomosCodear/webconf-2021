@@ -28,6 +28,13 @@ const GuidelinesFeatures = styled.div`
     padding-bottom: 0.5rem;
     margin-bottom: 0.5rem;
   }
+
+  @media (min-width: ${({ theme }) => theme.breakpoints.desktop}) {
+    display: grid;
+    grid-template-columns: repeat(3, 1fr);
+    gap: 2rem;
+    font-size: 1.15rem;
+  }
 `;
 
 const GuidelinesFeature = styled.p`
@@ -93,7 +100,7 @@ export const Step1 = () => {
         </GuidelinesFeatures>
       </GuidelinesDescription>
       <Step.FieldContainer>
-        <Step.Field>
+        <Step.Field style={{ marginTop: 0 }}>
           <GuidelinesCheckbox
             id="terms-checkbox"
             {...register('checkGuidelines')}
