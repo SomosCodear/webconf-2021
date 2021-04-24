@@ -1,35 +1,31 @@
-const { Button } = require('~/components/common/Button');
+import Head from 'next/head';
+
+import Header from '../components/pages/home/Header';
+/*
+import MainSection from '../components/pages/home/mainSection';
+import Speakers from '../components/pages/home/speakers';
+import Sponsors from '../components/pages/home/sponsors';
+*/
 
 const Home = () => (
-  <main
-    style={{
-      background: '#272D5B linear-gradient(135deg, #272D5B 20%, #4E0528)',
-      height: '100%',
-      width: '100%',
-      display: 'grid',
-      placeItems: 'center',
-    }}
-  >
-    <div
-      style={{
-        background: '#fff',
-        borderRadius: '50%',
-        display: 'grid',
-        placeItems: 'center',
-        width: '500px',
-        height: '500px',
-      }}
-    >
-      <img src="/images/desktop-logo.svg" alt="WebConf LATAM 2021" />
-    </div>
-    <Button
-      onClick={() => {
-        window.location = '/cfp';
-      }}
-    >
-      Postulá tu charla
-    </Button>
-  </main>
+  <>
+    <Head>
+      <link
+        href="https://fonts.googleapis.com/css2?family=Epilogue:wght@400;500;900&display=swap"
+        rel="stylesheet"
+      />
+      <style>{`
+      html, body {
+        background: #272D5B linear-gradient(135deg, #272D5B 20%, #4E0528) fixed;
+        font-family: Epilogue;
+      }
+    `}</style>
+    </Head>
+    <Header />
+    {/* <MainSection />
+  <Speakers />
+  <Sponsors/> */}
+  </>
 );
 
 export default Home;

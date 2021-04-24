@@ -22,7 +22,9 @@
     "react-hook-form": "^7.0.0",
     "react-is": "^17.0.2",
     "react-query": "^3.13.4",
+    "styled-breakpoints": "^10.0.0",
     "styled-components": "^5.2.3",
+    "styled-components-breakpoint": "^3.0.0-preview.20",
     "voca": "^1.4.0"
   },
   "devDependencies": {
