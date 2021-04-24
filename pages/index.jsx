@@ -16,8 +16,8 @@ const Home = () => (
         borderRadius: '50%',
         display: 'grid',
         placeItems: 'center',
-        width: '500px',
-        height: '500px',
+        width: '320px',
+        height: '320px',
       }}
     >
       <img src="/images/desktop-logo.svg" alt="WebConf LATAM 2021" />
