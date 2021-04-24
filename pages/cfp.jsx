@@ -6,7 +6,9 @@ const CFPPage = () => (
     <Head>
       <title>WebConf LATAM 2021 | Postulá tu charla</title>
       <style>{`
-        font-family: Roboto, sans-serif;
+        html, body {
+          font-family: Roboto, sans-serif;
+        }
       `}</style>
     </Head>
     <CFP />
