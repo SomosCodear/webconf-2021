@@ -205,7 +205,9 @@ const Ideas = () => {
             <img src="/images/weblogo.png" width="350" height="350" alt="" />
           </CenteredBlock>
           <Subtitle>¿No sabés de qué hablar en tu propuesta de charla para WebConf 2021?</Subtitle>
-          <Title>Aquí te sugerimos algunas ideas...</Title>
+          <Title>
+            Aquí te sugerimos algunas ideas, usando tópicos de GitHub y Stack Overflow en español.
+          </Title>
 
           <CenteredBlock style={{ marginTop: '2rem' }}>
             <SearchButton
@@ -224,7 +226,7 @@ const Ideas = () => {
                 rel="noopener noreferrer"
                 href={topic.url || `https://github.com/topics/${topic.topic}`}
               >
-                {topic.display_name}
+                {topic.display_name || topic.topic}
               </TopicName>
               <TopicDescription>
                 {(topic.description_spanish || '').length > 500
