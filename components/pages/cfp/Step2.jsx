@@ -36,7 +36,10 @@ export const Step2 = () => {
         <Step.FieldTitle>¿Qué título le pondrías?</Step.FieldTitle>
         <Step.FieldDescription>
           No hace falta que sea el título final, pensá en algo interesante, que genere atracción y{' '}
-          que llame la atención al público.
+          que llame la atención al público.{' '}
+          <a href="/ideas" target="_blank">
+            ¿No sabés de qué dar tu charla? ¡Usá nuestro buscador de ideas!
+          </a>
         </Step.FieldDescription>
         <Step.Field>
           <Input
