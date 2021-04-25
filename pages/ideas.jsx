@@ -167,6 +167,8 @@ const Ideas = () => {
           rel="stylesheet"
         />
         <style>{`
+          * { box-sizing: border-box};
+
           html, body {
             background: #272D5B linear-gradient(135deg, #272D5B 20%, #4E0528) fixed;
             font-family: Epilogue;
