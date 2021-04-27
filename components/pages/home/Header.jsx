@@ -1,5 +1,6 @@
 import styled from 'styled-components';
 import Image from 'next/image';
+import Link from 'next/link';
 import { useEffect, useState } from 'react';
 import Background from '../../common/Background';
 
@@ -147,7 +148,9 @@ export default function Header() {
         </Title>
         <Buttons>
           {/* <SponsorButton>SUMATE COMO SPONSOR</SponsorButton> */}
-          <ProposalButton href="/cfp">PROPONÉ TU CHARLA</ProposalButton>
+          <Link href="/cfp" passHref>
+            <ProposalButton>PROPONÉ TU CHARLA</ProposalButton>
+          </Link>
         </Buttons>
       </Grid>
     </Container>
