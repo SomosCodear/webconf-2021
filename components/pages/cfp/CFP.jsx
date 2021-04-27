@@ -13,6 +13,7 @@ import { Step5 } from './Step5';
 import { Step6 } from './Step6';
 import { Submitting } from './Submitting';
 import { Success } from './Success';
+import { track } from '~/services/gtag';
 
 const STEPS = [Step1, Step2, Step3, Step4, Step5, Step6];
 const INITAL_STEPS_DATA = R.map(R.propOr({}, 'defaultStepValues'))(STEPS);
@@ -210,6 +211,9 @@ export const CFP = () => {
     if (currentStep === STEPS.length && !isSuccess) {
       const data = R.mergeAll(stepsData);
       submit(data);
+      track('submit', 'cfp', 'form');
+    } else {
+      track('change', 'cfp', 'step', currentStep);
     }
   }, [currentStep, isSuccess, stepsData, submit]);
 
