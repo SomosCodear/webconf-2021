@@ -1,7 +1,7 @@
-import Head from 'next/head';
+import { ThemeProvider } from 'styled-components';
 import { QueryClient, QueryClientProvider } from 'react-query';
 import { ReactQueryDevtools } from 'react-query/devtools';
-import { ThemeProvider } from 'styled-components';
+import Head from 'next/head';
 import { GlobalStyle, theme } from '~/styles';
 
 const queryClient = new QueryClient();

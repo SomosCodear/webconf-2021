@@ -1,5 +1,6 @@
 import Document, { Html, Head, Main, NextScript } from 'next/document';
 import { ServerStyleSheet } from 'styled-components';
+import { GA_MEASUREMENT_ID } from '~/services/gtag';
 
 export default class MyDocument extends Document {
   static async getInitialProps(ctx) {
@@ -27,6 +28,7 @@ export default class MyDocument extends Document {
     }
   }
 
+  /* eslint-disable react/no-danger */
   render() {
     return (
       <Html lang="es">
@@ -40,6 +42,18 @@ export default class MyDocument extends Document {
           <link rel="icon" type="image/png" sizes="32x32" href="/favicon-32x32.png" />
           <link rel="icon" type="image/png" sizes="16x16" href="/favicon-16x16.png" />
           <link rel="manifest" href="/site.webmanifest" />
+          <script async src={`https://www.googletagmanager.com/gtag/js?id=${GA_MEASUREMENT_ID}`} />
+          <script
+            dangerouslySetInnerHTML={{
+              __html: `
+              window.dataLayer = window.dataLayer || [];
+              function gtag(){dataLayer.push(arguments);}
+              gtag('js', new Date());
+
+              gtag('config', '${GA_MEASUREMENT_ID}');
+            `,
+            }}
+          />
         </Head>
         <body>
           <Main />
@@ -48,4 +62,5 @@ export default class MyDocument extends Document {
       </Html>
     );
   }
+  /* eslint-enable react/no-danger */
 }
