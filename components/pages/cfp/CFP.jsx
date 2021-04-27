@@ -208,12 +208,12 @@ export const CFP = () => {
   }, [setStepsData, resetSubmitState, setCurrentStep]);
 
   useEffect(() => {
-    if (currentStep === STEPS.length && !isSuccess) {
+    if (currentStep < STEPS.length) {
+      track('change', 'cfp', 'step', currentStep);
+    } else if (!isSuccess) {
       const data = R.mergeAll(stepsData);
       submit(data);
       track('submit', 'cfp', 'form');
-    } else {
-      track('change', 'cfp', 'step', currentStep);
     }
   }, [currentStep, isSuccess, stepsData, submit]);
 
