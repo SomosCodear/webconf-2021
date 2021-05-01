@@ -1,11 +1,13 @@
 import Head from 'next/head';
-
-import Header from '../components/pages/home/Header';
+import StructuredData from '~/components/common/StructuredData';
+import Header from '~/components/pages/home/Header';
 /*
 import MainSection from '../components/pages/home/mainSection';
 import Speakers from '../components/pages/home/speakers';
 import Sponsors from '../components/pages/home/sponsors';
 */
+
+import eventJsonLD from '~/data/json-ld/event.json';
 
 const Home = () => (
   <>
@@ -20,6 +22,7 @@ const Home = () => (
         font-family: Epilogue;
       }
     `}</style>
+      <StructuredData jsonLD={eventJsonLD} />
     </Head>
     <Header />
     {/* <MainSection />
