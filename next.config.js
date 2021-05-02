@@ -2,18 +2,6 @@ module.exports = {
   future: {
     webpack5: true,
   },
-  async rewrites() {
-    return [
-      {
-        source: '/brief2021',
-        destination: '/brief-2021.pdf',
-      },
-      {
-        source: '/briefs/2021',
-        destination: '/brief-2021.pdf',
-      },
-    ];
-  },
   async redirects() {
     return [
       {
@@ -25,6 +13,16 @@ module.exports = {
       {
         source: '/videos/2020',
         destination: 'https://www.youtube.com/hashtag/encuentroswebconf',
+        permanent: false,
+      },
+      {
+        source: '/brief2021',
+        destination: '/brief-2021.pdf',
+        permanent: false,
+      },
+      {
+        source: '/briefs/2021',
+        destination: '/brief-2021.pdf',
         permanent: false,
       },
     ];
