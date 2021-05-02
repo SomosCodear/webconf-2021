@@ -12,6 +12,10 @@ module.exports = {
         source: '/briefs/2021',
         destination: '/brief-2021.pdf',
       },
+    ];
+  },
+  async redirects() {
+    return [
       {
         source: '/videos/2019',
         destination:
