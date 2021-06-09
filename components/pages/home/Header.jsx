@@ -6,6 +6,7 @@ import Background from '../../common/Background';
 
 const Glass = styled.div`
   position: absolute;
+  left: 0;
   top: 50%;
   width: 100vw;
   height: 40vh;
@@ -36,9 +37,14 @@ const Title = styled.h1`
     font-size: 110px;
     line-height: 80%;
   }
+
+  @media (min-width: ${({ theme }) => theme.breakpoints.hiDpi}) {
+    font-size: 140px;
+    line-height: 90%;
+  }
 `;
 
-/* const SponsorButton = styled.a`
+const SponsorButton = styled.a`
   display: inline-block;
   background: #3c467e;
   border-radius: 20px;
@@ -52,10 +58,14 @@ const Title = styled.h1`
   text-transform: uppercase;
   color: #fff;
   border: 1px solid #3c467e;
-  margin-right: 45px;
   z-index: 99;
-  filter:drop-shadow(0 0 3px rgba(255, 255, 255, 0.4));
-`; */
+  filter: drop-shadow(0 0 3px rgba(255, 255, 255, 0.4));
+
+  @media (min-width: ${({ theme }) => theme.breakpoints.hiDpi}) {
+    font-size: 24px;
+    padding: 20px 36px;
+  }
+`;
 
 const ProposalButton = styled.a`
   display: inline-block;
@@ -74,6 +84,11 @@ const ProposalButton = styled.a`
   z-index: 99;
   filter: drop-shadow(0 0 3px rgba(255, 255, 255, 0.4));
   cursor: pointer;
+
+  @media (min-width: ${({ theme }) => theme.breakpoints.hiDpi}) {
+    font-size: 24px;
+    padding: 20px 36px;
+  }
 `;
 
 const Grid = styled.section`
@@ -86,6 +101,8 @@ const Grid = styled.section`
     'title'
     'buttons';
   grid-template-rows: auto auto auto;
+  max-width: 1600px;
+  margin: 0 auto;
 
   @media (min-width: ${({ theme }) => theme.breakpoints.desktop}) {
     grid-template-areas:
@@ -98,6 +115,10 @@ const Grid = styled.section`
 
 const Buttons = styled.div`
   grid-area: buttons;
+  display: grid;
+  gap: 16px;
+  grid-auto-flow: column;
+  padding: 16px;
 
   @media (min-width: ${({ theme }) => theme.breakpoints.desktop}) {
     align-self: flex-start;
@@ -128,7 +149,9 @@ export default function Header() {
   const [logoSize, setLogoSize] = useState(375);
 
   useEffect(() => {
-    if (global.innerWidth >= 1024) {
+    if (global.innerWidth >= 2048) {
+      setLogoSize(980);
+    } else if (global.innerWidth >= 1024) {
       setLogoSize(717);
     } else if (global.innerWidth >= 768) {
       setLogoSize(544);
@@ -147,9 +170,11 @@ export default function Header() {
           23 AL 27 <br /> <White>DE AGOSTO</White>
         </Title>
         <Buttons>
-          {/* <SponsorButton>SUMATE COMO SPONSOR</SponsorButton> */}
           <Link href="/cfp" passHref>
             <ProposalButton>PROPONÉ TU CHARLA</ProposalButton>
+          </Link>
+          <Link href="/brief/2021" passHref>
+            <SponsorButton>AUSPICIÁ WEBCONF</SponsorButton>
           </Link>
         </Buttons>
       </Grid>

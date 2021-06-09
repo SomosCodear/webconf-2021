@@ -75,6 +75,7 @@ const shadows = {};
 
 const breakpoints = {
   desktop: '1024px',
+  hiDpi: '2048px',
 };
 
 export const theme = {
