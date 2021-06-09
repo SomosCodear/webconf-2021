@@ -203,7 +203,6 @@ const Ideas = () => {
       );
       setTimeout(() => {
         setIsShuffling(false);
-        topicsRef.current.scrollIntoView({ behavior: 'smooth' });
       }, 3000);
     } else {
       clearInterval(shufflerInterval);
@@ -252,39 +251,33 @@ const Ideas = () => {
         <meta name="twitter:image" content="https://webconf.tech/images/weblogo.png" />
       </Head>
       <Container>
-        {!isShuffling ? (
-          <Section>
-            <CenteredBlock>
-              <img src="/images/weblogo.png" width="350" height="350" alt="" />
-            </CenteredBlock>
-            <Subtitle>
-              ¿No sabés de qué hablar en tu propuesta de charla para WebConf 2021?
-            </Subtitle>
-            <Title>
-              Aquí te sugerimos algunas ideas, usando tópicos de GitHub y Stack Overflow en español.
-            </Title>
+        <Section>
+          <CenteredBlock>
+            <img src="/images/weblogo.png" width="350" height="350" alt="" />
+          </CenteredBlock>
+          <Subtitle>¿No sabés de qué hablar en tu propuesta de charla para WebConf 2021?</Subtitle>
+          <Title>
+            Aquí te sugerimos algunas ideas, usando tópicos de GitHub y Stack Overflow en español.
+          </Title>
 
-            <CenteredBlock style={{ marginTop: '2rem' }}>
-              <ButtonContainer>
-                <SearchButton
-                  variant="secondary"
-                  className={isShuffling ? 'searching' : ''}
-                  onClick={() => setIsShuffling(true)}
-                >
-                  {isShuffling ? '...' : 'Buscar'}
-                </SearchButton>
-                <Button
-                  variant="primary"
-                  onClick={() => articleRef.current.scrollIntoView({ behavior: 'smooth' })}
-                >
-                  Leé nuestra guía
-                </Button>
-              </ButtonContainer>
-            </CenteredBlock>
-          </Section>
-        ) : (
-          ''
-        )}
+          <CenteredBlock style={{ marginTop: '2rem' }}>
+            <ButtonContainer>
+              <SearchButton
+                variant="secondary"
+                className={isShuffling ? 'searching' : ''}
+                onClick={() => setIsShuffling(true)}
+              >
+                {isShuffling ? '...' : 'Buscar'}
+              </SearchButton>
+              <Button
+                variant="primary"
+                onClick={() => articleRef.current.scrollIntoView({ behavior: 'smooth' })}
+              >
+                Leé nuestra guía
+              </Button>
+            </ButtonContainer>
+          </CenteredBlock>
+        </Section>
         <Topics ref={topicsRef} style={isShuffling ? { filter: 'blur(5px)' } : {}}>
           {topics.map((topic) => (
             <Topic key={topic.topic}>
