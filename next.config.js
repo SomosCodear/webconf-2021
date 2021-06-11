@@ -25,6 +25,11 @@ module.exports = {
         destination: '/brief-2021.pdf',
         permanent: false,
       },
+      {
+        source: '/auspicianos',
+        destination: 'https://forms.gle/d8d447ajQEvp2dR9A',
+        permanent: false,
+      },
     ];
   },
 };

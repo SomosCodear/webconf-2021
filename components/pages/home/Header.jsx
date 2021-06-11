@@ -173,7 +173,7 @@ export default function Header() {
           <Link href="/cfp" passHref>
             <ProposalButton>PROPONÉ TU CHARLA</ProposalButton>
           </Link>
-          <Link href="/brief/2021" passHref>
+          <Link href="/auspicianos" passHref>
             <SponsorButton>AUSPICIÁ WEBCONF</SponsorButton>
           </Link>
         </Buttons>
