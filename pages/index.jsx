@@ -18,7 +18,7 @@ const META = {
     '23 al 27 de Agosto de 2021.',
   ogUrl: 'https://webconf.tech',
   ogLocale: 'es_AR',
-  ogImage: 'https://webconf.tech/icons/apple-icon-180x180.png',
+  ogImage: 'https://webconf.tech/images/weblogo.png',
   twitterTitle: 'WebConf LATAM',
   twitterDescription:
     'La conferencia sobre desarrollo Web de alcance latinoamericano, organizada por CoDeAr. ' +
