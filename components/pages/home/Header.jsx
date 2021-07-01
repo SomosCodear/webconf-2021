@@ -67,30 +67,6 @@ const SponsorButton = styled.a`
   }
 `;
 
-const ProposalButton = styled.a`
-  display: inline-block;
-  background: #a70050;
-  border-radius: 20px;
-  padding: 14px 30px;
-  font-family: Roboto;
-  font-style: normal;
-  font-weight: bold;
-  font-size: 17px;
-  line-height: 21px;
-  text-align: center;
-  text-transform: uppercase;
-  color: #fff;
-  border: 1px solid #a70050;
-  z-index: 99;
-  filter: drop-shadow(0 0 3px rgba(255, 255, 255, 0.4));
-  cursor: pointer;
-
-  @media (min-width: ${({ theme }) => theme.breakpoints.hiDpi}) {
-    font-size: 24px;
-    padding: 20px 36px;
-  }
-`;
-
 const Grid = styled.section`
   display: grid;
   width: 100%;
@@ -170,9 +146,6 @@ export default function Header() {
           23 AL 27 <br /> <White>DE AGOSTO</White>
         </Title>
         <Buttons>
-          <Link href="/cfp" passHref>
-            <ProposalButton>PROPONÉ TU CHARLA</ProposalButton>
-          </Link>
           <Link href="/auspicianos" passHref>
             <SponsorButton>AUSPICIÁ WEBCONF</SponsorButton>
           </Link>
