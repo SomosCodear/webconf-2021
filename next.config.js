@@ -7,7 +7,7 @@ module.exports = {
       {
         source: '/cfp',
         destination: '/',
-        permanent: true,
+        permanent: false,
       },
       {
         source: '/videos/2019',
