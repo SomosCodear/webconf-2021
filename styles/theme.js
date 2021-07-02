@@ -62,6 +62,9 @@ const colors = {
   landingHeaderGlass: palette.rombianBlack,
   landingHeaderBorder: palette.rombianBlack,
   landingHeaderLearnMore: palette.white,
+  landingSectionTitle: palette.white,
+  landingSectionTitleAccent: palette.rombianPink,
+  landingMainSectionText: palette.white,
   // CFP
   cfpProgressTitle: palette.jakarta,
   cfpProgressIncompleteStepBorder: palette.gray,
