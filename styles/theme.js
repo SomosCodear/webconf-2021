@@ -8,8 +8,11 @@ const palette = {
   jakarta: '#3C467E',
   darkBlue: '#272D5B',
   disco: '#A70050',
+  darkRed: '#4E0528',
   transparent: 'transparent',
   red: '#C60226',
+  rombianPink: '#F22588',
+  rombianBlack: '#1D1028',
 };
 
 const colors = {
@@ -51,6 +54,14 @@ const colors = {
   textareaPlaceholder: transparentize(0.65, palette.darkGray),
   // loading
   loadingBackground: palette.disco,
+  // Landing
+  landingBackgroundGradientStart: palette.darkBlue,
+  landingBackgroundGradientEnd: palette.darkRed,
+  landingHeaderTitle: palette.rombianPink,
+  landingHeaderMonth: palette.white,
+  landingHeaderGlass: palette.rombianBlack,
+  landingHeaderBorder: palette.rombianBlack,
+  landingHeaderLearnMore: palette.white,
   // CFP
   cfpProgressTitle: palette.jakarta,
   cfpProgressIncompleteStepBorder: palette.gray,

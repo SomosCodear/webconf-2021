@@ -1,5 +1,6 @@
 import styled from 'styled-components';
 import Image from 'next/image';
+import { forwardRef } from 'react';
 
 const Title = styled.h1`
   width: 600px;
@@ -72,35 +73,35 @@ const ColumnRight = styled.div`
 `;
 
 const Container = styled.section`
-  margin-top: 5rem;
+  padding-top: 5rem;
 `;
 
-export default function MainSection() {
-  return (
-    <Container>
-      <Row>
-        <ColumnLeft>
-          <Image src="/images/trama.png" alt="Webconf Logo" width="360" height="493" />
-        </ColumnLeft>
-        <ColumnRight>
-          <RowTitle>
-            <Title>Qué es WebConf?</Title>
-          </RowTitle>
-          <RowText>
-            <Text>
-              Nacida en 2018, WebConf es una conferencia de desarrollo web, creada con la idea de
-              que disertantes de habla hispana puedan exponer acerca de nuevas tecnologías y
-              transmitir su experiencia a la comunidad de desarrollo.
-            </Text>
-            <Text>
-              Apuntamos a ser un espacio inclusivo y accesible, donde el foco es compartir
-              conocimientos y experiencias. Todas las personas involucradas en la industria del
-              software son bienvenidas a nuestro espacio, bajo los términos establecidos en nuestro
-              código de conducta.
-            </Text>
-          </RowText>
-        </ColumnRight>
-      </Row>
-    </Container>
-  );
-}
+export const MainSection = forwardRef((props, forwardedRef) => (
+  <Container {...props} ref={forwardedRef}>
+    <Row>
+      <ColumnLeft>
+        <Image src="/images/trama.png" alt="Webconf Logo" width="360" height="493" />
+      </ColumnLeft>
+      <ColumnRight>
+        <RowTitle>
+          <Title>Qué es WebConf?</Title>
+        </RowTitle>
+        <RowText>
+          <Text>
+            Nacida en 2018, WebConf es una conferencia de desarrollo web, creada con la idea de que
+            disertantes de habla hispana puedan exponer acerca de nuevas tecnologías y transmitir su
+            experiencia a la comunidad de desarrollo.
+          </Text>
+          <Text>
+            Apuntamos a ser un espacio inclusivo y accesible, donde el foco es compartir
+            conocimientos y experiencias. Todas las personas involucradas en la industria del
+            software son bienvenidas a nuestro espacio, bajo los términos establecidos en nuestro
+            código de conducta.
+          </Text>
+        </RowText>
+      </ColumnRight>
+    </Row>
+  </Container>
+));
+
+MainSection.displayName = 'MainSection';

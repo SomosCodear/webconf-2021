@@ -33,10 +33,11 @@ const Container = styled.button`
 `;
 
 const DefaultContent = styled.div`
-  padding: 0.65rem 2rem;
+  padding: 1rem;
   border-radius: 2rem;
   text-align: center;
-  font-size: 1.5rem;
+  font-size: 1.125rem;
+  font-family: ${({ theme }) => theme.fonts.default};
   font-weight: 700;
   text-transform: uppercase;
   background-color: ${({ variant, theme }) =>
