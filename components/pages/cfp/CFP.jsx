@@ -185,7 +185,7 @@ export const CFP = () => {
 
   const { isLoading, isSuccess, mutate: submit, reset: resetSubmitState } = useMutation(
     async (data) => {
-      const response = await fetch('/api/cfp', {
+      const response = await fetch('/api/private-cfp', {
         method: 'post',
         headers: {
           Accept: 'application/json',
