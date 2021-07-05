@@ -1,8 +1,8 @@
 import styled from 'styled-components';
+import { Section } from './Section';
 import { SectionTitle } from './SectionTitle';
 
-const Container = styled.section`
-  padding: 3rem 2.625rem 0;
+const Container = styled(Section)`
   display: grid;
   grid-template:
     'title'
@@ -14,7 +14,6 @@ const Container = styled.section`
   justify-content: center;
 
   @media (min-width: ${({ theme }) => theme.breakpoints.desktop}) {
-    padding-top: 5rem;
     grid-template:
       '    .          .        title   '
       'description separator principles'
