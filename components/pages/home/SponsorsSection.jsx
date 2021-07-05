@@ -1,4 +1,5 @@
 import styled from 'styled-components';
+import Link from 'next/link';
 import Image from 'next/image';
 import animaFiniLogo from '~/public/logos/AnimaFini.svg';
 import daleGeekLogo from '~/public/logos/DaleGeek.svg';
@@ -47,7 +48,11 @@ export function SponsorsSection() {
           <Image src={daleGeekLogo} alt="Dale Geek Logo" width={209} height={87} />
         </SponsorLogoContainer>
       </SponsorsLogos>
-      <Button variant="secondary">sumate a auspiciar</Button>
+      <Link href="/auspicianos" passHref>
+        <Button as="a" variant="secondary">
+          sumate a auspiciar
+        </Button>
+      </Link>
     </Container>
   );
 }
