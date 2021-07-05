@@ -2,7 +2,7 @@ import PropTypes from 'prop-types';
 import styled from 'styled-components';
 import Image from 'next/image';
 import Link from 'next/link';
-import logo from '~/public/images/weblogo.png';
+import selloWebConf from '~/public/images/SelloWebConf.svg';
 import { Button } from '~/components/common';
 import { Background } from './Background';
 
@@ -154,11 +154,10 @@ export function Header({ onLearnMoreClick, ...props }) {
       <Grid>
         <LogoContainer>
           <Image
-            src={logo}
+            src={selloWebConf}
             alt="Webconf Logo"
             layout="fill"
             sizes="(max-width: 1024px) 348px, (max-width: 2048px) 720px, 980px"
-            placeholder="blur"
           />
         </LogoContainer>
         <Title>
