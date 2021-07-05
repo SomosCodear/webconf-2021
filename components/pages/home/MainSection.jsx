@@ -5,7 +5,7 @@ import pattern from '~/public/images/trama.png';
 import { SectionTitle } from './SectionTitle';
 
 const Container = styled.section`
-  padding: 3rem 2.625rem 7.5rem;
+  padding: 3rem 2.625rem 0;
   display: grid;
   grid-template:
     'title'
@@ -25,13 +25,16 @@ const Container = styled.section`
   }
 `;
 
+const Title = styled(SectionTitle)`
+  grid-area: title;
+`;
+
 const TextContainer = styled.div`
   grid-area: text;
   font-style: normal;
   font-weight: normal;
   line-height: 120%;
   letter-spacing: -0.05em;
-  color: ${({ theme }) => theme.colors.landingMainSectionText};
 
   p + p {
     margin-top: 1.25rem;
@@ -56,7 +59,7 @@ export const MainSection = forwardRef((props, forwardedRef) => (
     <PatternContainer>
       <Image src={pattern} alt="Webconf Logo" width="360" height="493" />
     </PatternContainer>
-    <SectionTitle>Qué es WebConf?</SectionTitle>
+    <Title>Qué es WebConf?</Title>
     <TextContainer>
       <p>
         Nacida en 2018, WebConf es una conferencia de desarrollo web, creada con la idea de que

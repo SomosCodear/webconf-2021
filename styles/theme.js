@@ -13,6 +13,7 @@ const palette = {
   red: '#C60226',
   rombianPink: '#F22588',
   rombianBlack: '#1D1028',
+  rombianAqua: '#5BFAFD',
 };
 
 const colors = {
@@ -55,16 +56,17 @@ const colors = {
   // loading
   loadingBackground: palette.disco,
   // Landing
+  landingText: palette.white,
   landingBackgroundGradientStart: palette.darkBlue,
   landingBackgroundGradientEnd: palette.darkRed,
-  landingHeaderTitle: palette.rombianPink,
-  landingHeaderMonth: palette.white,
+  landingHeaderTitleAccent: palette.rombianPink,
   landingHeaderGlass: palette.rombianBlack,
   landingHeaderBorder: palette.rombianBlack,
-  landingHeaderLearnMore: palette.white,
-  landingSectionTitle: palette.white,
-  landingSectionTitleAccent: palette.rombianPink,
-  landingMainSectionText: palette.white,
+  landingHeaderLearnMoreArrow: palette.white,
+  landingSectionTitleUnderline: palette.white,
+  landingSectionTitleUnderlineAccent: palette.rombianPink,
+  landingSpeakerPrincipleSubtitle: palette.rombianAqua,
+  landingSpeakerSeparator: palette.rombianPink,
   // CFP
   cfpProgressTitle: palette.jakarta,
   cfpProgressIncompleteStepBorder: palette.gray,

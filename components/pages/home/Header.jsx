@@ -82,7 +82,6 @@ const LogoContainer = styled.div`
 const Title = styled.h1`
   font-style: normal;
   font-weight: 900;
-  color: ${({ theme }) => theme.colors.landingHeaderTitle};
   grid-area: title;
   padding-bottom: 2.5rem;
   font-size: 3.375rem;
@@ -92,7 +91,7 @@ const Title = styled.h1`
   align-self: flex-start;
 
   span {
-    color: ${({ theme }) => theme.colors.landingHeaderMonth};
+    color: ${({ theme }) => theme.colors.landingHeaderTitleAccent};
   }
 
   @media (min-width: ${({ theme }) => theme.breakpoints.desktop}) {
@@ -127,7 +126,6 @@ const LearnMore = styled.button`
   border: none;
   background: none;
   cursor: pointer;
-  color: ${({ theme }) => theme.colors.landingHeaderLearnMore};
   font-family: ${({ theme }) => theme.fonts.default};
   font-size: 1.125rem;
   font-weight: 700;
@@ -145,7 +143,7 @@ const LearnMoreArrow = styled.div`
   margin-top: 0.75rem;
   border-left: 1.375rem solid transparent;
   border-right: 1.375rem solid transparent;
-  border-top: 1.375rem solid ${({ theme }) => theme.colors.landingHeaderLearnMore};
+  border-top: 1.375rem solid ${({ theme }) => theme.colors.landingHeaderLearnMoreArrow};
 `;
 
 export function Header({ onLearnMoreClick, ...props }) {
@@ -164,9 +162,9 @@ export function Header({ onLearnMoreClick, ...props }) {
           />
         </LogoContainer>
         <Title>
-          23 AL 27
+          <span>23 AL 27</span>
           <br />
-          <span>DE AGOSTO</span>
+          DE AGOSTO
         </Title>
         <Buttons>
           <Link href="/auspicianos" passHref>

@@ -2,8 +2,7 @@ import { useRef, useCallback } from 'react';
 import { createGlobalStyle } from 'styled-components';
 import Head from 'next/head';
 import { StructuredData } from '~/components/common';
-import { Header, MainSection } from '~/components/pages/home';
-import Speakers from '../components/pages/home/speakers';
+import { Header, MainSection, SpeakersSection } from '~/components/pages/home';
 import Sponsors from '../components/pages/home/sponsors';
 
 import eventJsonLD from '~/data/json-ld/event.json';
@@ -19,6 +18,7 @@ const PageStyle = createGlobalStyle`
       )
       fixed;
     font-family: Epilogue;
+    color: ${({ theme }) => theme.colors.landingText};
   }
 `;
 const META = {
@@ -72,7 +72,7 @@ const Home = () => {
       <PageStyle />
       <Header onLearnMoreClick={goToMainsection} />
       <MainSection ref={mainSectionRef} />
-      <Speakers />
+      <SpeakersSection />
       <Sponsors />
     </>
   );

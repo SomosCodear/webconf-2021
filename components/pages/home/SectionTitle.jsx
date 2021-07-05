@@ -24,7 +24,7 @@ const Title = styled.h1`
 const FirstUnderline = styled.div`
   height: 0.75rem;
   width: 100%;
-  background: ${({ theme }) => theme.colors.landingSectionTitle};
+  background: ${({ theme }) => theme.colors.landingSectionTitleUnderline};
 
   @media (min-width: ${({ theme }) => theme.breakpoints.desktop}) {
     height: 1.25rem;
@@ -35,7 +35,7 @@ const SecondUnderline = styled.div`
   height: 0.375rem;
   margin-top: 0.125rem;
   width: 45%;
-  background: ${({ theme }) => theme.colors.landingSectionTitleAccent};
+  background: ${({ theme }) => theme.colors.landingSectionTitleUnderlineAccent};
 
   @media (min-width: ${({ theme }) => theme.breakpoints.desktop}) {
     height: 0.625rem;
