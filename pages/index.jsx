@@ -2,7 +2,13 @@ import { useRef, useCallback } from 'react';
 import { createGlobalStyle } from 'styled-components';
 import Head from 'next/head';
 import { StructuredData } from '~/components/common';
-import { Header, MainSection, SpeakersSection, SponsorsSection } from '~/components/pages/home';
+import {
+  Footer,
+  Header,
+  MainSection,
+  SpeakersSection,
+  SponsorsSection,
+} from '~/components/pages/home';
 
 import eventJsonLD from '~/data/json-ld/event.json';
 
@@ -73,6 +79,7 @@ const Home = () => {
       <MainSection ref={mainSectionRef} />
       <SpeakersSection />
       <SponsorsSection />
+      <Footer />
     </>
   );
 };

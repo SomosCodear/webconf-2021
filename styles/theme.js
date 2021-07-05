@@ -67,6 +67,7 @@ const colors = {
   landingSectionTitleUnderlineAccent: palette.rombianPink,
   landingSpeakerPrincipleSubtitle: palette.rombianAqua,
   landingSpeakerSeparator: palette.rombianPink,
+  landingFooterBackground: transparentize(0.55, palette.rombianBlack),
   // CFP
   cfpProgressTitle: palette.jakarta,
   cfpProgressIncompleteStepBorder: palette.gray,
