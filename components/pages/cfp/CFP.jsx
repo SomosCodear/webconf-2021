@@ -183,23 +183,26 @@ export const CFP = () => {
     [updateCurrentStepData, setCurrentStep],
   );
 
-  const { isLoading, isSuccess, mutate: submit, reset: resetSubmitState } = useMutation(
-    async (data) => {
-      const response = await fetch('/api/cfp', {
-        method: 'post',
-        headers: {
-          Accept: 'application/json',
-          'Content-Type': 'application/json',
-        },
-        body: JSON.stringify(data),
-      });
+  const {
+    isLoading,
+    isSuccess,
+    mutate: submit,
+    reset: resetSubmitState,
+  } = useMutation(async (data) => {
+    const response = await fetch('/api/private-cfp', {
+      method: 'post',
+      headers: {
+        Accept: 'application/json',
+        'Content-Type': 'application/json',
+      },
+      body: JSON.stringify(data),
+    });
 
-      if (!response.ok) {
-        const { error } = await response.json();
-        throw new Error(error);
-      }
-    },
-  );
+    if (!response.ok) {
+      const { error } = await response.json();
+      throw new Error(error);
+    }
+  });
 
   const reset = useCallback(() => {
     setStepsData(INITAL_STEPS_DATA);

@@ -2,6 +2,11 @@ module.exports = {
   async redirects() {
     return [
       {
+        source: '/cfp',
+        destination: '/',
+        permanent: false,
+      },
+      {
         source: '/videos/2019',
         destination:
           'https://www.youtube.com/watch?v=h6sbrtMnMzM&list=PL7JGDc7wfszTq9oLtahn3vvohLOsC7JT4',
