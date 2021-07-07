@@ -1,7 +1,7 @@
 import styled from 'styled-components';
 import Link from 'next/link';
 import Image from 'next/image';
-import animaFiniLogo from '~/public/logos/AnimaFini.svg';
+import animaFiniLogo from '~/public/logos/AnimaFini.png';
 import daleGeekLogo from '~/public/logos/DaleGeek.svg';
 import { Section } from './Section';
 import { SectionTitle } from './SectionTitle';
@@ -42,10 +42,10 @@ export function SponsorsSection() {
       <SectionTitle>SPONSORS</SectionTitle>
       <SponsorsLogos>
         <SponsorLogoContainer>
-          <Image src={animaFiniLogo} alt="Anima Fini Logo" width={240} height={103} />
+          <Image src={animaFiniLogo} alt="Anima Fini Logo" width="207" height={85} />
         </SponsorLogoContainer>
         <SponsorLogoContainer>
-          <Image src={daleGeekLogo} alt="Dale Geek Logo" width={209} height={87} />
+          <Image src={daleGeekLogo} alt="Dale Geek Logo" height={85} />
         </SponsorLogoContainer>
       </SponsorsLogos>
       <Link href="/auspicianos" passHref>
