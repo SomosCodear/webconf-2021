@@ -19,46 +19,43 @@ const CoolBackground = styled(Background)`
   grid-column: 1;
 `;
 
-const Glass = styled.div`
+const Content = styled.section`
   grid-row: 1;
   grid-column: 1;
+  z-index: 100;
   width: 100%;
-  height: 20rem;
-  margin-top: 14rem;
+  display: flex;
+  flex-direction: column;
+  align-items: stretch;
+`;
+
+const Title = styled.div`
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  position: relative;
+
+  @media (min-width: ${({ theme }) => theme.breakpoints.desktop}) {
+    flex-direction: row;
+  }
+`;
+
+const Strut = styled.div`
+  flex: 1;
+`;
+
+const Glass = styled.div`
+  position: absolute;
+  top: 40%;
+  bottom: 2.5%;
+  width: 100%;
   background: ${({ theme }) => theme.colors.landingHeaderGlass};
   opacity: 0.45;
 
   @media (min-width: ${({ theme }) => theme.breakpoints.desktop}) {
-    height: 20.875rem;
-    margin-top: 15rem;
-  }
-`;
-
-const Grid = styled.section`
-  grid-row: 1;
-  grid-column: 1;
-  display: grid;
-  width: 100%;
-  height: 100%;
-  max-width: 100rem;
-  padding-bottom: 1rem;
-  box-sizing: border-box;
-  place-items: center;
-  grid-template-areas:
-    'logo'
-    'title'
-    'buttons'
-    'learn-more';
-  grid-template-rows: auto auto auto 1fr;
-  z-index: 10;
-
-  @media (min-width: ${({ theme }) => theme.breakpoints.desktop}) {
-    grid-template-areas:
-      'logo         title   '
-      'logo        buttons  '
-      'learn-more learn-more';
-    grid-template-rows: 66% 24% 10%;
-    grid-template-columns: auto auto;
+    top: 25%;
+    bottom: 25%;
   }
 `;
 
@@ -74,15 +71,21 @@ const LogoContainer = styled.div`
   }
 
   @media (min-width: ${({ theme }) => theme.breakpoints.hiDpi}) {
-    width: 61.25rem;
-    height: 61.25rem;
+    width: 60rem;
+    height: 60rem;
   }
 `;
 
-const Title = styled.h1`
+const TextAndButtonsContainer = styled.div`
+  display: flex;
+  flex-direction: column;
+  align-items: flex-start;
+`;
+
+const Text = styled.h1`
+  z-index: 10;
   font-style: normal;
   font-weight: 900;
-  grid-area: title;
   padding-bottom: 2.5rem;
   font-size: 3.375rem;
   text-align: center;
@@ -95,7 +98,7 @@ const Title = styled.h1`
   }
 
   @media (min-width: ${({ theme }) => theme.breakpoints.desktop}) {
-    padding-bottom: 2.75rem;
+    padding: 20% 0 10%;
     align-self: flex-end;
     justify-self: flex-start;
     text-align: left;
@@ -110,7 +113,6 @@ const Title = styled.h1`
 `;
 
 const Buttons = styled.div`
-  grid-area: buttons;
   display: flex;
 
   @media (min-width: ${({ theme }) => theme.breakpoints.desktop}) {
@@ -119,7 +121,6 @@ const Buttons = styled.div`
 `;
 
 const LearnMore = styled.button`
-  grid-area: learn-more;
   display: flex;
   flex-direction: column;
   align-items: center;
@@ -133,7 +134,7 @@ const LearnMore = styled.button`
   padding: 2rem 0 1rem;
 
   @media (min-width: ${({ theme }) => theme.breakpoints.hiDpi}) {
-    padding: 0;
+    padding: 0 0 4rem;
   }
 `;
 
@@ -150,33 +151,39 @@ export function Header({ onLearnMoreClick, ...props }) {
   return (
     <Container {...props}>
       <CoolBackground />
-      <Glass />
-      <Grid>
-        <LogoContainer>
-          <Image
-            src={selloWebConf}
-            alt="Webconf Logo"
-            layout="fill"
-            sizes="(max-width: 1024px) 348px, (max-width: 2048px) 720px, 980px"
-          />
-        </LogoContainer>
+      <Content>
+        <Strut />
         <Title>
-          <span>23 AL 27</span>
-          <br />
-          DE AGOSTO
+          <Glass />
+          <LogoContainer>
+            <Image
+              src={selloWebConf}
+              alt="Webconf Logo"
+              layout="fill"
+              sizes="(max-width: 1024px) 348px, (max-width: 2048px) 720px, 980px"
+            />
+          </LogoContainer>
+          <TextAndButtonsContainer>
+            <Text>
+              <span>23 AL 27</span>
+              <br />
+              DE AGOSTO
+            </Text>
+            <Buttons>
+              <Link href="/auspicianos" passHref>
+                <Button as="a" variant="primary">
+                  sumate como sponsor
+                </Button>
+              </Link>
+            </Buttons>
+          </TextAndButtonsContainer>
         </Title>
-        <Buttons>
-          <Link href="/auspicianos" passHref>
-            <Button as="a" variant="primary">
-              sumate como sponsor
-            </Button>
-          </Link>
-        </Buttons>
+        <Strut />
         <LearnMore onClick={onLearnMoreClick}>
           Conocé más
           <LearnMoreArrow />
         </LearnMore>
-      </Grid>
+      </Content>
     </Container>
   );
 }
