@@ -8,8 +8,12 @@ const palette = {
   jakarta: '#3C467E',
   darkBlue: '#272D5B',
   disco: '#A70050',
+  darkRed: '#4E0528',
   transparent: 'transparent',
   red: '#C60226',
+  rombianPink: '#F22588',
+  rombianBlack: '#1D1028',
+  rombianAqua: '#5BFAFD',
 };
 
 const colors = {
@@ -51,6 +55,19 @@ const colors = {
   textareaPlaceholder: transparentize(0.65, palette.darkGray),
   // loading
   loadingBackground: palette.disco,
+  // Landing
+  landingText: palette.white,
+  landingBackgroundGradientStart: palette.darkBlue,
+  landingBackgroundGradientEnd: palette.darkRed,
+  landingHeaderTitleAccent: palette.rombianPink,
+  landingHeaderGlass: palette.rombianBlack,
+  landingHeaderBorder: palette.rombianBlack,
+  landingHeaderLearnMoreArrow: palette.white,
+  landingSectionTitleUnderline: palette.white,
+  landingSectionTitleUnderlineAccent: palette.rombianPink,
+  landingSpeakerPrincipleSubtitle: palette.rombianAqua,
+  landingSpeakerSeparator: palette.rombianPink,
+  landingFooterBackground: transparentize(0.55, palette.rombianBlack),
   // CFP
   cfpProgressTitle: palette.jakarta,
   cfpProgressIncompleteStepBorder: palette.gray,
