@@ -171,11 +171,6 @@ export function Header({ onLearnMoreClick, ...props }) {
               DE AGOSTO
             </Text>
             <Buttons>
-              <Link href="/cfp-workshops" passHref>
-                <Button as="a" variant="secondary">
-                  proponé tu taller
-                </Button>
-              </Link>
               <Link href="/auspicianos" passHref>
                 <Button as="a" variant="primary">
                   sumate como sponsor
