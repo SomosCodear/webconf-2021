@@ -114,6 +114,7 @@ const Text = styled.h1`
 
 const Buttons = styled.div`
   display: flex;
+  gap: 1rem;
 
   @media (min-width: ${({ theme }) => theme.breakpoints.desktop}) {
     place-self: flex-start;
@@ -170,6 +171,11 @@ export function Header({ onLearnMoreClick, ...props }) {
               DE AGOSTO
             </Text>
             <Buttons>
+              <Link href="/cfp-workshops" passHref>
+                <Button as="a" variant="secondary">
+                  proponé tu taller
+                </Button>
+              </Link>
               <Link href="/auspicianos" passHref>
                 <Button as="a" variant="primary">
                   sumate como sponsor
