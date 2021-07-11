@@ -13,7 +13,10 @@ const keyToLabel = (key) => {
 const dictionaryToReport = (dict) =>
   Object.entries(dict)
     .reduce(
-      (acc, [key, value]) => [...acc, `<strong>${keyToLabel(key)}:</strong><br />${value}`],
+      (acc, [key, value]) => [
+        ...acc,
+        `<strong>${keyToLabel(key)}:</strong><br />${value.replace(/\n/g, '<br />')}`,
+      ],
       [],
     )
     .join('<br /><br />')
