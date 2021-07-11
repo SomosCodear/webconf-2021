@@ -165,6 +165,11 @@ const messages = {
   },
 };
 
+const endpoints = {
+  talks: '/private-cfp',
+  workshops: '/workshop-cfp',
+};
+
 export const CFP = ({ type = 'talks' }) => {
   const [currentStep, setCurrentStep] = useState(0);
   const [stepsData, setStepsData] = useState(INITAL_STEPS_DATA);
@@ -199,7 +204,7 @@ export const CFP = ({ type = 'talks' }) => {
     mutate: submit,
     reset: resetSubmitState,
   } = useMutation(async (data) => {
-    const response = await fetch('/api/private-cfp', {
+    const response = await fetch(`/api${endpoints[type]}`, {
       method: 'post',
       headers: {
         Accept: 'application/json',
