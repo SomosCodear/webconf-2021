@@ -15,7 +15,9 @@ const dictionaryToReport = (dict) =>
     .reduce(
       (acc, [key, value]) => [
         ...acc,
-        `<strong>${keyToLabel(key)}:</strong><br />${value.replace(/\n/g, '<br />')}`,
+        `<strong>${keyToLabel(key)}:</strong><br />${
+          typeof value === 'string' ? value.replace(/\n/g, '<br />') : value
+        }`,
       ],
       [],
     )
