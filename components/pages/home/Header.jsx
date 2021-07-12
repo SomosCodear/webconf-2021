@@ -114,6 +114,7 @@ const Text = styled.h1`
 
 const Buttons = styled.div`
   display: flex;
+  gap: 1rem;
 
   @media (min-width: ${({ theme }) => theme.breakpoints.desktop}) {
     place-self: flex-start;
