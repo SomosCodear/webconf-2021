@@ -64,6 +64,10 @@ const ActualBackground = styled.div`
     background-size: 200px;
     animation: ${move} 60s linear infinite;
   }
+
+  @media (prefers-reduced-motion) {
+    animation: none;
+  }
 `;
 
 const BackgroundBlur = styled(ActualBackground)`
