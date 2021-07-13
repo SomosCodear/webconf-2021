@@ -69,7 +69,7 @@ export const Step = ({
         <Content>{children}</Content>
         <Actions>
           <ForwardButton type="submit" variant={isLast ? 'primary' : 'secondary'}>
-            {isLast ? 'Enviar charla' : 'Continuar'}
+            {isLast ? 'Enviar propuesta' : 'Continuar'}
           </ForwardButton>
           {!isFirst ? (
             <BackButton onClick={form.handleSubmit(onPrevious, () => onPrevious())}>

@@ -15,7 +15,9 @@ const dictionaryToReport = (dict) =>
     .reduce(
       (acc, [key, value]) => [
         ...acc,
-        `<strong>${keyToLabel(key)}:</strong><br />${value.replace(/\n/g, '<br />')}`,
+        `<strong>${keyToLabel(key)}:</strong><br />${
+          typeof value === 'string' ? value.replace(/\n/g, '<br />') : value
+        }`,
       ],
       [],
     )
@@ -26,7 +28,7 @@ const DEFAULT_ADDRESS = 'contenido@webconf.tech';
 const CONFIG = {
   notification: {
     address: envOr('NOTIFICATIONS_EMAIL', DEFAULT_ADDRESS),
-    subject: envOr('NOTIFICATIONS_SUBJECT', '¡Nueva propuesta de charla!'),
+    subject: envOr('NOTIFICATIONS_SUBJECT', '¡Nueva propuesta de taller!'),
   },
   confirmation: {
     address: envOr('CONFIRMATION_EMAIL', DEFAULT_ADDRESS),

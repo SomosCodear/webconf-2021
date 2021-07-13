@@ -58,7 +58,7 @@ export const Step6 = ({ type = 'talks' }) => {
   el resto del formulario pero que consideres importante para que tengamos en cuenta a la
   hora de evaluar tu ${messages[type].subject}. Por ejemplo, nos podés contar si esta es tu
   primer experiencia como ${messages[type].role} o si ya tuviste otras, explicarnos por qué
-  querés dar esta ${messages[type].subject} en la WebConf, comentarnos si tu{' '}
+  querés dar esta ${messages[type].subject} en la WebConf, comentarnos si tu
   ${messages[type].subject} necesita de algo en particular o si tenés pensada alguna dinámica
   particular o cualquier otra cosa que se te venga a la mente.`;
 

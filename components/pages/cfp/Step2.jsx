@@ -107,6 +107,7 @@ export const Step2 = ({ type = 'talks' }) => {
             render={({ field: { onChange, value } }) =>
               messages[type].durationOptions.map((durationOption) => (
                 <Checkbox
+                  key={`checkbox_${durationOption.value}`}
                   id={`${durationOption.value}-${messages[type].id}-checkbox`}
                   type="radio"
                   value={durationOption.value}
@@ -132,5 +133,5 @@ Step2.defaultProps = {
   type: 'talks',
 };
 
-Step2.defaultStepValues = { talkLength: 'standard' };
+// Step2.defaultStepValues = { talkLength: 'standard' };
 Step2.validationSchema = R.pick(['talkTitle', 'talkLength'], cfpFieldValidations);
