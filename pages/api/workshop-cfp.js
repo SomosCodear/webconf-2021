@@ -24,7 +24,7 @@ const dictionaryToReport = (dict) =>
     .join('<br /><br />')
     .replace(/(?:<br \/>)+$/, '');
 
-const DEFAULT_ADDRESS = 'contenido@webconf.tech';
+const DEFAULT_ADDRESS = 'workshops@webconf.tech';
 const CONFIG = {
   notification: {
     address: envOr('NOTIFICATIONS_EMAIL', DEFAULT_ADDRESS),
@@ -46,7 +46,7 @@ const CONFIRMATION_TEMPLATE = [
   '<p>--</p>',
   '<p>',
   '<a href="https://codear.org"><img src="https://i.imgur.com/ZlaT5Go.png" alt="Logo de CoDeAr" /></a>',
-  '<br /><strong>Equipo de contenido de WebConf</strong>',
+  '<br /><strong>Equipo de Workshops de WebConf</strong>',
   '</p>',
   '<p>',
   '<strong><em>Nuestras redes sociales</em></strong><br />',
