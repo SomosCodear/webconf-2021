@@ -4,6 +4,7 @@ import Image from 'next/image';
 import animaFiniLogo from '~/public/logos/AnimaFini.png';
 import daleGeekLogo from '~/public/logos/DaleGeek.svg';
 import jetBrainsLogo from '~/public/logos/JetBrains.svg';
+import digitalOceanLogo from '~/public/logos/DigitalOcean.svg';
 import { Section } from './Section';
 import { SectionTitle } from './SectionTitle';
 import { Button } from '~/components/common/Button';
@@ -43,6 +44,11 @@ export function SponsorsSection() {
     <Container>
       <SectionTitle>SPONSORS</SectionTitle>
       <SponsorsLogos>
+        <SponsorLogoContainer>
+          <a href="https://digitalocean.com" target="_blank" rel="noopener noreferrer">
+            <Image src={digitalOceanLogo} alt="DigitalOcean" width={300} height={100} />
+          </a>
+        </SponsorLogoContainer>
         <SponsorLogoContainer>
           <a href="https://twitter.com/animafini" target="_blank" rel="noopener noreferrer">
             <Image src={animaFiniLogo} alt="Anima Fini Logo" width="207" height={85} />
