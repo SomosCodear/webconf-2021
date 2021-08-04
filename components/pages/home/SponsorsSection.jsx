@@ -5,6 +5,7 @@ import animaFiniLogo from '~/public/logos/AnimaFini.png';
 import daleGeekLogo from '~/public/logos/DaleGeek.svg';
 import jetBrainsLogo from '~/public/logos/JetBrains.svg';
 import digitalOceanLogo from '~/public/logos/DigitalOcean.svg';
+import doctaDevsLogo from '~/public/logos/DoctaDevs.svg';
 import { Section } from './Section';
 import { SectionTitle } from './SectionTitle';
 import { Button } from '~/components/common/Button';
@@ -17,7 +18,7 @@ const Container = styled(Section)`
 
 const SponsorsLogos = styled.div`
   margin-top: 4rem;
-  margin-bottom: 6.25rem;
+  margin-bottom: 2.25rem;
   display: flex;
   flex-direction: column;
   align-items: center;
@@ -42,21 +43,28 @@ const SponsorLogoContainer = styled.div``;
 export function SponsorsSection() {
   return (
     <Container>
-      <SectionTitle>SPONSORS</SectionTitle>
+      <SectionTitle style={{ marginBottom: '2rem' }}>SPONSORS</SectionTitle>
+      <Link href="/auspicianos" passHref>
+        <Button as="a" variant="secondary">
+          sumate a auspiciar
+        </Button>
+      </Link>
       <SponsorsLogos>
         <SponsorLogoContainer>
           <a href="https://digitalocean.com" target="_blank" rel="noopener noreferrer">
-            <Image src={digitalOceanLogo} alt="DigitalOcean" width={300} height={100} />
+            <Image src={digitalOceanLogo} alt="DigitalOcean" width={600} height={200} />
           </a>
         </SponsorLogoContainer>
+      </SponsorsLogos>
+      <SponsorsLogos>
         <SponsorLogoContainer>
           <a href="https://twitter.com/animafini" target="_blank" rel="noopener noreferrer">
-            <Image src={animaFiniLogo} alt="Anima Fini Logo" width="207" height={85} />
+            <Image src={animaFiniLogo} alt="Anima Fini Logo" width="310" height={126} />
           </a>
         </SponsorLogoContainer>
         <SponsorLogoContainer>
           <a href="https://twitter.com/dalegeekdale" target="_blank" rel="noopener noreferrer">
-            <Image src={daleGeekLogo} alt="Dale Geek Logo" height={85} />
+            <Image src={daleGeekLogo} alt="Dale Geek Logo" height={127} />
           </a>
         </SponsorLogoContainer>
         <SponsorLogoContainer>
@@ -65,11 +73,13 @@ export function SponsorsSection() {
           </a>
         </SponsorLogoContainer>
       </SponsorsLogos>
-      <Link href="/auspicianos" passHref>
-        <Button as="a" variant="secondary">
-          sumate a auspiciar
-        </Button>
-      </Link>
+      <SponsorsLogos>
+        <SponsorLogoContainer>
+          <a href="https://doctadevs.com" target="_blank" rel="noopener noreferrer">
+            <Image src={doctaDevsLogo} alt="DoctaDevs" width={200} height={75} />
+          </a>
+        </SponsorLogoContainer>
+      </SponsorsLogos>
     </Container>
   );
 }
