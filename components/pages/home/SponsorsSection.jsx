@@ -3,6 +3,7 @@ import Link from 'next/link';
 import Image from 'next/image';
 import animaFiniLogo from '~/public/logos/AnimaFini.png';
 import daleGeekLogo from '~/public/logos/DaleGeek.svg';
+import jetBrainsLogo from '~/public/logos/JetBrains.svg';
 import { Section } from './Section';
 import { SectionTitle } from './SectionTitle';
 import { Button } from '~/components/common/Button';
@@ -18,6 +19,7 @@ const SponsorsLogos = styled.div`
   margin-bottom: 6.25rem;
   display: flex;
   flex-direction: column;
+  align-items: center;
 
   * + * {
     margin-top: 3.375rem;
@@ -42,10 +44,19 @@ export function SponsorsSection() {
       <SectionTitle>SPONSORS</SectionTitle>
       <SponsorsLogos>
         <SponsorLogoContainer>
-          <Image src={animaFiniLogo} alt="Anima Fini Logo" width="207" height={85} />
+          <a href="https://twitter.com/animafini" target="_blank" rel="noopener noreferrer">
+            <Image src={animaFiniLogo} alt="Anima Fini Logo" width="207" height={85} />
+          </a>
         </SponsorLogoContainer>
         <SponsorLogoContainer>
-          <Image src={daleGeekLogo} alt="Dale Geek Logo" height={85} />
+          <a href="https://twitter.com/dalegeekdale" target="_blank" rel="noopener noreferrer">
+            <Image src={daleGeekLogo} alt="Dale Geek Logo" height={85} />
+          </a>
+        </SponsorLogoContainer>
+        <SponsorLogoContainer>
+          <a href="https://jetbrains.com" target="_blank" rel="noopener noreferrer">
+            <Image src={jetBrainsLogo} alt="JetBrains" width={150} height={150} />
+          </a>
         </SponsorLogoContainer>
       </SponsorsLogos>
       <Link href="/auspicianos" passHref>
