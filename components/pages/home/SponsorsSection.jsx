@@ -6,6 +6,8 @@ import daleGeekLogo from '~/public/logos/DaleGeek.svg';
 import jetBrainsLogo from '~/public/logos/JetBrains.svg';
 import digitalOceanLogo from '~/public/logos/DigitalOcean.svg';
 import doctaDevsLogo from '~/public/logos/DoctaDevs.svg';
+import artsSecLogo from '~/public/logos/ArtsSec.png';
+
 import { Section } from './Section';
 import { SectionTitle } from './SectionTitle';
 import { Button } from '~/components/common/Button';
@@ -33,7 +35,7 @@ const SponsorsLogos = styled.div`
 
     * + * {
       margin-top: 0;
-      margin-left: 3.75rem;
+      margin-left: 5rem;
     }
   }
 `;
@@ -76,7 +78,12 @@ export function SponsorsSection() {
       <SponsorsLogos>
         <SponsorLogoContainer>
           <a href="https://doctadevs.com" target="_blank" rel="noopener noreferrer">
-            <Image src={doctaDevsLogo} alt="DoctaDevs" width={200} height={75} />
+            <Image src={doctaDevsLogo} alt="DoctaDevs" width={300} height={75} />
+          </a>
+        </SponsorLogoContainer>
+        <SponsorLogoContainer>
+          <a href="https://artssec.com" target="_blank" rel="noopener noreferrer">
+            <Image src={artsSecLogo} alt="ArtsSec" width={214} height={44} />
           </a>
         </SponsorLogoContainer>
       </SponsorsLogos>
