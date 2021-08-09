@@ -171,9 +171,14 @@ export function Header({ onLearnMoreClick, ...props }) {
               DE AGOSTO
             </Text>
             <Buttons>
-              <Link href="/auspicianos" passHref>
+              {/* <Link href="/auspicianos" passHref>
                 <Button as="a" variant="primary">
                   sumate como sponsor
+                </Button>
+  </Link> */}
+              <Link href="/#" passHref>
+                <Button as="a" variant="primary">
+                  PRÓXIMAMENTE: ¡INSCRIBITE!
                 </Button>
               </Link>
             </Buttons>

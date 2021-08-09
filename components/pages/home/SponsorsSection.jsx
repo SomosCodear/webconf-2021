@@ -1,5 +1,4 @@
 import styled from 'styled-components';
-import Link from 'next/link';
 import Image from 'next/image';
 import animaFiniLogo from '~/public/logos/AnimaFini.png';
 import daleGeekLogo from '~/public/logos/DaleGeek.svg';
@@ -10,7 +9,6 @@ import artsSecLogo from '~/public/logos/ArtsSec.png';
 
 import { Section } from './Section';
 import { SectionTitle } from './SectionTitle';
-import { Button } from '~/components/common/Button';
 
 const Container = styled(Section)`
   display: flex;
@@ -46,11 +44,6 @@ export function SponsorsSection() {
   return (
     <Container>
       <SectionTitle style={{ marginBottom: '2rem' }}>SPONSORS</SectionTitle>
-      <Link href="/auspicianos" passHref>
-        <Button as="a" variant="secondary">
-          sumate a auspiciar
-        </Button>
-      </Link>
       <SponsorsLogos>
         <SponsorLogoContainer>
           <a href="https://digitalocean.com" target="_blank" rel="noopener noreferrer">
