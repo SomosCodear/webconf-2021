@@ -1,3 +1,4 @@
+import pg from 'pg';
 import { Sequelize } from 'sequelize';
 
 export const db = new Sequelize(
@@ -7,6 +8,7 @@ export const db = new Sequelize(
   {
     host: process.env.ROMBIAN_DB_HOST,
     dialect: 'postgres',
+    dialectModule: pg,
     logging: false,
   },
 );
