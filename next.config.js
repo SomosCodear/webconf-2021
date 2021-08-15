@@ -1,9 +1,11 @@
 module.exports = {
-  future: {
-    webpack5: true,
-  },
   async redirects() {
     return [
+      {
+        source: '/cfp',
+        destination: '/',
+        permanent: false,
+      },
       {
         source: '/videos/2019',
         destination:

@@ -1,183 +1,199 @@
+import PropTypes from 'prop-types';
 import styled from 'styled-components';
 import Image from 'next/image';
 import Link from 'next/link';
-import { useEffect, useState } from 'react';
-import Background from '../../common/Background';
+import selloWebConf from '~/public/images/SelloWebConf.svg';
+import { Button } from '~/components/common';
+import { Background } from './Background';
+
+const Container = styled.header`
+  width: 100%;
+  min-height: 100%;
+  border-bottom: 0.625rem solid ${({ theme }) => theme.colors.landingHeaderBorder};
+  display: grid;
+  justify-items: center;
+`;
+
+const CoolBackground = styled(Background)`
+  grid-row: 1;
+  grid-column: 1;
+`;
+
+const Content = styled.section`
+  grid-row: 1;
+  grid-column: 1;
+  z-index: 100;
+  width: 100%;
+  display: flex;
+  flex-direction: column;
+  align-items: stretch;
+`;
+
+const Title = styled.div`
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  position: relative;
+
+  @media (min-width: ${({ theme }) => theme.breakpoints.desktop}) {
+    flex-direction: row;
+  }
+`;
+
+const Strut = styled.div`
+  flex: 1;
+`;
 
 const Glass = styled.div`
   position: absolute;
-  left: 0;
-  top: 50%;
-  width: 100vw;
-  height: 40vh;
-  margin-top: -20vh;
-  background: #1d1028;
-  opacity: 0.65;
-  overflow: hidden;
+  top: 40%;
+  bottom: 2.5%;
+  width: 100%;
+  background: ${({ theme }) => theme.colors.landingHeaderGlass};
+  opacity: 0.45;
+
+  @media (min-width: ${({ theme }) => theme.breakpoints.desktop}) {
+    top: 25%;
+    bottom: 25%;
+  }
 `;
 
-const Title = styled.h1`
+const LogoContainer = styled.div`
+  position: relative;
+  grid-area: logo;
+  width: 24rem;
+  height: 24rem;
+
+  @media (min-width: ${({ theme }) => theme.breakpoints.desktop}) {
+    width: 45rem;
+    height: 45rem;
+  }
+
+  @media (min-width: ${({ theme }) => theme.breakpoints.hiDpi}) {
+    width: 60rem;
+    height: 60rem;
+  }
+`;
+
+const TextAndButtonsContainer = styled.div`
+  display: flex;
+  flex-direction: column;
+  align-items: flex-start;
+`;
+
+const Text = styled.h1`
+  z-index: 10;
   font-style: normal;
   font-weight: 900;
-  color: #ff0b87;
-  text-shadow: 0 0 12px rgba(255, 255, 255, 0.4);
-  z-index: 99;
-  grid-area: title;
-  padding-bottom: 5rem;
-  font-size: 54px;
+  padding-bottom: 2.5rem;
+  font-size: 3.375rem;
   text-align: center;
-  line-height: 42px;
+  line-height: 2.625rem;
   letter-spacing: -0.05em;
   align-self: flex-start;
 
+  span {
+    color: ${({ theme }) => theme.colors.landingHeaderTitleAccent};
+  }
+
   @media (min-width: ${({ theme }) => theme.breakpoints.desktop}) {
+    padding: 20% 0 10%;
     align-self: flex-end;
     justify-self: flex-start;
     text-align: left;
-    font-size: 110px;
+    font-size: 6.875rem;
     line-height: 80%;
   }
 
   @media (min-width: ${({ theme }) => theme.breakpoints.hiDpi}) {
-    font-size: 140px;
+    font-size: 8.75rem;
     line-height: 90%;
   }
 `;
 
-const SponsorButton = styled.a`
-  display: inline-block;
-  background: #3c467e;
-  border-radius: 20px;
-  padding: 14px 30px;
-  font-family: Roboto;
-  font-style: normal;
-  font-weight: bold;
-  font-size: 17px;
-  line-height: 21px;
-  text-align: center;
-  text-transform: uppercase;
-  color: #fff;
-  border: 1px solid #3c467e;
-  z-index: 99;
-  filter: drop-shadow(0 0 3px rgba(255, 255, 255, 0.4));
-
-  @media (min-width: ${({ theme }) => theme.breakpoints.hiDpi}) {
-    font-size: 24px;
-    padding: 20px 36px;
-  }
-`;
-
-const ProposalButton = styled.a`
-  display: inline-block;
-  background: #a70050;
-  border-radius: 20px;
-  padding: 14px 30px;
-  font-family: Roboto;
-  font-style: normal;
-  font-weight: bold;
-  font-size: 17px;
-  line-height: 21px;
-  text-align: center;
-  text-transform: uppercase;
-  color: #fff;
-  border: 1px solid #a70050;
-  z-index: 99;
-  filter: drop-shadow(0 0 3px rgba(255, 255, 255, 0.4));
-  cursor: pointer;
-
-  @media (min-width: ${({ theme }) => theme.breakpoints.hiDpi}) {
-    font-size: 24px;
-    padding: 20px 36px;
-  }
-`;
-
-const Grid = styled.section`
-  display: grid;
-  width: 100%;
-  height: 100%;
-  place-items: center;
-  grid-template-areas:
-    'logo'
-    'title'
-    'buttons';
-  grid-template-rows: auto auto auto;
-  max-width: 1600px;
-  margin: 0 auto;
-
-  @media (min-width: ${({ theme }) => theme.breakpoints.desktop}) {
-    grid-template-areas:
-      'logo title'
-      'logo buttons';
-    grid-template-rows: 8fr 4fr;
-    grid-template-columns: auto auto;
-  }
-`;
-
 const Buttons = styled.div`
-  grid-area: buttons;
-  display: grid;
-  gap: 16px;
-  grid-auto-flow: column;
-  padding: 16px;
+  display: flex;
+  gap: 1rem;
 
   @media (min-width: ${({ theme }) => theme.breakpoints.desktop}) {
-    align-self: flex-start;
-    justify-self: flex-start;
+    place-self: flex-start;
   }
 `;
 
-const Container = styled.header`
-  width: 100%;
-  height: 100%;
-  display: grid;
-  place-items: center;
-`;
+const LearnMore = styled.button`
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  border: none;
+  background: none;
+  cursor: pointer;
+  font-family: ${({ theme }) => theme.fonts.default};
+  font-size: 1.125rem;
+  font-weight: 700;
+  text-transform: uppercase;
+  padding: 2rem 0 1rem;
 
-const ImageContainer = styled.div`
-  grid-area: logo;
-
-  @media (min-width: ${({ theme }) => theme.breakpoints.desktop}) {
-    grid-row: 1 / span 2;
+  @media (min-width: ${({ theme }) => theme.breakpoints.hiDpi}) {
+    padding: 0 0 4rem;
   }
 `;
 
-const White = styled.span`
-  color: #fff;
+const LearnMoreArrow = styled.div`
+  width: 0;
+  height: 0;
+  margin-top: 0.75rem;
+  border-left: 1.375rem solid transparent;
+  border-right: 1.375rem solid transparent;
+  border-top: 1.375rem solid ${({ theme }) => theme.colors.landingHeaderLearnMoreArrow};
 `;
 
-export default function Header() {
-  const [logoSize, setLogoSize] = useState(375);
-
-  useEffect(() => {
-    if (global.innerWidth >= 2048) {
-      setLogoSize(980);
-    } else if (global.innerWidth >= 1024) {
-      setLogoSize(717);
-    } else if (global.innerWidth >= 768) {
-      setLogoSize(544);
-    }
-  }, []);
-
+export function Header({ onLearnMoreClick, ...props }) {
   return (
-    <Container>
-      <Background />
-      <Glass />
-      <Grid>
-        <ImageContainer>
-          <Image src="/images/weblogo.png" width={logoSize} height={logoSize} alt="Webconf Logo" />
-        </ImageContainer>
+    <Container {...props}>
+      <CoolBackground />
+      <Content>
+        <Strut />
         <Title>
-          23 AL 27 <br /> <White>DE AGOSTO</White>
+          <Glass />
+          <LogoContainer>
+            <Image
+              src={selloWebConf}
+              alt="Webconf Logo"
+              layout="fill"
+              sizes="(max-width: 1024px) 348px, (max-width: 2048px) 720px, 980px"
+            />
+          </LogoContainer>
+          <TextAndButtonsContainer>
+            <Text>
+              <span>23 AL 27</span>
+              <br />
+              DE AGOSTO
+            </Text>
+            <Buttons>
+              {/* <Link href="/auspicianos" passHref>
+                <Button as="a" variant="primary">
+                  sumate como sponsor
+                </Button>
+  </Link> */}
+              <Link href="/#" passHref>
+                <Button as="a" variant="primary">
+                  PRÓXIMAMENTE: ¡INSCRIBITE!
+                </Button>
+              </Link>
+            </Buttons>
+          </TextAndButtonsContainer>
         </Title>
-        <Buttons>
-          <Link href="/cfp" passHref>
-            <ProposalButton>PROPONÉ TU CHARLA</ProposalButton>
-          </Link>
-          <Link href="/auspicianos" passHref>
-            <SponsorButton>AUSPICIÁ WEBCONF</SponsorButton>
-          </Link>
-        </Buttons>
-      </Grid>
+        <Strut />
+        <LearnMore onClick={onLearnMoreClick}>
+          Conocé más
+          <LearnMoreArrow />
+        </LearnMore>
+      </Content>
     </Container>
   );
 }
+
+Header.propTypes = {
+  onLearnMoreClick: PropTypes.func.isRequired,
+};

@@ -61,12 +61,16 @@ export const cfpFieldValidations = {
     'string.base': CFP_ERRORS.talkTitle.required,
     'any.required': CFP_ERRORS.talkTitle.required,
   }),
-  talkLength: joi.string().required().valid('standard', 'lightning').messages({
-    'string.empty': CFP_ERRORS.talkLength.required,
-    'string.base': CFP_ERRORS.talkLength.required,
-    'any.required': CFP_ERRORS.talkLength.required,
-    'any.only': CFP_ERRORS.talkLength.only,
-  }),
+  talkLength: joi
+    .string()
+    .required()
+    .valid('standard', 'lightning', 'short-workshop', 'standard-workshop', 'deepdive-workshop')
+    .messages({
+      'string.empty': CFP_ERRORS.talkLength.required,
+      'string.base': CFP_ERRORS.talkLength.required,
+      'any.required': CFP_ERRORS.talkLength.required,
+      'any.only': CFP_ERRORS.talkLength.only,
+    }),
   talkTweet: joi.string().min(10).max(200).required().messages({
     'string.empty': CFP_ERRORS.talkTweet.required,
     'string.min': CFP_ERRORS.talkTweet.minLength,
@@ -76,7 +80,7 @@ export const cfpFieldValidations = {
   }),
   talkHashtags: joi
     .string()
-    .pattern(/(?:#[a-zA-Z0-9_\-$]+(?:\s|$))+$/)
+    .pattern(/(?:#[a-zA-Z0-9_\-$áéíóúÁÉÍÓÚüÜñÑ]+(?:\s|$))+$/)
     .required()
     .messages({
       'string.empty': CFP_ERRORS.talkHashtags.required,
@@ -120,5 +124,7 @@ export const cfpFieldValidations = {
       'string.base': CFP_ERRORS.speakerEmail.required,
       'any.required': CFP_ERRORS.speakerEmail.required,
     }),
+  representingOrganization: joi.string().valid('company', 'community'),
+  organizationName: joi.string(),
   extra: joi.string().allow('').optional(),
 };

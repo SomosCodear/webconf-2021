@@ -1,4 +1,5 @@
 import * as R from 'ramda';
+import propTypes from 'prop-types';
 import { useState, useCallback, useEffect } from 'react';
 import { useMutation } from 'react-query';
 import styled from 'styled-components';
@@ -155,7 +156,21 @@ const ProgressArrow = styled.div`
   }
 `;
 
-export const CFP = () => {
+const messages = {
+  talks: {
+    subject: 'charla',
+  },
+  workshops: {
+    subject: 'taller',
+  },
+};
+
+const endpoints = {
+  talks: '/private-cfp',
+  workshops: '/workshop-cfp',
+};
+
+export const CFP = ({ type = 'talks' }) => {
   const [currentStep, setCurrentStep] = useState(0);
   const [stepsData, setStepsData] = useState(INITAL_STEPS_DATA);
   const CurrentStepComponent = STEPS[currentStep];
@@ -183,23 +198,26 @@ export const CFP = () => {
     [updateCurrentStepData, setCurrentStep],
   );
 
-  const { isLoading, isSuccess, mutate: submit, reset: resetSubmitState } = useMutation(
-    async (data) => {
-      const response = await fetch('/api/cfp', {
-        method: 'post',
-        headers: {
-          Accept: 'application/json',
-          'Content-Type': 'application/json',
-        },
-        body: JSON.stringify(data),
-      });
+  const {
+    isLoading,
+    isSuccess,
+    mutate: submit,
+    reset: resetSubmitState,
+  } = useMutation(async (data) => {
+    const response = await fetch(`/api${endpoints[type]}`, {
+      method: 'post',
+      headers: {
+        Accept: 'application/json',
+        'Content-Type': 'application/json',
+      },
+      body: JSON.stringify(data),
+    });
 
-      if (!response.ok) {
-        const { error } = await response.json();
-        throw new Error(error);
-      }
-    },
-  );
+    if (!response.ok) {
+      const { error } = await response.json();
+      throw new Error(error);
+    }
+  });
 
   const reset = useCallback(() => {
     setStepsData(INITAL_STEPS_DATA);
@@ -242,7 +260,7 @@ export const CFP = () => {
       {currentStep < STEPS.length ? (
         <>
           <Progress>
-            <h1>¡Proponé tu charla para WebConf 2021!</h1>
+            <h1>¡Proponé tu {messages[type].subject} para WebConf 2021!</h1>
             <ProgressBar>
               {STEPS.map((_, index) => (
                 <ProgressStep key={index /* eslint-disable-line react/no-array-index-key */} />
@@ -260,7 +278,7 @@ export const CFP = () => {
             defaultValues={stepsData[currentStep]}
             validationSchema={CurrentStepComponent.validationSchema}
           >
-            <CurrentStepComponent />
+            <CurrentStepComponent type={type} />
           </Step>
         </>
       ) : null}
@@ -268,4 +286,12 @@ export const CFP = () => {
       {isSuccess ? <Success onReset={reset} /> : null}
     </Container>
   );
+};
+
+CFP.propTypes = {
+  type: propTypes.oneOf(['talks', 'workshops']),
+};
+
+CFP.defaultProps = {
+  type: 'talks',
 };

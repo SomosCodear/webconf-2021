@@ -1,4 +1,5 @@
 import * as R from 'ramda';
+import propTypes from 'prop-types';
 import { useFormContext } from 'react-hook-form';
 import styled from 'styled-components';
 import { cfpFieldValidations } from '~/services/cfp';
@@ -21,7 +22,16 @@ const TalkDescriptionField = styled(Step.Field)`
   }
 `;
 
-export const Step4 = () => {
+const messages = {
+  talks: {
+    subject: 'charla',
+  },
+  workshops: {
+    subject: 'taller',
+  },
+};
+
+export const Step4 = ({ type = 'talks' }) => {
   const {
     register,
     formState: { errors },
@@ -29,7 +39,7 @@ export const Step4 = () => {
 
   return (
     <>
-      <Step.Title>Contanos sobre tu charla.</Step.Title>
+      <Step.Title>Contanos sobre tu {messages[type].subject}.</Step.Title>
       <TalkDescriptionFieldContainer>
         <Step.FieldDescription>
           Ahora sí, contanos en todo el detalle que quieras de qué se trata tu propuesta.
@@ -43,6 +53,14 @@ export const Step4 = () => {
       </TalkDescriptionFieldContainer>
     </>
   );
+};
+
+Step4.propTypes = {
+  type: propTypes.oneOf(['talks', 'workshops']),
+};
+
+Step4.defaultProps = {
+  type: 'talks',
 };
 
 Step4.validationSchema = R.pick(['talkSummary'], cfpFieldValidations);

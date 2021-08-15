@@ -1,4 +1,5 @@
 import * as R from 'ramda';
+import propTypes from 'prop-types';
 import { useFormContext } from 'react-hook-form';
 import styled from 'styled-components';
 import Image from 'next/image';
@@ -95,7 +96,20 @@ const ShortDescriptionImageContainer = styled.div`
   }
 `;
 
-export const Step3 = () => {
+const messages = {
+  talks: {
+    subject: 'charla',
+    article: 'la',
+    hashtags: '#charla #fantástica',
+  },
+  workshops: {
+    subject: 'taller',
+    article: 'lo',
+    hashtags: '#taller #increíble',
+  },
+};
+
+export const Step3 = ({ type = 'talks' }) => {
   const {
     register,
     formState: { errors },
@@ -103,18 +117,18 @@ export const Step3 = () => {
 
   return (
     <>
-      <Step.Title>Contanos sobre tu charla.</Step.Title>
+      <Step.Title>Contanos sobre tu {messages[type].subject}.</Step.Title>
       <Step.FieldContainer>
-        <Step.FieldTitle>Describí brevemente tu charla.</Step.FieldTitle>
+        <Step.FieldTitle>Describí brevemente tu {messages[type].subject}.</Step.FieldTitle>
         <Step.FieldDescription>
-          Imaginate que tenemos que dar a conocer tu charla en un tweet.
+          Imaginate que tenemos que dar a conocer tu {messages[type].subject} en un tweet.
           <br />
-          <b>¿Cómo la describirías en menos de 200 caracteres?</b>
+          <b>¿Cómo {messages[type].article} describirías en menos de 200 caracteres?</b>
         </Step.FieldDescription>
         <ShortDescriptionField>
           <ShortDescriptionSpeechBubble hasError={errors.talkTweet}>
             <Textarea
-              placeholder="Mi charla es..."
+              placeholder={`Mi ${messages[type].subject} es...`}
               rows="4"
               {...register('talkTweet')}
               hasError={errors.talkTweet != null}
@@ -137,14 +151,16 @@ export const Step3 = () => {
       </Step.FieldContainer>
       <Step.FieldContainer>
         <Step.FieldDescription>
-          <b>Pensá en 4 o 5 palabras claves que puedan dar contexto a tu charla.</b>
+          <b>
+            Pensá en 4 ó 5 palabras claves que puedan dar contexto a tu {messages[type].subject}.
+          </b>
           <br />
           Podés pensarlo como si fueran hashtags, por ejemplo: #ui, #ux, #diseño, #css, #grillas.
         </Step.FieldDescription>
         <Step.Field>
           <Input
             type="text"
-            placeholder="#charla #fantástica"
+            placeholder={messages[type].hashtags}
             {...register('talkHashtags')}
             hasError={errors.talkHashtags != null}
           />
@@ -155,6 +171,14 @@ export const Step3 = () => {
       </Step.FieldContainer>
     </>
   );
+};
+
+Step3.propTypes = {
+  type: propTypes.oneOf(['talks', 'workshops']),
+};
+
+Step3.defaultProps = {
+  type: 'talks',
 };
 
 Step3.validationSchema = R.pick(['talkTweet', 'talkHashtags'], cfpFieldValidations);

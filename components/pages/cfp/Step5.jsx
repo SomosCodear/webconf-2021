@@ -1,11 +1,12 @@
 import * as R from 'ramda';
+import propTypes from 'prop-types';
 import { Controller, useFormContext } from 'react-hook-form';
 import styled from 'styled-components';
 import { cfpFieldValidations } from '~/services/cfp';
 import { Input, Checkbox } from '~/components/common';
 import { Step } from './Step';
 
-const AdultFieldContainer = styled(Step.FieldContainer)`
+const CheckFieldContainer = styled(Step.FieldContainer)`
   ${Step.Field} {
     flex-direction: row;
 
@@ -41,7 +42,7 @@ const EmailFieldContainer = styled(Step.FieldContainer)`
   }
 `;
 
-export const Step5 = () => {
+export const Step5 = ({ type = 'talks' }) => {
   const {
     register,
     control,
@@ -60,7 +61,7 @@ export const Step5 = () => {
           ) : null}
         </Step.Field>
       </Step.FieldContainer>
-      <AdultFieldContainer>
+      <CheckFieldContainer>
         <Step.FieldTitle variant="small">¿Sos mayor de edad?</Step.FieldTitle>
         <Step.Field>
           <Controller
@@ -93,7 +94,7 @@ export const Step5 = () => {
             <Step.FieldError>{errors.speakerIsAdult.message}</Step.FieldError>
           ) : null}
         </Step.Field>
-      </AdultFieldContainer>
+      </CheckFieldContainer>
       <Step.FieldContainer>
         <Step.FieldTitle variant="small">¿De qué ciudad sos?</Step.FieldTitle>
         <Step.Field>
@@ -107,6 +108,59 @@ export const Step5 = () => {
           ) : null}
         </Step.Field>
       </Step.FieldContainer>
+      {type === 'workshops' ? (
+        <CheckFieldContainer>
+          <Step.FieldTitle variant="small">¿A qué organización representas?</Step.FieldTitle>
+          <Step.Field>
+            <Controller
+              control={control}
+              name="representingOrganization"
+              render={({ field: { onChange, value } }) => (
+                <>
+                  <Checkbox
+                    id="community-checkbox"
+                    type="radio"
+                    value="community"
+                    onChange={() => onChange('community')}
+                    checked={value === 'community'}
+                    hasError={errors.representingOrganization != null}
+                  >
+                    A una comunidad, meetup u ONG
+                  </Checkbox>
+                  <Checkbox
+                    id="company-checkbox"
+                    type="radio"
+                    value="company-checkbox"
+                    onChange={() => onChange('company')}
+                    checked={value === 'company'}
+                    hasError={errors.representingOrganization != null}
+                  >
+                    A una empresa
+                  </Checkbox>
+                </>
+              )}
+            />
+            {errors.representingOrganization ? (
+              <Step.FieldError>{errors.representingOrganization.message}</Step.FieldError>
+            ) : null}
+          </Step.Field>
+        </CheckFieldContainer>
+      ) : (
+        ''
+      )}
+      {type === 'workshops' ? (
+        <Step.FieldContainer>
+          <Step.FieldTitle variant="small">¿Cómo se llama la organización?</Step.FieldTitle>
+          <Step.Field>
+            <Input {...register('organizationName')} hasError={errors.organizationName != null} />
+            {errors.organizationName ? (
+              <Step.FieldError>{errors.organizationName.message}</Step.FieldError>
+            ) : null}
+          </Step.Field>
+        </Step.FieldContainer>
+      ) : (
+        ''
+      )}
       <EmailFieldContainer>
         <Step.FieldTitle variant="small">
           ¿Nos dejas una dirección de correo electrónico?
@@ -127,7 +181,22 @@ export const Step5 = () => {
   );
 };
 
+Step5.propTypes = {
+  type: propTypes.oneOf(['talks', 'workshops']),
+};
+
+Step5.defaultProps = {
+  type: 'talks',
+};
+
 Step5.validationSchema = R.pick(
-  ['speakerName', 'speakerIsAdult', 'speakerCity', 'speakerEmail'],
+  [
+    'speakerName',
+    'speakerIsAdult',
+    'speakerCity',
+    'speakerEmail',
+    'representingOrganization',
+    'organizationName',
+  ],
   cfpFieldValidations,
 );
