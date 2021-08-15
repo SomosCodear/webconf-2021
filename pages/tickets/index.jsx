@@ -1,6 +1,7 @@
 /* eslint-disable max-len */
 
-import { useRef, useState } from 'react';
+import { useUser } from '@auth0/nextjs-auth0';
+import { useCallback, useRef, useState } from 'react';
 import styled from 'styled-components';
 
 const Ticket = styled.article`
@@ -333,9 +334,10 @@ const TicketQR = styled.img`
 
 // transform: rotateY(-32.04deg) rotateX(-23.7deg);
 const TicketPage = () => {
+  const { user } = useUser();
   const ticketRef = useRef();
   const [originalAnimation, setOriginalAnimation] = useState('');
-  const move = (e) => {
+  const move = useCallback((e) => {
     const xAxis = (window.innerWidth / 2 - e.pageX) / 25;
     const yAxis = (window.innerHeight / 2 - e.pageY) / 10;
     const brightnessFactor = Math.max(1, Math.abs(xAxis) / 15);
@@ -349,11 +351,11 @@ const TicketPage = () => {
         xAxis + yAxis
       }deg) drop-shadow(0px 0px 200px #657cbd)`;
     });
-  };
+  }, []);
 
-  const animate = () => {
+  const animate = useCallback(() => {
     ticketRef.current.style.animation = originalAnimation;
-  };
+  }, [originalAnimation]);
 
   return (
     <Container onMouseMove={move} onMouseOut={animate}>
@@ -368,14 +370,13 @@ const TicketPage = () => {
             <TicketLinePattern src="/images/ticket-background.png" />
             <TicketDataContainer>
               <TicketNumberLabel>Número: _</TicketNumberLabel>
-              <TicketNumber>012345</TicketNumber>
+              <TicketNumber>{user?.rombianUser.id}</TicketNumber>
               <TicketQR src="https://api.qrserver.com/v1/create-qr-code/?size=150x150&data=Example&margin=10" />
             </TicketDataContainer>
             <TicketDataContainer>
               <TicketFromLabel>De: _</TicketFromLabel>
               <TicketFrom>
-                Joel A. Villarreal Bertoldi
-                <TicketUsername>@joelalejandro</TicketUsername>
+                <TicketUsername>@{user?.rombianUser.alias}</TicketUsername>
               </TicketFrom>
             </TicketDataContainer>
           </TicketContent>
