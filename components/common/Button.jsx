@@ -13,6 +13,10 @@ const CONTAINER_VARIANTS = {
     border-color: ${({ theme }) => theme.colors.buttonSecondaryBorder};
     color: ${({ theme }) => theme.colors.buttonSecondaryText};
   `,
+  dark: css`
+    border-color: ${({ theme }) => theme.colors.buttonDarkBorder};
+    color: ${({ theme }) => theme.colors.buttonDarkText};
+  `,
 };
 
 const Container = styled.button`
@@ -24,6 +28,10 @@ const Container = styled.button`
   outline-offset: 0.125rem;
   cursor: pointer;
   border-color: ${({ variant, theme }) => theme.colors[`button${v.capitalize(variant)}Border`]};
+  text-align: center;
+  font-size: 1.125rem;
+  font-family: ${({ theme }) => theme.fonts.default};
+  font-weight: 700;
   color: ${({ variant, theme }) => theme.colors[`button${v.capitalize(variant)}Text`]};
 
   &:disabled {
@@ -35,10 +43,6 @@ const Container = styled.button`
 const DefaultContent = styled.div`
   padding: 1rem;
   border-radius: 2rem;
-  text-align: center;
-  font-size: 1.125rem;
-  font-family: ${({ theme }) => theme.fonts.default};
-  font-weight: 700;
   text-transform: uppercase;
   background-color: ${({ variant, theme }) =>
     theme.colors[`button${v.capitalize(variant)}Background`]};

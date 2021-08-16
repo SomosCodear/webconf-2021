@@ -1,7 +1,10 @@
+import { useState } from 'react';
 import styled from 'styled-components';
+import { AnimatePresence, AnimateSharedLayout } from 'framer-motion';
 import { SPEAKERS } from '~/data/speakers';
 import { Section } from './Section';
 import { SectionTitle } from './SectionTitle';
+import { SpeakerModal } from './SpeakerModal';
 import { SpeakerPreviewCard } from './SpeakerPreviewCard';
 
 const Container = styled(Section)`
@@ -11,6 +14,7 @@ const Container = styled(Section)`
 `;
 
 const Speakers = styled.div`
+  position: relative;
   margin: 5rem 0;
   display: grid;
   grid-template-columns: 1fr 1fr 1fr 1fr;
@@ -18,13 +22,27 @@ const Speakers = styled.div`
 `;
 
 export function SpeakersSection() {
+  const [selectedSpeaker, setSelecetdSpeaker] = useState(null);
+
   return (
     <Container>
       <SectionTitle>Disertantes</SectionTitle>
       <Speakers>
-        {SPEAKERS.map((props) => (
-          <SpeakerPreviewCard {...props} />
-        ))}
+        <AnimateSharedLayout type="crossfade">
+          {SPEAKERS.map(({ id, ...speaker }) => (
+            <SpeakerPreviewCard
+              key={id}
+              id={id}
+              {...speaker}
+              onSelect={() => setSelecetdSpeaker({ id, ...speaker })}
+            />
+          ))}
+          <AnimatePresence>
+            {selectedSpeaker != null ? (
+              <SpeakerModal {...selectedSpeaker} onClose={() => setSelecetdSpeaker(null)} />
+            ) : null}
+          </AnimatePresence>
+        </AnimateSharedLayout>
       </Speakers>
     </Container>
   );

@@ -10,7 +10,9 @@
   },
   "dependencies": {
     "aws-sdk": "^2.938.0",
+    "framer-motion": "^4.1.17",
     "joi": "^17.4.0",
+    "luxon": "^2.0.2",
     "next": "11.0.1",
     "nodemailer": "^6.6.2",
     "nodemailer-ses-transport": "^1.5.1",
@@ -21,6 +23,7 @@
     "react-dom": "17.0.2",
     "react-hook-form": "^7.9.0",
     "react-is": "^17.0.2",
+    "react-markdown": "^7.0.0",
     "react-query": "^3.18.1",
     "styled-breakpoints": "^10.0.1",
     "styled-components": "^5.3.0",

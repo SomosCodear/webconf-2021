@@ -1,9 +1,10 @@
 import PropTypes from 'prop-types';
 import styled from 'styled-components';
 import Image from 'next/image';
+import { motion } from 'framer-motion';
 import { NATIONALITIES } from '~/data/speakers';
 
-const Container = styled.div`
+const Container = styled(motion.div)`
   position: relative;
 `;
 
