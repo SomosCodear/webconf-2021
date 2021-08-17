@@ -4,6 +4,7 @@ import PropTypes from 'prop-types';
 import styled from 'styled-components';
 import Image from 'next/image';
 import { motion, useReducedMotion } from 'framer-motion';
+import { disableBodyScroll, clearAllBodyScrollLocks } from 'body-scroll-lock';
 import { NATIONALITIES, TALK_TYPES } from '~/data/speakers';
 import { SpeakerPhoto } from './SpeakerPhoto';
 import { SpeakerNationalityFlag } from './SpeakerNationalityFlag';
@@ -19,16 +20,33 @@ const Overlay = styled(motion.div).attrs({
   },
 })`
   z-index: 100;
-  position: absolute;
-  top: -2rem;
-  left: -2rem;
-  width: calc(100% + 4rem);
-  height: calc(100% + 4rem);
+  position: fixed;
+  top: 0;
+  left: 0;
+  width: 100vw;
+  height: 100vh;
+  backdrop-filter: blur(2px);
+  overflow: hidden;
+`;
+
+const ScrollingContainer = styled.div`
+  width: 100%;
+  height: 100%;
+  overflow: auto;
   display: flex;
   flex-direction: column;
   align-items: center;
   justify-content: center;
-  backdrop-filter: blur(2px);
+`;
+
+const ModalContainer = styled.div`
+  padding: 5rem 0;
+  margin: 20rem 2.375rem 0;
+
+  @media (min-width: ${({ theme }) => theme.breakpoints.desktop}) {
+    padding: 10rem 0;
+    margin-top: 10rem;
+  }
 `;
 
 const Modal = styled(motion.div)`
@@ -332,8 +350,12 @@ const TalkDateTimeLabel = styled.div`
 `;
 
 const TalkDateTimeValue = styled.div`
-  font-size: 1.875rem;
+  font-size: 1.5rem;
   font-weight: 900;
+
+  @media (min-width: ${({ theme }) => theme.breakpoints.desktop}) {
+    font-size: 1.875rem;
+  }
 `;
 
 const TalkSaveSchedule = styled(Button).attrs({
@@ -378,21 +400,18 @@ export const SpeakerModal = ({
   disableTalkNameAnimation,
   onClose,
 }) => {
-  const overlayRef = useRef(null);
+  const scrollingContainerRef = useRef(null);
   const overlayClickHandler = useCallback(
     (event) => {
-      if (event.target === overlayRef.current) {
+      if (event.target === scrollingContainerRef.current) {
         onClose();
       }
     },
     [onClose],
   );
-
-  const modalRef = useRef(null);
   useEffect(() => {
-    window.setTimeout(() => {
-      modalRef.current.scrollIntoView({ behavior: 'smooth', block: 'start' });
-    }, 500);
+    disableBodyScroll(scrollingContainerRef.current);
+    return () => clearAllBodyScrollLocks();
   }, []);
 
   const shouldReduceMotion = useReducedMotion();
@@ -405,88 +424,95 @@ export const SpeakerModal = ({
       initial={shouldReduceMotion ? 'visible' : 'initial'}
       animate="visible"
       exit="exit"
-      ref={overlayRef}
       onClick={overlayClickHandler}
     >
-      <Modal variant={variant} layoutId={`speaker-${id}`} ref={modalRef}>
-        <CloseButton onClick={onClose}>
-          <CloseImageContainer>
-            <Image src="/images/close.svg" layout="fill" />
-          </CloseImageContainer>
-        </CloseButton>
-        <SpeakerContainer>
-          <Speaker>
-            <PhotoWrapper photo={photo} layoutId={`speaker-photo-${id}`} />
-            <SpeakerInfo>
-              <NationalityFlagWrapper
-                nationality={nationality}
-                layoutId={`speaker-nationality-flag-${id}`}
-              />
-              <FirstName layoutId={`speaker-first-name-${id}`}>{firstName}</FirstName>
-              <LastName layoutId={`speaker-last-name-${id}`}>{lastName}</LastName>
-              <SocialNetworks layoutId={`speaker-social-netwokrs-${id}`}>
-                {socialMediaHandles.twitter != null ? (
-                  <SocialNetwork href={`https://twitter.com/${socialMediaHandles.twitter}`}>
-                    <Image src="/logos/twitter-white.svg" width="33" height="27" />
-                  </SocialNetwork>
-                ) : null}
-                {socialMediaHandles.linkedin != null ? (
-                  <SocialNetwork
-                    href={`https://www.linkedin.com/in/${socialMediaHandles.linkedin}`}
-                  >
-                    <Image src="/logos/linkedin-white.svg" width="27" height="27" />
-                  </SocialNetwork>
-                ) : null}
-                {socialMediaHandles.instagram != null ? (
-                  <SocialNetwork href={`https://www.instagram.com/${socialMediaHandles.instagram}`}>
-                    <Image src="/logos/instagram-white.svg" width="27" height="27" />
-                  </SocialNetwork>
-                ) : null}
-              </SocialNetworks>
-            </SpeakerInfo>
-          </Speaker>
-          <Bio variant={variant}>
-            <Suspense fallback={null}>
-              <ReactMarkdown>{bio}</ReactMarkdown>
-            </Suspense>
-          </Bio>
-        </SpeakerContainer>
-        <TalkContainer variant={variant}>
-          <TalkType>
-            CHARLA
-            {talkType === TALK_TYPES.LIGHTENING ? ' RELAMPAGO' : null}
-          </TalkType>
-          <TalkName
-            initial={disableTalkNameAnimation ? 'visible' : 'initial'}
-            animate="visible"
-            exit={disableTalkNameAnimation ? 'visible' : 'exit'}
-            variant={variant}
-            layoutId={`speaker-talk-name-${id}`}
-          >
-            {talkName}
-          </TalkName>
-          <TalkDescription>{talkDescription}</TalkDescription>
-        </TalkContainer>
-        <TalkSchedule>
-          <TalkDateTime>
-            <TalkDateTimeGroup>
-              <TalkDateTimeLabel>DÍA</TalkDateTimeLabel>
-              <TalkDateTimeValue>
-                {talkStarteDateTime.toLocaleString({ day: 'numeric', month: 'numeric' })}
-              </TalkDateTimeValue>
-            </TalkDateTimeGroup>
-            <TalkDateTimeGroup>
-              <TalkDateTimeLabel>HORARIO [{talkStarteDateTime.toFormat('ZZZZ')}]</TalkDateTimeLabel>
-              <TalkDateTimeValue>
-                {talkStarteDateTime.toLocaleString(DateTime.TIME_24_SIMPLE)}
-                {' - '}
-                {talkEndDateTime.toLocaleString(DateTime.TIME_24_SIMPLE)} hs.
-              </TalkDateTimeValue>
-            </TalkDateTimeGroup>
-          </TalkDateTime>
-          <TalkSaveSchedule href="#">AGENDAR ESTA CHARLA</TalkSaveSchedule>
-        </TalkSchedule>
-      </Modal>
+      <ScrollingContainer ref={scrollingContainerRef}>
+        <ModalContainer>
+          <Modal variant={variant} layoutId={`speaker-${id}`}>
+            <CloseButton onClick={onClose}>
+              <CloseImageContainer>
+                <Image src="/images/close.svg" layout="fill" />
+              </CloseImageContainer>
+            </CloseButton>
+            <SpeakerContainer>
+              <Speaker>
+                <PhotoWrapper photo={photo} layoutId={`speaker-photo-${id}`} />
+                <SpeakerInfo>
+                  <NationalityFlagWrapper
+                    nationality={nationality}
+                    layoutId={`speaker-nationality-flag-${id}`}
+                  />
+                  <FirstName layoutId={`speaker-first-name-${id}`}>{firstName}</FirstName>
+                  <LastName layoutId={`speaker-last-name-${id}`}>{lastName}</LastName>
+                  <SocialNetworks layoutId={`speaker-social-netwokrs-${id}`}>
+                    {socialMediaHandles.twitter != null ? (
+                      <SocialNetwork href={`https://twitter.com/${socialMediaHandles.twitter}`}>
+                        <Image src="/logos/twitter-white.svg" width="33" height="27" />
+                      </SocialNetwork>
+                    ) : null}
+                    {socialMediaHandles.linkedin != null ? (
+                      <SocialNetwork
+                        href={`https://www.linkedin.com/in/${socialMediaHandles.linkedin}`}
+                      >
+                        <Image src="/logos/linkedin-white.svg" width="27" height="27" />
+                      </SocialNetwork>
+                    ) : null}
+                    {socialMediaHandles.instagram != null ? (
+                      <SocialNetwork
+                        href={`https://www.instagram.com/${socialMediaHandles.instagram}`}
+                      >
+                        <Image src="/logos/instagram-white.svg" width="27" height="27" />
+                      </SocialNetwork>
+                    ) : null}
+                  </SocialNetworks>
+                </SpeakerInfo>
+              </Speaker>
+              <Bio variant={variant}>
+                <Suspense fallback={null}>
+                  <ReactMarkdown>{bio}</ReactMarkdown>
+                </Suspense>
+              </Bio>
+            </SpeakerContainer>
+            <TalkContainer variant={variant}>
+              <TalkType>
+                CHARLA
+                {talkType === TALK_TYPES.LIGHTENING ? ' RELAMPAGO' : null}
+              </TalkType>
+              <TalkName
+                initial={disableTalkNameAnimation ? 'visible' : 'initial'}
+                animate="visible"
+                exit={disableTalkNameAnimation ? 'visible' : 'exit'}
+                variant={variant}
+                layoutId={`speaker-talk-name-${id}`}
+              >
+                {talkName}
+              </TalkName>
+              <TalkDescription>{talkDescription}</TalkDescription>
+            </TalkContainer>
+            <TalkSchedule>
+              <TalkDateTime>
+                <TalkDateTimeGroup>
+                  <TalkDateTimeLabel>DÍA</TalkDateTimeLabel>
+                  <TalkDateTimeValue>
+                    {talkStarteDateTime.toLocaleString({ day: 'numeric', month: 'numeric' })}
+                  </TalkDateTimeValue>
+                </TalkDateTimeGroup>
+                <TalkDateTimeGroup>
+                  <TalkDateTimeLabel>
+                    HORARIO [{talkStarteDateTime.toFormat('ZZZZ')}]
+                  </TalkDateTimeLabel>
+                  <TalkDateTimeValue>
+                    {talkStarteDateTime.toLocaleString(DateTime.TIME_24_SIMPLE)}
+                    {' - '}
+                    {talkEndDateTime.toLocaleString(DateTime.TIME_24_SIMPLE)} hs.
+                  </TalkDateTimeValue>
+                </TalkDateTimeGroup>
+              </TalkDateTime>
+              <TalkSaveSchedule href="#">AGENDAR ESTA CHARLA</TalkSaveSchedule>
+            </TalkSchedule>
+          </Modal>
+        </ModalContainer>
+      </ScrollingContainer>
     </Overlay>
   );
 };
