@@ -4,7 +4,7 @@ import { useUser } from '@auth0/nextjs-auth0';
 import html2canvas from 'html2canvas';
 import { useCallback, useRef, useState } from 'react';
 import styled from 'styled-components';
-import { Button } from '~/components/common/Button';
+import { Loading, Button } from '~/components/common';
 
 const Ticket = styled.article`
   width: 20em;
@@ -335,32 +335,56 @@ const TicketQR = styled.img`
   }
 `;
 
-// transform: rotateY(-32.04deg) rotateX(-23.7deg);
-const TicketPage = () => {
-  const { user } = useUser();
-  const ticketRef = useRef();
-  const [originalAnimation, setOriginalAnimation] = useState('');
-  const move = useCallback((e) => {
-    const xAxis = (window.innerWidth / 2 - e.pageX) / 25;
-    const yAxis = (window.innerHeight / 2 - e.pageY) / 10;
-    const brightnessFactor = Math.max(1, Math.abs(xAxis) / 15);
-    window.requestAnimationFrame(() => {
-      if (ticketRef.current.style.animation !== 'unset') {
-        setOriginalAnimation(ticketRef.current.style.animation);
-        ticketRef.current.style.animation = 'unset';
-      }
-      ticketRef.current.style.transform = `rotateY(${xAxis}deg) rotateX(${yAxis}deg)`;
-      ticketRef.current.style.filter = `brightness(${brightnessFactor}) hue-rotate(${
-        xAxis + yAxis
-      }deg) drop-shadow(0px 0px 200px #657cbd)`;
-    });
-  }, []);
+const BeforeTicket = styled.section`
+  color: #fff;
+  font-family: Epilogue;
+  font-weight: 900;
+  font-size: 2rem;
+  padding: 1rem;
+  color: ${({ theme }) => theme.colors.landingSpeakerPrincipleSubtitle};
 
-  const animate = useCallback(() => {
-    ticketRef.current.style.animation = originalAnimation;
-  }, [originalAnimation]);
+  small {
+    display: block;
+    color: white;
+  }
 
-  const saveTicket = useCallback(() => {
+  @media (min-width: ${({ theme }) => theme.breakpoints.desktop}) {
+    position: absolute;
+    width: 30%;
+    left: 5%;
+    font-size: 6rem;
+    line-height: 4rem;
+
+    small {
+      margin-top: 5rem;
+      font-size: 2rem;
+      line-height: 2rem;
+    }
+  }
+`;
+
+const AfterTicket = styled.section`
+  color: #fff;
+  font-family: Epilogue;
+  font-weight: 900;
+  font-size: 4rem;
+  margin-bottom: 4rem;
+  display: grid;
+  grid-auto-flow: row;
+  gap: 1rem;
+
+  @media (min-width: ${({ theme }) => theme.breakpoints.desktop}) {
+    position: absolute;
+    width: 30%;
+    right: 5%;
+    text-align: right;
+    transform: scale(2);
+    transform-origin: center right;
+  }
+`;
+
+const saveTicket = (ticketRef, user) =>
+  new Promise((resolve) => {
     const rombianUserId = user?.rombianUser.id;
     if (!ticketRef.current) {
       return;
@@ -368,7 +392,10 @@ const TicketPage = () => {
 
     const ticketAnimation = ticketRef.current.style.animation;
     const ticketTransform = ticketRef.current.style.transform;
+
+    // eslint-disable-next-line no-param-reassign
     ticketRef.current.style.animation = 'unset';
+    // eslint-disable-next-line no-param-reassign
     ticketRef.current.style.transform = 'unset';
 
     html2canvas(ticketRef.current, {
@@ -391,14 +418,74 @@ const TicketPage = () => {
         .then((response) => response.json())
         .then((response) => {
           window.open(response.url, 'ticket');
+
+          // eslint-disable-next-line no-param-reassign
           ticketRef.current.style.animation = ticketAnimation;
+          // eslint-disable-next-line no-param-reassign
           ticketRef.current.style.transform = ticketTransform;
+
+          resolve({ ticketUrl: `https://webconf.tech/tickets/${rombianUserId}` });
         });
     });
-  }, [user?.rombianUser, ticketRef]);
+  });
+
+const shareToTwitter = (url) => {
+  const text = `¡Ya tengo mi entrada para #WebConfLATAM2021! 💜 Charlas, workshops y mucho más en @WebConfLATAM, un evento organizado por @SomosCodear 🚀\n\n${url}`;
+  window.open(`https://twitter.com/intent/tweet?text=${encodeURIComponent(text)}`, 'twitter-share');
+};
+
+// transform: rotateY(-32.04deg) rotateX(-23.7deg);
+const TicketPage = () => {
+  const { user } = useUser();
+  const ticketRef = useRef();
+  const [originalAnimation, setOriginalAnimation] = useState('');
+  const [isProcessing, setIsProcessing] = useState(false);
+
+  const move = useCallback((e) => {
+    const xAxis = (window.innerWidth / 2 - e.pageX) / 25;
+    const yAxis = (window.innerHeight / 2 - e.pageY) / 10;
+    const brightnessFactor = Math.max(1, Math.abs(xAxis) / 15);
+    window.requestAnimationFrame(() => {
+      if (ticketRef.current.style.animation !== 'unset') {
+        setOriginalAnimation(ticketRef.current.style.animation);
+        ticketRef.current.style.animation = 'unset';
+      }
+      ticketRef.current.style.transform = `rotateY(${xAxis}deg) rotateX(${yAxis}deg)`;
+      ticketRef.current.style.filter = `brightness(${brightnessFactor}) hue-rotate(${
+        xAxis + yAxis
+      }deg) drop-shadow(0px 0px 200px #657cbd)`;
+    });
+  }, []);
+
+  const animate = useCallback(() => {
+    ticketRef.current.style.animation = originalAnimation;
+  }, [originalAnimation]);
+
+  const saveTicketClicked = useCallback(() => {
+    if (user) {
+      setIsProcessing(true);
+      saveTicket(ticketRef, user).then(() => {
+        setIsProcessing(false);
+      });
+    }
+  }, [user, ticketRef]);
+
+  const shareInTwitterClicked = useCallback(() => {
+    if (user) {
+      setIsProcessing(true);
+      saveTicket(ticketRef, user).then(({ ticketUrl }) => {
+        setIsProcessing(false);
+        shareToTwitter(ticketUrl);
+      });
+    }
+  }, [user, ticketRef]);
 
   return (
     <Container onMouseMove={move} onMouseOut={animate}>
+      <BeforeTicket>
+        ¡Aquí está tu entrada!
+        <small>Ahora puedes invitar a todo el mundo a sumarse a WebConf LATAM 2021.</small>
+      </BeforeTicket>
       <Ticket ref={ticketRef}>
         <TicketBorder>
           <TicketContent>
@@ -426,7 +513,20 @@ const TicketPage = () => {
           </TicketContent>
         </TicketBorder>
       </Ticket>
-      <Button onClick={saveTicket}>Guardar mi ticket</Button>
+      <AfterTicket>
+        {isProcessing ? (
+          <Loading />
+        ) : (
+          <>
+            <Button variant="secondary" onClick={saveTicketClicked}>
+              Descargar mi ticket
+            </Button>
+            <Button variant="primary" onClick={shareInTwitterClicked}>
+              Compartir en Twitter
+            </Button>
+          </>
+        )}
+      </AfterTicket>
     </Container>
   );
 };
