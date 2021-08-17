@@ -365,7 +365,11 @@ const TicketPage = () => {
       return;
     }
 
+    const ticketAnimation = ticketRef.current.style.animation;
+    ticketRef.current.style.animation = 'unset';
+
     html2canvas(ticketRef.current).then((canvas) => {
+      ticketRef.current.style.animation = ticketAnimation;
       const webconfTicketBase64Data = canvas
         .toDataURL('image/png')
         .replace(/data:image\/png;base64,/, '');
@@ -397,9 +401,7 @@ const TicketPage = () => {
             <TicketDataContainer>
               <TicketNumberLabel>Número: _</TicketNumberLabel>
               <TicketNumber>{user?.rombianUser.id.toString().padStart(6, '0')}</TicketNumber>
-              <TicketQR
-                src={`https://api.qrserver.com/v1/create-qr-code/?size=150x150&data=${user?.rombianUser.id}&margin=10`}
-              />
+              <TicketQR src={`/api/qr?rombianUserId=${user?.rombianUser.id}`} />
             </TicketDataContainer>
             <TicketDataContainer>
               <TicketFromLabel>De: _</TicketFromLabel>
