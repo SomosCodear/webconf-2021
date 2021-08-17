@@ -15,10 +15,15 @@ const Container = styled(Section)`
 
 const Speakers = styled.div`
   position: relative;
-  margin: 5rem 0;
+  margin: 2.375rem 0;
   display: grid;
-  grid-template-columns: 1fr 1fr 1fr 1fr;
+  grid-template-columns: 1fr;
   grid-gap: 2.875rem;
+
+  @media (min-width: ${({ theme }) => theme.breakpoints.desktop}) {
+    margin: 5rem 0;
+    grid-template-columns: 1fr 1fr 1fr 1fr;
+  }
 `;
 
 export function SpeakersSection() {

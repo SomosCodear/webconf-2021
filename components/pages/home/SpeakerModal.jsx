@@ -1,9 +1,9 @@
-import { lazy, Suspense, useCallback, useMemo, useRef } from 'react';
+import { lazy, Suspense, useCallback, useEffect, useMemo, useRef } from 'react';
 import { DateTime } from 'luxon';
 import PropTypes from 'prop-types';
 import styled from 'styled-components';
 import Image from 'next/image';
-import { motion } from 'framer-motion';
+import { motion, useReducedMotion } from 'framer-motion';
 import { NATIONALITIES, TALK_TYPES } from '~/data/speakers';
 import { SpeakerPhoto } from './SpeakerPhoto';
 import { SpeakerNationalityFlag } from './SpeakerNationalityFlag';
@@ -17,9 +17,6 @@ const Overlay = styled(motion.div).attrs({
     visible: { opacity: 1 },
     exit: { opacity: 0 },
   },
-  initial: 'initial',
-  animate: 'visible',
-  exit: 'exit',
 })`
   z-index: 100;
   position: absolute;
@@ -36,75 +33,159 @@ const Overlay = styled(motion.div).attrs({
 
 const Modal = styled(motion.div)`
   position: relative;
-  width: 60rem;
-  padding: 3.75rem 7.25rem 8.75rem;
+  padding: 0 1.75rem;
   border-radius: 1.25rem;
-  box-sizing: border-box;
   background: ${({ theme, variant }) => theme.colors[`landingSpeakerVariant${variant}MainColor`]};
+
+  @media (min-width: ${({ theme }) => theme.breakpoints.desktop}) {
+    box-sizing: border-box;
+    width: 60rem;
+    padding: 3.75rem 7.25rem 8.75rem;
+  }
 `;
 
 const CloseButton = styled.button`
   position: absolute;
-  top: -1.625rem;
-  right: -1.625rem;
+  top: -1.3rem;
+  right: -1.3rem;
   padding: 0.875rem;
   border: none;
   border-radius: 50%;
   background: ${({ theme }) => theme.colors.landingSpeakerModalCloseBackground};
   font-size: 0;
+
+  @media (min-width: ${({ theme }) => theme.breakpoints.desktop}) {
+    top: -1.625rem;
+    right: -1.625rem;
+    padding: 0.875rem;
+    border-radius: 50%;
+  }
+`;
+
+const CloseImageContainer = styled.div`
+  position: relative;
+  width: 0.875rem;
+  height: 0.875rem;
+
+  @media (min-width: ${({ theme }) => theme.breakpoints.desktop}) {
+    width: 1.5rem;
+    height: 1.5rem;
+  }
+`;
+
+const SpeakerContainer = styled.div`
+  margin-bottom: 2rem;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+
+  @media (min-width: ${({ theme }) => theme.breakpoints.desktop}) {
+    margin-bottom: 2.5rem;
+    flex-direction: row;
+  }
 `;
 
 const Speaker = styled.div`
+  margin-top: -3.45rem;
   display: flex;
   flex-direction: row;
   align-items: center;
-  margin-left: -14.9rem;
-  margin-right: -12.375rem;
+
+  @media (min-width: ${({ theme }) => theme.breakpoints.desktop}) {
+    margin-top: 0;
+    margin-left: -14.9rem;
+  }
 `;
 
 const PhotoWrapper = styled(SpeakerPhoto)`
-  width: 13.875rem;
-  height: 13.875rem;
+  width: 6.5rem;
+  height: 6.5rem;
+
+  @media (min-width: ${({ theme }) => theme.breakpoints.desktop}) {
+    width: 13.875rem;
+    height: 13.875rem;
+  }
 `;
 
 const NationalityFlagWrapper = styled(SpeakerNationalityFlag)`
-  width: 1.75rem;
-  height: 1.25rem;
-  margin-bottom: 1rem;
+  width: 0.75rem;
+  height: 0.562rem;
+  margin-bottom: 0.5rem;
+
+  @media (min-width: ${({ theme }) => theme.breakpoints.desktop}) {
+    width: 1.75rem;
+    height: 1.25rem;
+    margin-bottom: 1rem;
+  }
 `;
 
 const SpeakerInfo = styled.div`
-  padding-left: 0.5rem;
+  padding-left: 0.25rem;
   display: flex;
   flex-direction: column;
   align-items: flex-start;
+
+  @media (min-width: ${({ theme }) => theme.breakpoints.desktop}) {
+    padding-left: 0.5rem;
+  }
 `;
 
 const FirstName = styled(motion.div)`
-  padding: 0.5rem 1.75rem 0;
-  margin-left: -1.75rem;
-  border-top-right-radius: 4rem;
+  padding: 0.25rem 1rem 0;
+  margin-left: -1rem;
+  border-top-right-radius: 3.125rem;
   text-transform: uppercase;
-  font-size: 2.125rem;
+  font-size: 1rem;
   font-weight: 900;
   color: ${({ theme }) => theme.colors.landingSpeakerFirstNameColor};
   background: ${({ theme }) => theme.colors.landingSpeakerFirstNameBackground};
+
+  @media (min-width: ${({ theme }) => theme.breakpoints.desktop}) {
+    padding: 0.5rem 1.75rem 0;
+    margin-left: -1.75rem;
+    border-top-right-radius: 4rem;
+    font-size: 2.125rem;
+  }
 `;
 
 const LastName = styled(motion.div)`
   text-transform: uppercase;
-  font-size: 3.5rem;
+  font-size: 1.625rem;
   font-weight: 900;
   color: ${({ theme }) => theme.colors.landingSpeakerLastNameColor};
+
+  @media (min-width: ${({ theme }) => theme.breakpoints.desktop}) {
+    font-size: 3.5rem;
+  }
 `;
 
 const SocialNetworks = styled(motion.div)`
-  margin-top: 0.75rem;
   display: flex;
   flex-direction: row;
+  align-items: center;
 
   * + * {
-    margin-left: 1rem;
+    margin-left: 0.5rem;
+  }
+
+  @media (min-width: ${({ theme }) => theme.breakpoints.desktop}) {
+    margin-top: 0.75rem;
+
+    * + * {
+      margin-left: 1rem;
+    }
+  }
+`;
+
+const SocialNetwork = styled.a`
+  width: 0.75rem;
+  height: 0.75rem;
+  display: flex;
+  align-items: center;
+
+  @media (min-width: ${({ theme }) => theme.breakpoints.desktop}) {
+    width: 1.6875rem;
+    height: 1.6875rem;
   }
 `;
 
@@ -117,14 +198,25 @@ const Bio = styled(motion.div).attrs({
 })`
   flex: 1;
   padding: 2rem;
-  margin-left: 2rem;
+  margin-top: 2rem;
+  margin-right: -5rem;
   border-radius: 1.25rem;
   color: ${({ theme, variant }) => theme.colors[`landingSpeakerVariant${variant}BioColor`]};
   background: ${({ theme, variant }) =>
     theme.colors[`landingSpeakerVariant${variant}BioBackground`]};
+  font-size: 0.875rem;
+  line-height: 140%;
+
+  @media (min-width: ${({ theme }) => theme.breakpoints.desktop}) {
+    margin-top: 0;
+    margin-right: -12.375rem;
+    margin-left: 2rem;
+    font-size: 1.125rem;
+    line-height: 160%;
+  }
 `;
 
-const Talk = styled.div`
+const TalkContainer = styled.div`
   color: ${({ theme, variant }) => theme.colors[`landingSpeakerVariant${variant}TalkColor`]};
 `;
 
@@ -135,9 +227,12 @@ const TalkType = styled(motion.div).attrs({
     exit: { opacity: 0, transition: { duration: 0.1 } },
   },
 })`
-  margin-bottom: 0.75rem;
   font-size: 1.625rem;
   font-weight: 900;
+
+  @media (min-width: ${({ theme }) => theme.breakpoints.desktop}) {
+    margin-bottom: 0.75rem;
+  }
 `;
 
 const TalkName = styled(motion.div).attrs({
@@ -147,15 +242,22 @@ const TalkName = styled(motion.div).attrs({
     exit: { opacity: 0, transition: { duration: 0.1 } },
   },
 })`
-  margin-left: -14.9rem;
-  margin-bottom: 1.75rem;
-  padding: 3rem 2.25rem 2.85rem 14.9rem;
+  margin-left: -10rem;
+  margin-bottom: 1.25rem;
+  padding: 2rem 2rem 1.85rem 10rem;
   border-radius: 1.25rem;
   background: ${({ theme, variant }) =>
     theme.colors[`landingSpeakerVariant${variant}TalkNameBackground`]};
   color: ${({ theme, variant }) => theme.colors[`landingSpeakerVariant${variant}MainColor`]};
-  font-size: 3rem;
+  font-size: 1.25rem;
   font-weight: 900;
+
+  @media (min-width: ${({ theme }) => theme.breakpoints.desktop}) {
+    margin-left: -14.9rem;
+    margin-bottom: 1.75rem;
+    padding: 3rem 2.25rem 2.85rem 14.9rem;
+    font-size: 3rem;
+  }
 `;
 
 const TalkDescription = styled(motion.p).attrs({
@@ -165,19 +267,26 @@ const TalkDescription = styled(motion.p).attrs({
     exit: { opacity: 0, transition: { duration: 0.1 } },
   },
 })`
-  font-size: 1.875rem;
+  font-size: 1.125rem;
   font-weight: 400;
+
+  @media (min-width: ${({ theme }) => theme.breakpoints.desktop}) {
+    font-size: 1.875rem;
+  }
 `;
 
 const TalkSchedule = styled.div`
-  margin-left: -14.9rem;
-  margin-right: -10rem;
-  margin-bottom: -13.125rem;
-  margin-top: 4.5rem;
+  margin-top: 1.625rem;
   display: flex;
-  flex-direction: row;
+  flex-direction: column;
   align-items: center;
-  justify-content: space-between;
+
+  @media (min-width: ${({ theme }) => theme.breakpoints.desktop}) {
+    margin-top: 4.5rem;
+    margin-bottom: -13.125rem;
+    flex-direction: row;
+    justify-content: space-between;
+  }
 `;
 
 const TalkDateTime = styled(motion.div).attrs({
@@ -187,7 +296,8 @@ const TalkDateTime = styled(motion.div).attrs({
     exit: { opacity: 0, transition: { duration: 0.1 } },
   },
 })`
-  padding: 2.5rem;
+  margin: 0 -5.5rem;
+  padding: 1rem;
   border-radius: 1.25rem;
   display: flex;
   flex-direction: row;
@@ -196,6 +306,13 @@ const TalkDateTime = styled(motion.div).attrs({
 
   > * + * {
     margin-left: 2.25rem;
+  }
+
+  @media (min-width: ${({ theme }) => theme.breakpoints.desktop}) {
+    margin: 0;
+    padding: 2rem;
+    margin-left: -14.9rem;
+    margin-right: 0;
   }
 `;
 
@@ -224,12 +341,20 @@ const TalkSaveSchedule = styled(Button).attrs({
     exit: { opacity: 0, transition: { duration: 0.1 } },
   },
 })`
-  font-size: 1.875rem;
-  border-radius: 5rem;
+  margin-top: 1.5rem;
+  margin-bottom: -1.5rem;
 
-  & > div {
-    padding: 1.5rem;
+  @media (min-width: ${({ theme }) => theme.breakpoints.desktop}) {
+    margin-top: 0;
+    margin-bottom: 0;
+    margin-right: -10rem;
+    font-size: 1.875rem;
     border-radius: 5rem;
+
+    & > div {
+      padding: 1.5rem;
+      border-radius: 5rem;
+    }
   }
 `;
 
@@ -258,62 +383,77 @@ export const SpeakerModal = ({
     [onClose],
   );
 
+  const modalRef = useRef(null);
+  useEffect(() => {
+    window.setTimeout(() => {
+      modalRef.current.scrollIntoView({ behavior: 'smooth', block: 'start' });
+    }, 500);
+  }, []);
+
+  const shouldReduceMotion = useReducedMotion();
+
   const talkStarteDateTime = useMemo(() => DateTime.fromISO(talkSchedule[0]), [talkSchedule]);
   const talkEndDateTime = useMemo(() => DateTime.fromISO(talkSchedule[1]), [talkSchedule]);
 
   return (
     <Overlay
-      initial="hidden"
-      animate="show"
-      exit="hidden"
+      initial={shouldReduceMotion ? 'visible' : 'initial'}
+      animate="visible"
+      exit="exit"
       ref={overlayRef}
       onClick={overlayClickHandler}
     >
-      <Modal variant={variant} layoutId={`speaker-${id}`}>
+      <Modal variant={variant} layoutId={`speaker-${id}`} ref={modalRef}>
         <CloseButton onClick={onClose}>
-          <Image src="/images/close.svg" width="24" height="24" />
+          <CloseImageContainer>
+            <Image src="/images/close.svg" layout="fill" />
+          </CloseImageContainer>
         </CloseButton>
-        <Speaker>
-          <PhotoWrapper photo={photo} layoutId={`speaker-photo-${id}`} />
-          <SpeakerInfo>
-            <NationalityFlagWrapper
-              nationality={nationality}
-              layoutId={`speaker-nationality-flag-${id}`}
-            />
-            <FirstName layoutId={`speaker-first-name-${id}`}>{firstName}</FirstName>
-            <LastName layoutId={`speaker-last-name-${id}`}>{lastName}</LastName>
-            <SocialNetworks layoutId={`speaker-social-netwokrs-${id}`}>
-              {socialMediaHandles.twitter != null ? (
-                <a href={`https://twitter.com/${socialMediaHandles.twitter}`}>
-                  <Image src="/logos/twitter-white.svg" width="33" height="27" />
-                </a>
-              ) : null}
-              {socialMediaHandles.linkedin != null ? (
-                <a href={`https://www.linkedin.com/in/${socialMediaHandles.linkedin}`}>
-                  <Image src="/logos/linkedin-white.svg" width="27" height="27" />
-                </a>
-              ) : null}
-              {socialMediaHandles.instagram != null ? (
-                <a href={`https://www.instagram.com/${socialMediaHandles.instagram}`}>
-                  <Image src="/logos/instagram-white.svg" width="27" height="27" />
-                </a>
-              ) : null}
-            </SocialNetworks>
-          </SpeakerInfo>
+        <SpeakerContainer>
+          <Speaker>
+            <PhotoWrapper photo={photo} layoutId={`speaker-photo-${id}`} />
+            <SpeakerInfo>
+              <NationalityFlagWrapper
+                nationality={nationality}
+                layoutId={`speaker-nationality-flag-${id}`}
+              />
+              <FirstName layoutId={`speaker-first-name-${id}`}>{firstName}</FirstName>
+              <LastName layoutId={`speaker-last-name-${id}`}>{lastName}</LastName>
+              <SocialNetworks layoutId={`speaker-social-netwokrs-${id}`}>
+                {socialMediaHandles.twitter != null ? (
+                  <SocialNetwork href={`https://twitter.com/${socialMediaHandles.twitter}`}>
+                    <Image src="/logos/twitter-white.svg" width="33" height="27" />
+                  </SocialNetwork>
+                ) : null}
+                {socialMediaHandles.linkedin != null ? (
+                  <SocialNetwork
+                    href={`https://www.linkedin.com/in/${socialMediaHandles.linkedin}`}
+                  >
+                    <Image src="/logos/linkedin-white.svg" width="27" height="27" />
+                  </SocialNetwork>
+                ) : null}
+                {socialMediaHandles.instagram != null ? (
+                  <SocialNetwork href={`https://www.instagram.com/${socialMediaHandles.instagram}`}>
+                    <Image src="/logos/instagram-white.svg" width="27" height="27" />
+                  </SocialNetwork>
+                ) : null}
+              </SocialNetworks>
+            </SpeakerInfo>
+          </Speaker>
           <Bio variant={variant}>
-            <Suspense fallback={() => null}>
+            <Suspense fallback={null}>
               <ReactMarkdown>{bio}</ReactMarkdown>
             </Suspense>
           </Bio>
-        </Speaker>
-        <Talk variant={variant}>
+        </SpeakerContainer>
+        <TalkContainer variant={variant}>
           <TalkType>
             CHARLA
             {talkType === TALK_TYPES.LIGHTENING ? ' RELAMPAGO' : null}
           </TalkType>
           <TalkName variant={variant}>{talkName}</TalkName>
           <TalkDescription>{talkDescription}</TalkDescription>
-        </Talk>
+        </TalkContainer>
         <TalkSchedule>
           <TalkDateTime>
             <TalkDateTimeGroup>
