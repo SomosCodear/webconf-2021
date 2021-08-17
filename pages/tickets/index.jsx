@@ -323,14 +323,14 @@ const TicketDataContainer = styled.div`
 `;
 
 const TicketQR = styled.img`
-  position: absolute;
-  right: 1em;
-  bottom: 1.15em;
+  position: relative;
+  right: 0;
+  bottom: -45px;
   width: 4.5em;
 
   @media (max-width: ${({ theme }) => theme.breakpoints.desktop}) {
     width: 3.5em;
-    bottom: 1.5em;
+    bottom: -60px;
   }
 `;
 
@@ -366,10 +366,12 @@ const TicketPage = () => {
     }
 
     const ticketAnimation = ticketRef.current.style.animation;
+    const ticketTransform = ticketRef.current.style.transform;
+
     ticketRef.current.style.animation = 'unset';
+    ticketRef.current.style.transform = 'unset';
 
     html2canvas(ticketRef.current).then((canvas) => {
-      ticketRef.current.style.animation = ticketAnimation;
       const webconfTicketBase64Data = canvas
         .toDataURL('image/png')
         .replace(/data:image\/png;base64,/, '');
@@ -383,6 +385,8 @@ const TicketPage = () => {
         .then((response) => response.json())
         .then((response) => {
           window.open(response.url, 'ticket');
+          ticketRef.current.style.animation = ticketAnimation;
+          ticketRef.current.style.transform = ticketTransform;
         });
     });
   }, [user?.rombianUser, ticketRef]);
@@ -399,12 +403,16 @@ const TicketPage = () => {
             <div />
             <TicketLinePattern src="/images/ticket-background.png" />
             <TicketDataContainer>
-              <TicketNumberLabel>Número: _</TicketNumberLabel>
+              <TicketNumberLabel>
+                Número:<span aria-hidden="true"> _</span>
+              </TicketNumberLabel>
               <TicketNumber>{user?.rombianUser.id.toString().padStart(6, '0')}</TicketNumber>
               <TicketQR src={`/api/qr?rombianUserId=${user?.rombianUser.id}`} />
             </TicketDataContainer>
             <TicketDataContainer>
-              <TicketFromLabel>De: _</TicketFromLabel>
+              <TicketFromLabel>
+                De:<span aria-hidden="true"> _</span>
+              </TicketFromLabel>
               <TicketFrom>
                 <TicketUsername>@{user?.rombianUser.alias}</TicketUsername>
               </TicketFrom>
