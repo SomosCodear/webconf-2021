@@ -1,14 +1,13 @@
 import AWSSDK from 'aws-sdk';
 
-AWSSDK.config.update({
-  accessKeyId: process.env.WEBCONF_2021_AWS_ACCESS_KEY_ID,
-  secretAccessKey: process.env.WEBCONF_2021_AWS_SECRET_ACCESS_KEY,
-  region: process.env.WEBCONF_2021_AWS_REGION || 'sa-east-1',
-});
-
 export default async (req, res) => {
   const { rombianUserId, webconfTicketBase64Data } = JSON.parse(req.body);
-  const s3 = new AWSSDK.S3();
+  const s3 = new AWSSDK.S3({
+    credentials: {
+      accessKeyId: process.env.WEBCONF_2021_AWS_ACCESS_KEY_ID,
+      secretAccessKey: process.env.WEBCONF_2021_AWS_SECRET_ACCESS_KEY,
+    },
+  });
   const bucket = 'webconf-tickets';
   const bucketEntry = `ticket-${rombianUserId}.png`;
   const bucketObject = {
