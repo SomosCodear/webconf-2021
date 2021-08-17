@@ -23,19 +23,18 @@ export default async (req, res) => {
           ContentEncoding: 'base64',
           ContentType: 'image/png',
           Body: Buffer.from(webconfTicketBase64Data, 'base64'),
+          ACL: 'public-read',
         },
-        (uploadErr) => {
+        (uploadErr, data) => {
           if (uploadErr) {
             res.json({ error: uploadErr });
           } else {
-            const url = s3.getSignedUrl('getObject', bucketObject);
-            res.status(200).json({ url });
+            res.status(200).json({ url: data.Location });
           }
         },
       );
     } else {
-      const url = s3.getSignedUrl('getObject', bucketObject);
-      res.status(200).json({ url });
+      res.status(200).json({ url: `https://${bucket}.s3.sa-east-1.amazonaws.com/${bucketEntry}` });
     }
   });
 };
