@@ -379,7 +379,7 @@ const TicketPage = () => {
         method: 'POST',
         body: JSON.stringify({ rombianUserId, webconfTicketBase64Data }),
         headers: {
-          'content-type': 'application/octet-stream',
+          'content-type': 'application/json',
         },
       })
         .then((response) => response.json())
