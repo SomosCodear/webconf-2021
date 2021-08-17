@@ -1,7 +1,7 @@
 import AWSSDK from 'aws-sdk';
 
 export default async (req, res) => {
-  const { rombianUserId, webconfTicketBase64Data } = JSON.parse(req.body);
+  const { rombianUserId, webconfTicketBase64Data } = req.body;
   const s3 = new AWSSDK.S3({
     credentials: {
       accessKeyId: process.env.WEBCONF_2021_AWS_ACCESS_KEY_ID,
