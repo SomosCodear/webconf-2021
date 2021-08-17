@@ -1,8 +1,10 @@
 /* eslint-disable max-len */
 
 import { useUser } from '@auth0/nextjs-auth0';
+import html2canvas from 'html2canvas';
 import { useCallback, useRef, useState } from 'react';
 import styled from 'styled-components';
+import { Button } from '~/components/common/Button';
 
 const Ticket = styled.article`
   width: 20em;
@@ -357,6 +359,30 @@ const TicketPage = () => {
     ticketRef.current.style.animation = originalAnimation;
   }, [originalAnimation]);
 
+  const saveTicket = useCallback(() => {
+    const rombianUserId = user?.rombianUser.id;
+    if (!ticketRef.current) {
+      return;
+    }
+
+    html2canvas(ticketRef.current).then((canvas) => {
+      const webconfTicketBase64Data = canvas
+        .toDataURL('image/png')
+        .replace(/data:image\/png;base64,/, '');
+      fetch('/api/ticket', {
+        method: 'POST',
+        body: JSON.stringify({ rombianUserId, webconfTicketBase64Data }),
+        headers: {
+          'content-type': 'application/octet-stream',
+        },
+      })
+        .then((response) => response.json())
+        .then((response) => {
+          window.open(response.url, 'ticket');
+        });
+    });
+  }, [user?.rombianUser, ticketRef]);
+
   return (
     <Container onMouseMove={move} onMouseOut={animate}>
       <Ticket ref={ticketRef}>
@@ -370,8 +396,10 @@ const TicketPage = () => {
             <TicketLinePattern src="/images/ticket-background.png" />
             <TicketDataContainer>
               <TicketNumberLabel>Número: _</TicketNumberLabel>
-              <TicketNumber>{user?.rombianUser.id}</TicketNumber>
-              <TicketQR src="https://api.qrserver.com/v1/create-qr-code/?size=150x150&data=Example&margin=10" />
+              <TicketNumber>{user?.rombianUser.id.toString().padStart(6, '0')}</TicketNumber>
+              <TicketQR
+                src={`https://api.qrserver.com/v1/create-qr-code/?size=150x150&data=${user?.rombianUser.id}&margin=10`}
+              />
             </TicketDataContainer>
             <TicketDataContainer>
               <TicketFromLabel>De: _</TicketFromLabel>
@@ -382,6 +410,7 @@ const TicketPage = () => {
           </TicketContent>
         </TicketBorder>
       </Ticket>
+      <Button onClick={saveTicket}>Guardar mi ticket</Button>
     </Container>
   );
 };
