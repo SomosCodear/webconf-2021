@@ -419,7 +419,7 @@ TicketPage.propTypes = {
   alias: propTypes.string.isRequired,
 };
 
-export const getServerSideProps = async ({ ctx }) => {
+export const getServerSideProps = async (ctx) => {
   const { id } = ctx.query;
 
   const { alias } = await User.findByPk(id);
