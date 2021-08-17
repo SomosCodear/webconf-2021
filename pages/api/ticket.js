@@ -16,7 +16,7 @@ export default async (req, res) => {
   };
 
   s3.headObject(bucketObject, (err) => {
-    if (err.code === 'NotFound') {
+    if (err && err.code === 'NotFound') {
       s3.upload(
         {
           ...bucketObject,
