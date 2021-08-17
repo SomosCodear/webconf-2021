@@ -237,6 +237,7 @@ const TicketLinePattern = styled.img`
   top: 50%;
   margin-left: -7em;
   margin-top: -14em;
+  z-index: 0;
 `;
 
 const TicketNumberLabel = styled.label`
@@ -323,14 +324,14 @@ const TicketDataContainer = styled.div`
 `;
 
 const TicketQR = styled.img`
-  position: relative;
-  right: 0;
-  bottom: -45px;
+  position: absolute;
+  right: 1em;
+  bottom: 1.15em;
   width: 4.5em;
 
   @media (max-width: ${({ theme }) => theme.breakpoints.desktop}) {
     width: 3.5em;
-    bottom: -60px;
+    bottom: 1.5em;
   }
 `;
 
@@ -367,7 +368,6 @@ const TicketPage = () => {
 
     const ticketAnimation = ticketRef.current.style.animation;
     const ticketTransform = ticketRef.current.style.transform;
-
     ticketRef.current.style.animation = 'unset';
     ticketRef.current.style.transform = 'unset';
 
