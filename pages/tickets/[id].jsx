@@ -371,7 +371,10 @@ const TicketPage = ({ id, alias }) => {
           content="¡Entrá a webconf.tech y obtené tu entrada ahora!"
         />
         <meta property="og:type" content="website" />
-        <meta property="og:image" content="https://webconf.tech/images/weblogo.png" />
+        <meta
+          property="og:image"
+          content={`https://webconf-tickets.s3.sa-east-1.amazonaws.com/ticket-${id}.png`}
+        />
         <meta name="twitter:card" content="summary" />
         <meta name="twitter:site" content="@WebConfLATAM" />
         <meta
@@ -379,7 +382,10 @@ const TicketPage = ({ id, alias }) => {
           content="¡Entrá a webconf.tech y obtené tu entrada ahora!"
         />
         <meta name="twitter:title" content="¡Ya tengo mi entrada para WebConf LATAM 2021!" />
-        <meta name="twitter:image" content="https://webconf.tech/images/weblogo.png" />
+        <meta
+          name="twitter:image"
+          content={`https://webconf-tickets.s3.sa-east-1.amazonaws.com/ticket-${id}.png`}
+        />
       </Head>
       <Container onMouseMove={move} onMouseOut={animate}>
         <Ticket ref={ticketRef}>
