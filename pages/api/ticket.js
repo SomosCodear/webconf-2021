@@ -7,7 +7,7 @@ AWSSDK.config.update({
 });
 
 export default async (req, res) => {
-  const { rombianUserId, webconfTicketBase64Data } = req.body;
+  const { rombianUserId, webconfTicketBase64Data } = JSON.parse(req.body);
   const s3 = new AWSSDK.S3();
   const bucket = 'webconf-tickets';
   const bucketEntry = `ticket-${rombianUserId}.png`;
@@ -21,6 +21,8 @@ export default async (req, res) => {
       s3.upload(
         {
           ...bucketObject,
+          ContentEncoding: 'base64',
+          ContentType: 'image/png',
           Body: Buffer.from(webconfTicketBase64Data, 'base64'),
         },
         (uploadErr, data) => {
