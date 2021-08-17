@@ -40,11 +40,10 @@ const ScrollingContainer = styled.div`
 `;
 
 const ModalContainer = styled.div`
-  padding: 5rem 0;
+  padding: 10rem 0;
   margin: 20rem 2.375rem 0;
 
   @media (min-width: ${({ theme }) => theme.breakpoints.desktop}) {
-    padding: 10rem 0;
     margin-top: 10rem;
   }
 `;
