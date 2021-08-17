@@ -9,10 +9,9 @@ import { SpeakerPhoto } from './SpeakerPhoto';
 const Container = styled(motion.div)`
   position: relative;
   box-sizing: border-box;
-  max-width: 57rem;
-  margin-right: -8rem;
-  padding: 1rem 4rem 1rem 0;
-  border-radius: 1.25rem;
+  margin-right: -4rem;
+  padding: 0.375rem 2rem 0.375rem 0;
+  border-radius: 0.5rem;
   display: flex;
   flex-direction: row;
   align-items: center;
@@ -20,15 +19,32 @@ const Container = styled(motion.div)`
   cursor: pointer;
 
   & + & {
-    margin-top: 6.25rem;
+    margin-top: 3rem;
+  }
+
+  @media (min-width: ${({ theme }) => theme.breakpoints.desktop}) {
+    max-width: 57rem;
+    margin-right: -8rem;
+    padding: 1rem 4rem 1rem 0;
+    border-radius: 1.25rem;
+
+    & + & {
+      margin-top: 6.25rem;
+    }
   }
 `;
 
 const TalkInfo = styled.div`
   position: absolute;
-  top: -1.5rem;
-  left: 13.5rem;
-  font-size: 1.125rem;
+  top: -1rem;
+  left: 4.5rem;
+  font-size: 0.562rem;
+
+  @media (min-width: ${({ theme }) => theme.breakpoints.desktop}) {
+    top: -1.5rem;
+    left: 13.5rem;
+    font-size: 1.125rem;
+  }
 `;
 
 const TalkType = styled(motion.span)``;
@@ -38,29 +54,47 @@ const TalkSchedule = styled.span`
 
 const PhotoWrapper = styled(SpeakerPhoto)`
   flex-shrink: 0;
-  width: 13.875rem;
-  height: 13.875rem;
-  margin: -3rem 0 -3rem -3rem;
+  width: 5.25rem;
+  height: 5.25rem;
+  margin: -2rem 0 -2rem -2rem;
+
+  @media (min-width: ${({ theme }) => theme.breakpoints.desktop}) {
+    width: 13.875rem;
+    height: 13.875rem;
+    margin: -3rem 0 -3rem -3rem;
+  }
 `;
 
 const Info = styled.div`
-  margin-left: 2rem;
+  margin-left: 0.75rem;
   display: flex;
   flex-direction: column;
+
+  @media (min-width: ${({ theme }) => theme.breakpoints.desktop}) {
+    margin-left: 2rem;
+  }
 `;
 
 const SpeakerName = styled.div`
   text-transform: uppercase;
-  font-size: 1.625rem;
+  font-size: 0.625rem;
   color: ${({ theme, variant }) => theme.colors[`landingSpeakerVariant${variant}TalkColor`]};
   opacity: 75%;
+
+  @media (min-width: ${({ theme }) => theme.breakpoints.desktop}) {
+    font-size: 1.625rem;
+  }
 `;
 
 const TalkName = styled(motion.div)`
   margin-top: 0.5rem;
-  font-size: 2.5rem;
+  font-size: 1rem;
   font-weight: 700;
   color: ${({ theme, variant }) => theme.colors[`landingSpeakerVariant${variant}TalkColor`]};
+
+  @media (min-width: ${({ theme }) => theme.breakpoints.desktop}) {
+    font-size: 2.5rem;
+  }
 `;
 
 export const TalkPreviewCard = ({

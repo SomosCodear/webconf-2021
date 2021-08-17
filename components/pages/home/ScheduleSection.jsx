@@ -16,24 +16,32 @@ const Container = styled(Section)`
 `;
 
 const Schedule = styled.div`
-  position: relative;
-  margin-top: 4.5rem;
+  margin-top: 2rem;
   display: flex;
-  flex-direction: row;
-  align-items: flex-start;
+  flex-direction: column;
+
+  @media (min-width: ${({ theme }) => theme.breakpoints.desktop}) {
+    margin-top: 4.5rem;
+    flex-direction: row;
+    align-items: flex-start;
+  }
 `;
 
 const Days = styled.div`
-  margin-top: 1.5rem;
   display: flex;
-  flex-direction: column;
+  flex-direction: row;
+
+  @media (min-width: ${({ theme }) => theme.breakpoints.desktop}) {
+    margin-top: 1.5rem;
+    flex-direction: column;
+  }
 `;
 
 const Day = styled.button`
   padding: 0.5rem 1.5rem;
   border: none;
-  border-radius: 1.25rem 0 0 1.25rem;
-  font-size: 2.5rem;
+  border-radius: 0.5rem 0.5rem 0 0;
+  font-size: 0.875rem;
   font-weight: 700;
   background: ${({ theme, active }) =>
     active
@@ -44,18 +52,31 @@ const Day = styled.button`
   cursor: pointer;
 
   & + & {
-    margin-top: 1rem;
+    margin-left: 0.25rem;
+  }
+
+  @media (min-width: ${({ theme }) => theme.breakpoints.desktop}) {
+    border-radius: 1.25rem 0 0 1.25rem;
+    font-size: 2.5rem;
+
+    & + & {
+      margin-left: 0;
+      margin-top: 1rem;
+    }
   }
 `;
 
 const Talks = styled.div`
-  margin-left: 0.625rem;
-  padding: 4rem;
-  border-radius: 1.25rem;
-  flex: 1;
+  padding: 3rem;
   display: flex;
   flex-direction: column;
   background: ${({ theme }) => theme.colors.landingScheduleTalksBackground};
+
+  @media (min-width: ${({ theme }) => theme.breakpoints.desktop}) {
+    margin-left: 0.625rem;
+    padding: 4rem;
+    border-radius: 1.25rem;
+  }
 `;
 
 const getTalkDay = R.compose(
