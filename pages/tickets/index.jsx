@@ -69,7 +69,12 @@ const Container = styled.main`
 `;
 
 const WebConfLogo = () => (
-  <svg height="30" viewBox="0 0 369 100" fill="none" xmlns="http://www.w3.org/2000/svg">
+  <svg
+    style={{ height: 30, marginRight: '1em' }}
+    viewBox="0 0 369 100"
+    fill="none"
+    xmlns="http://www.w3.org/2000/svg"
+  >
     <path
       fillRule="evenodd"
       clipRule="evenodd"
@@ -93,13 +98,7 @@ const WebConfLogo = () => (
 );
 
 const CodearLogo = () => (
-  <svg
-    style={{ marginLeft: '1rem' }}
-    height="20"
-    viewBox="0 0 150 51"
-    fill="none"
-    xmlns="http://www.w3.org/2000/svg"
-  >
+  <svg style={{ height: 30 }} viewBox="0 0 150 51" fill="none" xmlns="http://www.w3.org/2000/svg">
     <path
       d="M67.1548 30.212C67.0363 32.7916 66.3114 34.7431 64.9801 36.0664C63.6488 37.3898 61.7645 38.0535 59.3271 38.0574C56.7673 38.0574 54.8059 37.216 53.443 35.5331C52.0802 33.8503 51.4007 31.4504 51.4046 28.3336V24.5234C51.4046 21.4185 52.1078 19.0245 53.5141 17.3417C54.9205 15.6588 56.8779 14.8174 59.3864 14.8174C61.8514 14.8174 63.7239 15.5067 65.0038 16.8854C66.2837 18.2641 67.0106 20.2393 67.1844 22.811H62.604C62.5605 21.2308 62.3136 20.1306 61.8633 19.5104C61.4129 18.9179 60.5893 18.6038 59.3864 18.6038C58.8779 18.5582 58.3668 18.6535 57.9089 18.8793C57.4511 19.1051 57.0643 19.4526 56.791 19.8837C56.2932 20.7429 56.0147 22.1532 55.9851 24.1205V28.3928C55.9851 30.6406 56.2359 32.1832 56.7376 33.0207C57.013 33.447 57.4001 33.7895 57.8567 34.011C58.3132 34.2325 58.8219 34.3245 59.3271 34.2769C60.5122 34.2769 61.3537 33.9866 61.8099 33.3999C62.2662 32.8133 62.521 31.7526 62.5862 30.2238L67.1548 30.212Z"
       fill="url(#paint0_linear)"
@@ -295,6 +294,7 @@ const TicketNumber = styled.label`
   font-size: 1em;
   background: #fff;
   color: #1f1f1f;
+  position: relative;
 `;
 
 const TicketFrom = styled.label`
