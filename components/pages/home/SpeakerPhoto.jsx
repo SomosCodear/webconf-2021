@@ -7,6 +7,7 @@ const Container = styled(motion.div)`
   position: relative;
   border-radius: 50%;
   border: 0.25rem solid ${({ theme }) => theme.colors.landingSpeakerPhotoBorder};
+  background: ${({ theme }) => theme.colors.landingSpeakerPhotoBackground};
   z-index: 10;
 `;
 

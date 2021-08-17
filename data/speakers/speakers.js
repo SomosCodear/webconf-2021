@@ -39,7 +39,7 @@ export const SPEAKERS = [
     talkName: 'Lo importante es el detalle',
     talkDescription:
       '¿Cuántas veces te encontraste en la situación de tener que poner un !important a tus estilos porque por "alguna razón" no te los toma? En 10 minutos te cuento porque y cómo resolverlo.',
-    talkSchedule: ['2021-08-22T22:00:00.000Z', '2021-08-22T22:30:00.000Z'],
+    talkSchedule: ['2021-08-22T22:30:00.000Z', '2021-08-22T23:00:00.000Z'],
   },
   {
     id: '3',
@@ -58,7 +58,7 @@ export const SPEAKERS = [
     talkName: 'Lo importante es el detalle',
     talkDescription:
       '¿Cuántas veces te encontraste en la situación de tener que poner un !important a tus estilos porque por "alguna razón" no te los toma? En 10 minutos te cuento porque y cómo resolverlo.',
-    talkSchedule: ['2021-08-22T22:00:00.000Z', '2021-08-22T22:30:00.000Z'],
+    talkSchedule: ['2021-08-22T23:00:00.000Z', '2021-08-22T23:30:00.000Z'],
   },
   {
     id: '4',
@@ -77,7 +77,7 @@ export const SPEAKERS = [
     talkName: 'Lo importante es el detalle',
     talkDescription:
       '¿Cuántas veces te encontraste en la situación de tener que poner un !important a tus estilos porque por "alguna razón" no te los toma? En 10 minutos te cuento porque y cómo resolverlo.',
-    talkSchedule: ['2021-08-22T22:00:00.000Z', '2021-08-22T22:30:00.000Z'],
+    talkSchedule: ['2021-08-22T23:30:00.000Z', '2021-08-23T00:00:00.000Z'],
   },
   {
     id: '5',
@@ -153,6 +153,6 @@ export const SPEAKERS = [
     talkName: 'Lo importante es el detalle',
     talkDescription:
       '¿Cuántas veces te encontraste en la situación de tener que poner un !important a tus estilos porque por "alguna razón" no te los toma? En 10 minutos te cuento porque y cómo resolverlo.',
-    talkSchedule: ['2021-08-22T22:00:00.000Z', '2021-08-22T22:30:00.000Z'],
+    talkSchedule: ['2021-08-23T22:00:00.000Z', '2021-08-23T22:30:00.000Z'],
   },
 ];

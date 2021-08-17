@@ -15,7 +15,7 @@ const Overlay = styled(motion.div).attrs({
   variants: {
     initial: { opacity: 0 },
     visible: { opacity: 1 },
-    exit: { opacity: 0 },
+    exit: { opacity: 0.5 },
   },
 })`
   z-index: 100;
@@ -159,7 +159,11 @@ const LastName = styled(motion.div)`
   }
 `;
 
-const SocialNetworks = styled(motion.div)`
+const SocialNetworks = styled(motion.div).attrs({
+  variants: {
+    exit: { opacity: 0, transition: { duration: 0.1 } },
+  },
+})`
   display: flex;
   flex-direction: row;
   align-items: center;
@@ -371,6 +375,7 @@ export const SpeakerModal = ({
   talkName,
   talkDescription,
   talkSchedule,
+  disableTalkNameAnimation,
   onClose,
 }) => {
   const overlayRef = useRef(null);
@@ -451,7 +456,15 @@ export const SpeakerModal = ({
             CHARLA
             {talkType === TALK_TYPES.LIGHTENING ? ' RELAMPAGO' : null}
           </TalkType>
-          <TalkName variant={variant}>{talkName}</TalkName>
+          <TalkName
+            initial={disableTalkNameAnimation ? 'visible' : 'initial'}
+            animate="visible"
+            exit={disableTalkNameAnimation ? 'visible' : 'exit'}
+            variant={variant}
+            layoutId={`speaker-talk-name-${id}`}
+          >
+            {talkName}
+          </TalkName>
           <TalkDescription>{talkDescription}</TalkDescription>
         </TalkContainer>
         <TalkSchedule>
@@ -495,5 +508,10 @@ SpeakerModal.propTypes = {
   talkName: PropTypes.string.isRequired,
   talkDescription: PropTypes.string.isRequired,
   talkSchedule: PropTypes.arrayOf(PropTypes.string).isRequired,
+  disableTalkNameAnimation: PropTypes.bool,
   onClose: PropTypes.func.isRequired,
+};
+
+SpeakerModal.defaultProps = {
+  disableTalkNameAnimation: false,
 };
