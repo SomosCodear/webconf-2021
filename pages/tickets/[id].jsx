@@ -5,6 +5,7 @@ import Head from 'next/head';
 import { useCallback, useRef, useState } from 'react';
 import styled from 'styled-components';
 import { User } from '~/data/rombian';
+import { Button } from '~/components/common/Button';
 
 const Ticket = styled.article`
   width: 20em;
@@ -61,10 +62,12 @@ const Container = styled.main`
   place-items: center;
   background: #000;
   font-size: 150%;
+  position: relative;
 
   @media (max-width: ${({ theme }) => theme.breakpoints.desktop}) {
     pointer-events: none;
     font-size: 95%;
+    height: fit-content;
   }
 `;
 
@@ -312,7 +315,7 @@ const TicketFrom = styled.label`
 `;
 
 const TicketUsername = styled.div`
-  opacity: 0.5;
+  opacity: 0.8;
 `;
 
 const TicketDataContainer = styled.div`
@@ -332,6 +335,51 @@ const TicketQR = styled.img`
   @media (max-width: ${({ theme }) => theme.breakpoints.desktop}) {
     width: 3.5em;
     bottom: 1.5em;
+  }
+`;
+
+const BeforeTicket = styled.section`
+  color: #fff;
+  font-family: Epilogue;
+  font-weight: 900;
+  font-size: 2rem;
+  padding: 1rem;
+  color: ${({ theme }) => theme.colors.landingSpeakerPrincipleSubtitle};
+
+  small {
+    display: block;
+    color: white;
+  }
+
+  @media (min-width: ${({ theme }) => theme.breakpoints.desktop}) {
+    position: absolute;
+    width: 30%;
+    left: 5%;
+    font-size: 6rem;
+    line-height: 4rem;
+
+    small {
+      margin-top: 5rem;
+      font-size: 2rem;
+      line-height: 2rem;
+    }
+  }
+`;
+
+const AfterTicket = styled.section`
+  color: #fff;
+  font-family: Epilogue;
+  font-weight: 900;
+  font-size: 4rem;
+  margin-bottom: 4rem;
+
+  @media (min-width: ${({ theme }) => theme.breakpoints.desktop}) {
+    position: absolute;
+    width: 30%;
+    right: 5%;
+    text-align: right;
+    transform: scale(2);
+    transform-origin: center right;
   }
 `;
 
@@ -362,6 +410,10 @@ const TicketPage = ({ id, alias }) => {
   return (
     <>
       <Head>
+        <link
+          href="https://fonts.googleapis.com/css2?family=Epilogue:wght@400;500;900&display=swap"
+          rel="stylesheet"
+        />
         <title>WebConf LATAM 2021 | ¡Buscá ideas para tu charla!</title>
         <meta property="og:title" content="¡Ya tengo mi entrada para WebConf LATAM 2021!" />
         <meta property="og:site_name" content="WebConf LATAM 2021" />
@@ -388,6 +440,10 @@ const TicketPage = ({ id, alias }) => {
         />
       </Head>
       <Container onMouseMove={move} onMouseOut={animate}>
+        <BeforeTicket>
+          Ya falta poco.
+          <small>¡Únete a @{alias} en WebConf LATAM 2021!</small>
+        </BeforeTicket>
         <Ticket ref={ticketRef}>
           <TicketBorder>
             <TicketContent>
@@ -415,6 +471,9 @@ const TicketPage = ({ id, alias }) => {
             </TicketContent>
           </TicketBorder>
         </Ticket>
+        <AfterTicket>
+          <Button variant="secondary">Quiero mi entrada</Button>
+        </AfterTicket>
       </Container>
     </>
   );
