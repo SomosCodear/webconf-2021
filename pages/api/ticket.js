@@ -24,11 +24,12 @@ export default async (req, res) => {
           ContentType: 'image/png',
           Body: Buffer.from(webconfTicketBase64Data, 'base64'),
         },
-        (uploadErr, data) => {
+        (uploadErr) => {
           if (uploadErr) {
             res.json({ error: uploadErr });
           } else {
-            res.status(200).json({ url: data.Location });
+            const url = s3.getSignedUrl('getObject', bucketObject);
+            res.status(200).json({ url });
           }
         },
       );
