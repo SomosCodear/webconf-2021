@@ -371,7 +371,13 @@ const TicketPage = () => {
     ticketRef.current.style.animation = 'unset';
     ticketRef.current.style.transform = 'unset';
 
-    html2canvas(ticketRef.current).then((canvas) => {
+    html2canvas(ticketRef.current, {
+      backgroundColor: null,
+      width: ticketRef.current.clientWidth + 40,
+      height: ticketRef.current.clientHeight + 40,
+      x: 20,
+      y: 20,
+    }).then((canvas) => {
       const webconfTicketBase64Data = canvas
         .toDataURL('image/png')
         .replace(/data:image\/png;base64,/, '');
