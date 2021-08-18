@@ -375,6 +375,7 @@ const AfterTicket = styled.section`
   display: grid;
   grid-auto-flow: row;
   gap: 1rem;
+  margin-top: 4rem;
 
   @media (min-width: ${({ theme }) => theme.breakpoints.desktop}) {
     position: absolute;
@@ -382,6 +383,7 @@ const AfterTicket = styled.section`
     text-align: right;
     transform: scale(2);
     transform-origin: center right;
+    margin-top: 0;
   }
 `;
 

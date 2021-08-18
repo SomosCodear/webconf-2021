@@ -371,6 +371,7 @@ const AfterTicket = styled.section`
   font-family: Epilogue;
   font-weight: 900;
   font-size: 4rem;
+  margin-top: 5rem;
   margin-bottom: 4rem;
 
   @media (min-width: ${({ theme }) => theme.breakpoints.desktop}) {
@@ -380,6 +381,7 @@ const AfterTicket = styled.section`
     text-align: right;
     transform: scale(2);
     transform-origin: center right;
+    margin-top: 0;
   }
 `;
 
