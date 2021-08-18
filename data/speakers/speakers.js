@@ -35,7 +35,7 @@ export const SPEAKERS = [
       instagram: 'test',
     },
     bio: '**Martín Pastore** es actualmente Web Engineer en ThriveMarket pero hace 6 años que estoy dando vueltas en el rubro. Hoy me considero fana de React, pero me encanta laburar con JS en general. Supuestamente soy full stack, pero siempre fui mas front que back (aunque puedo romper ambos) 🤡',
-    talkType: TALK_TYPES.LIGHTENING,
+    talkType: TALK_TYPES.LIGHTNING,
     talkName: 'Lo importante es el detalle',
     talkDescription:
       '¿Cuántas veces te encontraste en la situación de tener que poner un !important a tus estilos porque por "alguna razón" no te los toma? En 10 minutos te cuento porque y cómo resolverlo.',
@@ -54,7 +54,7 @@ export const SPEAKERS = [
       instagram: 'test',
     },
     bio: '**Martín Pastore** es actualmente Web Engineer en ThriveMarket pero hace 6 años que estoy dando vueltas en el rubro. Hoy me considero fana de React, pero me encanta laburar con JS en general. Supuestamente soy full stack, pero siempre fui mas front que back (aunque puedo romper ambos) 🤡',
-    talkType: TALK_TYPES.LIGHTENING,
+    talkType: TALK_TYPES.LIGHTNING,
     talkName: 'Lo importante es el detalle',
     talkDescription:
       '¿Cuántas veces te encontraste en la situación de tener que poner un !important a tus estilos porque por "alguna razón" no te los toma? En 10 minutos te cuento porque y cómo resolverlo.',
@@ -73,7 +73,7 @@ export const SPEAKERS = [
       instagram: 'test',
     },
     bio: '**Martín Pastore** es actualmente Web Engineer en ThriveMarket pero hace 6 años que estoy dando vueltas en el rubro. Hoy me considero fana de React, pero me encanta laburar con JS en general. Supuestamente soy full stack, pero siempre fui mas front que back (aunque puedo romper ambos) 🤡',
-    talkType: TALK_TYPES.LIGHTENING,
+    talkType: TALK_TYPES.LIGHTNING,
     talkName: 'Lo importante es el detalle',
     talkDescription:
       '¿Cuántas veces te encontraste en la situación de tener que poner un !important a tus estilos porque por "alguna razón" no te los toma? En 10 minutos te cuento porque y cómo resolverlo.',
@@ -92,7 +92,7 @@ export const SPEAKERS = [
       instagram: 'test',
     },
     bio: '**Martín Pastore** es actualmente Web Engineer en ThriveMarket pero hace 6 años que estoy dando vueltas en el rubro. Hoy me considero fana de React, pero me encanta laburar con JS en general. Supuestamente soy full stack, pero siempre fui mas front que back (aunque puedo romper ambos) 🤡',
-    talkType: TALK_TYPES.LIGHTENING,
+    talkType: TALK_TYPES.LIGHTNING,
     talkName: 'Lo importante es el detalle',
     talkDescription:
       '¿Cuántas veces te encontraste en la situación de tener que poner un !important a tus estilos porque por "alguna razón" no te los toma? En 10 minutos te cuento porque y cómo resolverlo.',
@@ -111,7 +111,7 @@ export const SPEAKERS = [
       instagram: 'test',
     },
     bio: '**Martín Pastore** es actualmente Web Engineer en ThriveMarket pero hace 6 años que estoy dando vueltas en el rubro. Hoy me considero fana de React, pero me encanta laburar con JS en general. Supuestamente soy full stack, pero siempre fui mas front que back (aunque puedo romper ambos) 🤡',
-    talkType: TALK_TYPES.LIGHTENING,
+    talkType: TALK_TYPES.LIGHTNING,
     talkName: 'Lo importante es el detalle',
     talkDescription:
       '¿Cuántas veces te encontraste en la situación de tener que poner un !important a tus estilos porque por "alguna razón" no te los toma? En 10 minutos te cuento porque y cómo resolverlo.',
@@ -130,7 +130,7 @@ export const SPEAKERS = [
       instagram: 'test',
     },
     bio: '**Martín Pastore** es actualmente Web Engineer en ThriveMarket pero hace 6 años que estoy dando vueltas en el rubro. Hoy me considero fana de React, pero me encanta laburar con JS en general. Supuestamente soy full stack, pero siempre fui mas front que back (aunque puedo romper ambos) 🤡',
-    talkType: TALK_TYPES.LIGHTENING,
+    talkType: TALK_TYPES.LIGHTNING,
     talkName: 'Lo importante es el detalle',
     talkDescription:
       '¿Cuántas veces te encontraste en la situación de tener que poner un !important a tus estilos porque por "alguna razón" no te los toma? En 10 minutos te cuento porque y cómo resolverlo.',
@@ -149,7 +149,7 @@ export const SPEAKERS = [
       instagram: 'test',
     },
     bio: '**Martín Pastore** es actualmente Web Engineer en ThriveMarket pero hace 6 años que estoy dando vueltas en el rubro. Hoy me considero fana de React, pero me encanta laburar con JS en general. Supuestamente soy full stack, pero siempre fui mas front que back (aunque puedo romper ambos) 🤡',
-    talkType: TALK_TYPES.LIGHTENING,
+    talkType: TALK_TYPES.LIGHTNING,
     talkName: 'Lo importante es el detalle',
     talkDescription:
       '¿Cuántas veces te encontraste en la situación de tener que poner un !important a tus estilos porque por "alguna razón" no te los toma? En 10 minutos te cuento porque y cómo resolverlo.',

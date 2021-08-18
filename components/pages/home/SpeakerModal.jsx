@@ -475,7 +475,7 @@ export const SpeakerModal = ({
             <TalkContainer variant={variant}>
               <TalkType>
                 CHARLA
-                {talkType === TALK_TYPES.LIGHTENING ? ' RELAMPAGO' : null}
+                {talkType === TALK_TYPES.LIGHTNING ? ' RELAMPAGO' : null}
               </TalkType>
               <TalkName
                 initial={disableTalkNameAnimation ? 'visible' : 'initial'}
