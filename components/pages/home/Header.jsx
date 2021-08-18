@@ -1,7 +1,6 @@
 import PropTypes from 'prop-types';
 import styled from 'styled-components';
 import Image from 'next/image';
-import Link from 'next/link';
 import selloWebConf from '~/public/images/SelloWebConf.svg';
 import { Button } from '~/components/common';
 import { Background } from './Background';
@@ -171,16 +170,11 @@ export function Header({ onLearnMoreClick, ...props }) {
               DE AGOSTO
             </Text>
             <Buttons>
-              {/* <Link href="/auspicianos" passHref>
-                <Button as="a" variant="primary">
-                  sumate como sponsor
-                </Button>
-  </Link> */}
-              <Link href="/#" passHref>
-                <Button as="a" variant="primary">
-                  PRÓXIMAMENTE: ¡INSCRIBITE!
-                </Button>
-              </Link>
+              <Button as="a" href="/api/auth/login?returnTo=/tickets" variant="primary">
+                <span style={{ fontSize: '2rem', display: 'inline-block', padding: '0 2rem' }}>
+                  ¡INSCRIBITE!
+                </span>
+              </Button>
             </Buttons>
           </TextAndButtonsContainer>
         </Title>
