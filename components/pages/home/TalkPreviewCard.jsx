@@ -108,16 +108,25 @@ export const TalkPreviewCard = ({
   talkSchedule,
   onSelect,
 }) => {
-  const talkStarteDateTime = useMemo(() => DateTime.fromISO(talkSchedule[0]), [talkSchedule]);
-  const talkEndDateTime = useMemo(() => DateTime.fromISO(talkSchedule[1]), [talkSchedule]);
+  const talkStartDateTime = useMemo(
+    () => DateTime.fromISO(talkSchedule[0], { locale: 'es-AR' }),
+    [talkSchedule],
+  );
+  const talkEndDateTime = useMemo(
+    () => DateTime.fromISO(talkSchedule[1], { locale: 'es-AR' }),
+    [talkSchedule],
+  );
 
   return (
     <Container variant={variant} onClick={onSelect} layoutId={`speaker-${id}`}>
       <TalkInfo>
-        <TalkType>CHARLA {talkType === TALK_TYPES.STANDARD ? 'STANDARD' : 'RELÁMPAGO'}</TalkType>
+        <TalkType>
+          CHARLA{' '}
+          {talkType === TALK_TYPES.STANDARD ? '' : <span style={{ color: 'gold' }}>RELÁMPAGO</span>}
+        </TalkType>
         {' | '}
         <TalkSchedule>
-          {talkStarteDateTime.toLocaleString(DateTime.TIME_24_SIMPLE)}
+          {talkStartDateTime.toLocaleString(DateTime.TIME_24_SIMPLE)}
           {' - '}
           {talkEndDateTime.toLocaleString(DateTime.TIME_24_SIMPLE)} HS.
         </TalkSchedule>
