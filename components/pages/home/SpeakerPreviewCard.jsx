@@ -73,27 +73,49 @@ const calculateTextStyle = (text) => {
   const baseStyles = {
     display: 'grid',
     alignItems: 'center',
-    fontSize: '1.25rem',
+    fontSize: '2.25rem',
     height: '2.5rem',
     letterSpacing: '4px',
   };
 
   let specificStyles = {};
 
-  if (text.length < 6) {
-    specificStyles = { fontSize: '2.25rem', letterSpacing: '10px' };
+  if (text === 'Paoli') {
+    specificStyles = { letterSpacing: '17px' };
+  } else if (text.length < 6) {
+    specificStyles = { letterSpacing: '13px' };
+  } else if (text === 'De Caro') {
+    specificStyles = { letterSpacing: '2.5px' };
+  } else if (text === 'De Lima') {
+    specificStyles = { letterSpacing: '4.1px' };
   } else if (text === 'Moreno') {
-    specificStyles = { fontSize: '2.25rem', letterSpacing: '2px' };
+    specificStyles = { letterSpacing: '2px' };
   } else if (text === 'Chavez') {
-    specificStyles = { fontSize: '2.25rem', letterSpacing: '6px' };
+    specificStyles = { letterSpacing: '6px' };
   } else if (text.length === 6) {
-    specificStyles = { fontSize: '2.25rem', letterSpacing: '8px' };
+    specificStyles = { letterSpacing: '8px' };
+  } else if (text === 'Thiessen') {
+    specificStyles = { letterSpacing: '0px' };
+  } else if (text === 'Huidobro') {
+    specificStyles = { fontSize: '2.1rem', letterSpacing: '0px' };
+  } else if (text === 'Chanampe') {
+    specificStyles = { fontSize: '1.9rem', letterSpacing: '0px' };
+  } else if (text === 'Giuliani') {
+    specificStyles = { letterSpacing: '2.5px' };
+  } else if (text === 'La Torre') {
+    specificStyles = { letterSpacing: '0px' };
   } else if (text.length <= 8) {
-    specificStyles = { fontSize: '2.25rem', letterSpacing: '1px' };
-  } else if (text.length < 9) {
-    specificStyles = { fontSize: '2.25rem' };
-  } else if (text === 'Arabolaza') {
+    specificStyles = { letterSpacing: '1px' };
+  } else if (text === 'Corradini') {
+    specificStyles = { fontSize: '1.9rem', letterSpacing: '1px' };
+  } else if (text === 'Pontiroli') {
+    specificStyles = { fontSize: '1.95rem', letterSpacing: '1px' };
+  } else if (text.length <= 9) {
     specificStyles = { fontSize: '1.75rem', letterSpacing: '1px' };
+  } else if (text.length <= 10) {
+    specificStyles = { fontSize: '1.7rem', letterSpacing: '0px' };
+  } else if (text.length > 15) {
+    specificStyles = { fontSize: '1rem', letterSpacing: '7px' };
   }
 
   return { ...baseStyles, ...specificStyles };

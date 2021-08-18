@@ -174,6 +174,7 @@ const LastName = styled(motion.div)`
 
   @media (min-width: ${({ theme }) => theme.breakpoints.desktop}) {
     font-size: 3.5rem;
+    height: 3rem;
   }
 `;
 
@@ -384,6 +385,25 @@ const TalkSaveSchedule = styled(Button).attrs({
   }
 `;
 
+const calculateTextStyle = (text) => {
+  const baseStyles = {
+    display: 'grid',
+    alignItems: 'center',
+  };
+
+  let specificStyles = {};
+
+  if (text.length > 15) {
+    if (global.innerWidth < 640) {
+      specificStyles = { fontSize: '0.9rem', letterSpacing: '0px' };
+    } else {
+      specificStyles = { fontSize: '1.5rem', letterSpacing: '7px' };
+    }
+  }
+
+  return { ...baseStyles, ...specificStyles };
+};
+
 export const SpeakerModal = ({
   id,
   variant,
@@ -450,7 +470,12 @@ export const SpeakerModal = ({
                     layoutId={`speaker-nationality-flag-${id}`}
                   />
                   <FirstName layoutId={`speaker-first-name-${id}`}>{firstName}</FirstName>
-                  <LastName layoutId={`speaker-last-name-${id}`}>{lastName}</LastName>
+                  <LastName
+                    layoutId={`speaker-last-name-${id}`}
+                    style={calculateTextStyle(lastName)}
+                  >
+                    {lastName}
+                  </LastName>
                   <SocialNetworks layoutId={`speaker-social-netwokrs-${id}`}>
                     {socialMediaHandles.twitter != null ? (
                       <SocialNetwork href={`https://twitter.com/${socialMediaHandles.twitter}`}>
