@@ -7,6 +7,7 @@ import {
   Header,
   MainSection,
   SpeakersSection,
+  ScheduleSection,
   SponsorsSection,
 } from '~/components/pages/home';
 
@@ -78,6 +79,7 @@ const Home = () => {
       <Header onLearnMoreClick={goToMainsection} />
       <MainSection ref={mainSectionRef} />
       <SpeakersSection />
+      <ScheduleSection />
       <SponsorsSection />
       <Footer />
     </>
