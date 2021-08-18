@@ -27,7 +27,7 @@ const Speakers = styled.div`
 `;
 
 export function SpeakersSection() {
-  const [selectedSpeaker, setSelecetdSpeaker] = useState(null);
+  const [selectedSpeaker, setSelectedSpeaker] = useState(null);
 
   return (
     <Container>
@@ -39,12 +39,12 @@ export function SpeakersSection() {
               key={id}
               id={id}
               {...speaker}
-              onSelect={() => setSelecetdSpeaker({ id, ...speaker })}
+              onSelect={() => setSelectedSpeaker({ id, ...speaker })}
             />
           ))}
           <AnimatePresence>
             {selectedSpeaker != null ? (
-              <SpeakerModal {...selectedSpeaker} onClose={() => setSelecetdSpeaker(null)} />
+              <SpeakerModal {...selectedSpeaker} onClose={() => setSelectedSpeaker(null)} />
             ) : null}
           </AnimatePresence>
         </AnimateSharedLayout>
