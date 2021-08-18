@@ -304,7 +304,7 @@ export const SPEAKERS = [
       twitter: 'mafermazu',
       linkedin: 'mafermazu',
     },
-    bio: '**María Fernanda Magallanes Zubillaga** apoyo a los demás compartiendo sus conocimientos. Estudia ingeniería en computación y ama inmensamente bailar y animar.',
+    bio: '**María Fernanda Magallanes Zubillaga** apoya a los demás compartiendo sus conocimientos. Estudia ingeniería en computación y ama inmensamente bailar y animar.',
     talkType: TALK_TYPES.STANDARD,
     talkName: '¿Conoces el lenguaje de programación que usas?',
     talkDescription:
