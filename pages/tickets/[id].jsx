@@ -65,7 +65,6 @@ const Container = styled.main`
   position: relative;
 
   @media (max-width: ${({ theme }) => theme.breakpoints.desktop}) {
-    pointer-events: none;
     font-size: 95%;
     height: fit-content;
   }
