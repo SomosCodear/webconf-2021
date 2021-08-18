@@ -45,7 +45,7 @@ const ModalContainer = styled.div`
   margin: 20rem 2.375rem 0;
 
   @media (min-width: ${({ theme }) => theme.breakpoints.desktop}) {
-    margin-top: 0rem;
+    margin-top: 10rem;
   }
 `;
 
@@ -416,8 +416,14 @@ export const SpeakerModal = ({
 
   const shouldReduceMotion = useReducedMotion();
 
-  const talkStarteDateTime = useMemo(() => DateTime.fromISO(talkSchedule[0]), [talkSchedule]);
-  const talkEndDateTime = useMemo(() => DateTime.fromISO(talkSchedule[1]), [talkSchedule]);
+  const talkStartDateTime = useMemo(
+    () => DateTime.fromISO(talkSchedule[0], { locale: 'es-AR' }),
+    [talkSchedule],
+  );
+  const talkEndDateTime = useMemo(
+    () => DateTime.fromISO(talkSchedule[1], { locale: 'es-AR' }),
+    [talkSchedule],
+  );
 
   return (
     <Overlay
@@ -477,7 +483,7 @@ export const SpeakerModal = ({
             <TalkContainer variant={variant}>
               <TalkType>
                 CHARLA
-                {talkType === TALK_TYPES.LIGHTNING ? ' RELAMPAGO' : null}
+                {talkType === TALK_TYPES.LIGHTNING ? ' RELÁMPAGO' : null}
               </TalkType>
               <TalkName
                 initial={disableTalkNameAnimation ? 'visible' : 'initial'}
@@ -495,15 +501,15 @@ export const SpeakerModal = ({
                 <TalkDateTimeGroup>
                   <TalkDateTimeLabel>DÍA</TalkDateTimeLabel>
                   <TalkDateTimeValue>
-                    {talkStarteDateTime.toLocaleString({ day: 'numeric', month: 'numeric' })}
+                    {talkStartDateTime.toLocaleString({ day: 'numeric', month: 'numeric' })}
                   </TalkDateTimeValue>
                 </TalkDateTimeGroup>
                 <TalkDateTimeGroup>
                   <TalkDateTimeLabel>
-                    HORARIO [{talkStarteDateTime.toFormat('ZZZZ')}]
+                    HORARIO [{talkStartDateTime.toFormat('ZZZZ')}]
                   </TalkDateTimeLabel>
                   <TalkDateTimeValue>
-                    {talkStarteDateTime.toLocaleString(DateTime.TIME_24_SIMPLE)}
+                    {talkStartDateTime.toLocaleString(DateTime.TIME_24_SIMPLE)}
                     {' - '}
                     {talkEndDateTime.toLocaleString(DateTime.TIME_24_SIMPLE)} hs.
                   </TalkDateTimeValue>
