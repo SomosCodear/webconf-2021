@@ -39,7 +39,6 @@ const FirstName = styled(motion.div)`
   border-top-right-radius: 4rem;
   text-transform: uppercase;
   font-size: 1rem;
-  min-width: 5rem;
   max-width: 10rem;
   font-weight: 900;
   color: ${({ theme }) => theme.colors.landingSpeakerFirstNameColor};
@@ -71,14 +70,33 @@ const SocialNetworks = styled(motion.div)`
 `;
 
 const calculateTextStyle = (text) => {
-  if (text.length <= 6) {
-    return { fontSize: '2.25rem', letterSpacing: '10px' };
-  }
-  if (text.length < 8) {
-    return { fontSize: '2.25rem', letterSpacing: '2px' };
+  const baseStyles = {
+    display: 'grid',
+    alignItems: 'center',
+    fontSize: '1.25rem',
+    height: '2.5rem',
+    letterSpacing: '4px',
+  };
+
+  let specificStyles = {};
+
+  if (text.length < 6) {
+    specificStyles = { fontSize: '2.25rem', letterSpacing: '10px' };
+  } else if (text === 'Moreno') {
+    specificStyles = { fontSize: '2.25rem', letterSpacing: '2px' };
+  } else if (text === 'Chavez') {
+    specificStyles = { fontSize: '2.25rem', letterSpacing: '6px' };
+  } else if (text.length === 6) {
+    specificStyles = { fontSize: '2.25rem', letterSpacing: '8px' };
+  } else if (text.length <= 8) {
+    specificStyles = { fontSize: '2.25rem', letterSpacing: '1px' };
+  } else if (text.length < 9) {
+    specificStyles = { fontSize: '2.25rem' };
+  } else if (text === 'Arabolaza') {
+    specificStyles = { fontSize: '1.75rem', letterSpacing: '1px' };
   }
 
-  return { fontSize: '1.25rem', letterSpacing: '4px' };
+  return { ...baseStyles, ...specificStyles };
 };
 
 export const SpeakerPreviewCard = ({
