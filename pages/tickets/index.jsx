@@ -355,8 +355,8 @@ const BeforeTicket = styled.section`
     position: absolute;
     width: 30%;
     left: 5%;
-    font-size: 6rem;
-    line-height: 4rem;
+    font-size: 5.5rem;
+    line-height: 5rem;
 
     small {
       margin-top: 5rem;
@@ -495,7 +495,7 @@ const TicketPage = () => {
       </Head>
       <Container onMouseMove={move} onMouseOut={animate}>
         <BeforeTicket>
-          ¡Aquí está tu entrada!
+          Aquí está tu entrada.
           <small>Ahora puedes invitar a todo el mundo a sumarse a WebConf LATAM 2021.</small>
         </BeforeTicket>
         <Ticket ref={ticketRef}>
