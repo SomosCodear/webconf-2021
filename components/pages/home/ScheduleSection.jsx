@@ -86,7 +86,7 @@ const getTalkDay = R.compose(
 const availableDays = R.compose(R.uniq, R.map(getTalkDay))(SPEAKERS);
 
 export function ScheduleSection() {
-  const [selectedSpeaker, setSelecetdSpeaker] = useState(null);
+  const [selectedSpeaker, setSelectedSpeaker] = useState(null);
 
   const [selectedDay, setSelectedDay] = useState(availableDays[0]);
   const talks = useMemo(
@@ -94,7 +94,7 @@ export function ScheduleSection() {
       R.compose(
         R.sortBy(
           R.compose(
-            (datetime) => DateTime.fromISO(datetime).toMillis(),
+            (datetime) => DateTime.fromISO(datetime, { locale: 'es-AR' }).toMillis(),
             R.path(['talkSchedule', 0]),
           ),
         ),
@@ -111,7 +111,10 @@ export function ScheduleSection() {
           <Days>
             {availableDays.map((day) => (
               <Day key={day} active={day === selectedDay} onClick={() => setSelectedDay(day)}>
-                {DateTime.fromMillis(day).toLocaleString({ day: 'numeric', month: 'numeric' })}
+                {DateTime.fromMillis(day, { locale: 'es-AR' }).toLocaleString({
+                  day: 'numeric',
+                  month: 'numeric',
+                })}
               </Day>
             ))}
           </Days>
@@ -121,7 +124,7 @@ export function ScheduleSection() {
                 key={id}
                 id={id}
                 {...speaker}
-                onSelect={() => setSelecetdSpeaker({ id, ...speaker })}
+                onSelect={() => setSelectedSpeaker({ id, ...speaker })}
               />
             ))}
           </Talks>
@@ -129,7 +132,7 @@ export function ScheduleSection() {
             {selectedSpeaker != null ? (
               <SpeakerModal
                 {...selectedSpeaker}
-                onClose={() => setSelecetdSpeaker(null)}
+                onClose={() => setSelectedSpeaker(null)}
                 disableTalkNameAnimation
               />
             ) : null}
