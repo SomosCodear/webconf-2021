@@ -171,7 +171,9 @@ export function Header({ onLearnMoreClick, ...props }) {
             </Text>
             <Buttons>
               <Button as="a" href="/api/auth/login?returnTo=/tickets" variant="primary">
-                ¡INSCRIBITE!
+                <span style={{ fontSize: '2rem', display: 'inline-block', padding: '0 2rem' }}>
+                  ¡INSCRIBITE!
+                </span>
               </Button>
             </Buttons>
           </TextAndButtonsContainer>
