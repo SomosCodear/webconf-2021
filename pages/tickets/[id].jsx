@@ -414,7 +414,7 @@ const TicketPage = ({ id, alias }) => {
           href="https://fonts.googleapis.com/css2?family=Epilogue:wght@400;500;900&display=swap"
           rel="stylesheet"
         />
-        <title>WebConf LATAM 2021 | ¡Buscá ideas para tu charla!</title>
+        <title>Tu entrada para WebConf LATAM 2021</title>
         <meta property="og:title" content="¡Ya tengo mi entrada para WebConf LATAM 2021!" />
         <meta property="og:site_name" content="WebConf LATAM 2021" />
         <meta property="og:url" content={`https://webconf.tech/tickets/${id}`} />

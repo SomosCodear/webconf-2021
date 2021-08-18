@@ -2,6 +2,7 @@
 
 import { useUser } from '@auth0/nextjs-auth0';
 import html2canvas from 'html2canvas';
+import Head from 'next/head';
 import { useCallback, useRef, useState } from 'react';
 import styled from 'styled-components';
 import { Loading, Button } from '~/components/common';
@@ -61,10 +62,12 @@ const Container = styled.main`
   place-items: center;
   background: #000;
   font-size: 150%;
+  position: relative;
 
   @media (max-width: ${({ theme }) => theme.breakpoints.desktop}) {
     pointer-events: none;
     font-size: 95%;
+    height: fit-content;
   }
 `;
 
@@ -312,7 +315,7 @@ const TicketFrom = styled.label`
 `;
 
 const TicketUsername = styled.div`
-  opacity: 0.5;
+  opacity: 0.8;
 `;
 
 const TicketDataContainer = styled.div`
@@ -375,7 +378,6 @@ const AfterTicket = styled.section`
 
   @media (min-width: ${({ theme }) => theme.breakpoints.desktop}) {
     position: absolute;
-    width: 30%;
     right: 5%;
     text-align: right;
     transform: scale(2);
@@ -383,7 +385,7 @@ const AfterTicket = styled.section`
   }
 `;
 
-const saveTicket = (ticketRef, user) =>
+const saveTicket = (ticketRef, user, openWindow = true) =>
   new Promise((resolve) => {
     const rombianUserId = user?.rombianUser.id;
     if (!ticketRef.current) {
@@ -417,7 +419,9 @@ const saveTicket = (ticketRef, user) =>
       })
         .then((response) => response.json())
         .then((response) => {
-          window.open(response.url, 'ticket');
+          if (openWindow) {
+            window.open(response.url, 'ticket');
+          }
 
           // eslint-disable-next-line no-param-reassign
           ticketRef.current.style.animation = ticketAnimation;
@@ -473,7 +477,7 @@ const TicketPage = () => {
   const shareInTwitterClicked = useCallback(() => {
     if (user) {
       setIsProcessing(true);
-      saveTicket(ticketRef, user).then(({ ticketUrl }) => {
+      saveTicket(ticketRef, user, false).then(({ ticketUrl }) => {
         setIsProcessing(false);
         shareToTwitter(ticketUrl);
       });
@@ -481,53 +485,62 @@ const TicketPage = () => {
   }, [user, ticketRef]);
 
   return (
-    <Container onMouseMove={move} onMouseOut={animate}>
-      <BeforeTicket>
-        ¡Aquí está tu entrada!
-        <small>Ahora puedes invitar a todo el mundo a sumarse a WebConf LATAM 2021.</small>
-      </BeforeTicket>
-      <Ticket ref={ticketRef}>
-        <TicketBorder>
-          <TicketContent>
-            <TicketHeader>
-              <WebConfLogo />
-              <CodearLogo />
-            </TicketHeader>
-            <div />
-            <TicketLinePattern src="/images/ticket-background.png" />
-            <TicketDataContainer>
-              <TicketNumberLabel>
-                Número:<span aria-hidden="true"> _</span>
-              </TicketNumberLabel>
-              <TicketNumber>{user?.rombianUser.id.toString().padStart(6, '0')}</TicketNumber>
-              <TicketQR src={`/api/qr?rombianUserId=${user?.rombianUser.id}`} />
-            </TicketDataContainer>
-            <TicketDataContainer>
-              <TicketFromLabel>
-                De:<span aria-hidden="true"> _</span>
-              </TicketFromLabel>
-              <TicketFrom>
-                <TicketUsername>@{user?.rombianUser.alias}</TicketUsername>
-              </TicketFrom>
-            </TicketDataContainer>
-          </TicketContent>
-        </TicketBorder>
-      </Ticket>
-      <AfterTicket>
-        {isProcessing ? (
-          <Loading />
-        ) : (
-          <>
-            <Button variant="secondary" onClick={saveTicketClicked}>
-              Descargar mi ticket
-            </Button>
-            <Button variant="primary" onClick={shareInTwitterClicked}>
-              Compartir en Twitter
-            </Button>
-          </>
-        )}
-      </AfterTicket>
-    </Container>
+    <>
+      <Head>
+        <link
+          href="https://fonts.googleapis.com/css2?family=Epilogue:wght@400;500;900&display=swap"
+          rel="stylesheet"
+        />
+        <title>Tu entrada para WebConf LATAM 2021</title>
+      </Head>
+      <Container onMouseMove={move} onMouseOut={animate}>
+        <BeforeTicket>
+          ¡Aquí está tu entrada!
+          <small>Ahora puedes invitar a todo el mundo a sumarse a WebConf LATAM 2021.</small>
+        </BeforeTicket>
+        <Ticket ref={ticketRef}>
+          <TicketBorder>
+            <TicketContent>
+              <TicketHeader>
+                <WebConfLogo />
+                <CodearLogo />
+              </TicketHeader>
+              <div />
+              <TicketLinePattern src="/images/ticket-background.png" />
+              <TicketDataContainer>
+                <TicketNumberLabel>
+                  Número:<span aria-hidden="true"> _</span>
+                </TicketNumberLabel>
+                <TicketNumber>{user?.rombianUser.id.toString().padStart(6, '0')}</TicketNumber>
+                <TicketQR src={`/api/qr?rombianUserId=${user?.rombianUser.id}`} />
+              </TicketDataContainer>
+              <TicketDataContainer>
+                <TicketFromLabel>
+                  De:<span aria-hidden="true"> _</span>
+                </TicketFromLabel>
+                <TicketFrom>
+                  <TicketUsername>@{user?.rombianUser.alias}</TicketUsername>
+                </TicketFrom>
+              </TicketDataContainer>
+            </TicketContent>
+          </TicketBorder>
+        </Ticket>
+        <AfterTicket>
+          {isProcessing ? (
+            <Loading />
+          ) : (
+            <>
+              <Button variant="secondary" onClick={saveTicketClicked}>
+                Descargar mi ticket
+              </Button>
+              <Button variant="primary" onClick={shareInTwitterClicked}>
+                Compartir en Twitter
+              </Button>
+            </>
+          )}
+        </AfterTicket>
+      </Container>
+    </>
   );
 };
 
