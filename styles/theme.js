@@ -69,7 +69,7 @@ const colors = {
   landingSectionTitleUnderline: palette.white,
   landingSectionTitleUnderlineAccent: palette.rombianPink,
   landingSpeakerPhotoBorder: palette.white,
-  landingSpeakerPhotoBackground: palette.jakarta,
+  landingSpeakerPhotoBackground: palette.white,
   landingSpeakerFirstNameColor: palette.black,
   landingSpeakerFirstNameBackground: palette.white,
   landingSpeakerLastNameColor: palette.white,
