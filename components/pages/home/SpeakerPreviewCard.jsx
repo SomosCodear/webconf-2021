@@ -21,7 +21,7 @@ const PhotoWrapper = styled(SpeakerPhoto)`
 const NationalityFlagWrapper = styled(SpeakerNationalityFlag)`
   width: 1rem;
   height: 0.75rem;
-  margin-left: 1.1rem;
+  margin-left: 1.5rem;
   margin-bottom: 0.5rem;
 `;
 
@@ -35,9 +35,12 @@ const Info = styled.div`
 
 const FirstName = styled(motion.div)`
   padding: 0.25rem 1rem 0;
+  padding-left: 1.5rem;
   border-top-right-radius: 4rem;
   text-transform: uppercase;
-  font-size: 1.25rem;
+  font-size: 1rem;
+  min-width: 5rem;
+  max-width: 10rem;
   font-weight: 900;
   color: ${({ theme }) => theme.colors.landingSpeakerFirstNameColor};
   background: ${({ theme }) => theme.colors.landingSpeakerFirstNameBackground};
@@ -45,17 +48,19 @@ const FirstName = styled(motion.div)`
 
 const LastName = styled(motion.div)`
   padding: 0.3rem 1rem 0;
+  padding-left: 1.5rem;
   border-top-right-radius: 4rem;
   border-bottom-right-radius: 4rem;
   text-transform: uppercase;
   font-size: 2rem;
   font-weight: 900;
+  width: 11rem;
   color: ${({ theme }) => theme.colors.landingSpeakerLastNameColor};
   background: ${({ theme, variant }) => theme.colors[`landingSpeakerVariant${variant}MainColor`]};
 `;
 
 const SocialNetworks = styled(motion.div)`
-  margin-left: 1.1rem;
+  margin-left: 1.5rem;
   margin-top: 0.5rem;
   display: flex;
   flex-direction: row;
@@ -64,6 +69,17 @@ const SocialNetworks = styled(motion.div)`
     margin-left: 0.5rem;
   }
 `;
+
+const calculateTextStyle = (text) => {
+  if (text.length <= 6) {
+    return { fontSize: '2.25rem', letterSpacing: '10px' };
+  }
+  if (text.length < 8) {
+    return { fontSize: '2.25rem', letterSpacing: '2px' };
+  }
+
+  return { fontSize: '1.25rem', letterSpacing: '4px' };
+};
 
 export const SpeakerPreviewCard = ({
   id,
@@ -84,7 +100,11 @@ export const SpeakerPreviewCard = ({
         layoutId={`speaker-nationality-flag-${id}`}
       />
       <FirstName layoutId={`speaker-first-name-${id}`}>{firstName}</FirstName>
-      <LastName variant={variant} layoutId={`speaker-last-name-${id}`}>
+      <LastName
+        variant={variant}
+        layoutId={`speaker-last-name-${id}`}
+        style={calculateTextStyle(lastName)}
+      >
         {lastName}
       </LastName>
       <SocialNetworks layoutId={`speaker-social-netwokrs-${id}`}>

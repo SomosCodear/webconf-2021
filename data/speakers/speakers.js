@@ -27,8 +27,8 @@ export const SPEAKERS = [
     variant: 'B',
     photo: '/speakers/martin-pastore.png',
     nationality: NATIONALITIES.ARG,
-    firstName: 'Martin',
-    lastName: 'Pastore',
+    firstName: 'María Fernanda',
+    lastName: 'Magallanes Zurullaga',
     socialMediaHandles: {
       twitter: 'test',
       linkedin: 'test',
@@ -46,8 +46,8 @@ export const SPEAKERS = [
     variant: 'A',
     photo: '/speakers/martin-pastore.png',
     nationality: NATIONALITIES.ARG,
-    firstName: 'Martin',
-    lastName: 'Pastore',
+    firstName: 'Nacho',
+    lastName: 'Anaya',
     socialMediaHandles: {
       twitter: 'test',
       linkedin: 'test',
