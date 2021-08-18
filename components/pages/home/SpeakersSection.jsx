@@ -39,6 +39,7 @@ export function SpeakersSection() {
               key={id}
               id={id}
               {...speaker}
+              selected={!selectedSpeaker}
               onSelect={() => setSelectedSpeaker({ id, ...speaker })}
             />
           ))}

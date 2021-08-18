@@ -74,8 +74,9 @@ export const SpeakerPreviewCard = ({
   lastName,
   socialMediaHandles,
   onSelect,
+  selected = false,
 }) => (
-  <Container layoutId={`speaker-${id}`}>
+  <Container layoutId={`speaker-${id}`} style={!selected ? { filter: 'blur(20px)' } : {}}>
     <PhotoWrapper photo={photo} onClick={onSelect} layoutId={`speaker-photo-${id}`} />
     <Info onClick={onSelect}>
       <NationalityFlagWrapper
@@ -120,4 +121,9 @@ SpeakerPreviewCard.propTypes = {
     instagram: PropTypes.string,
   }).isRequired,
   onSelect: PropTypes.func.isRequired,
+  selected: PropTypes.bool,
+};
+
+SpeakerPreviewCard.defaultProps = {
+  selected: false,
 };

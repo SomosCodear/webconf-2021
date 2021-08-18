@@ -25,8 +25,9 @@ const Overlay = styled(motion.div).attrs({
   left: 0;
   width: 100vw;
   height: 100vh;
-  backdrop-filter: blur(2px);
   overflow: hidden;
+  background: ${({ theme, variant }) =>
+    `${theme.colors[`landingSpeakerVariant${variant}MainColor`]}66`};
 `;
 
 const ScrollingContainer = styled.div`
@@ -44,7 +45,7 @@ const ModalContainer = styled.div`
   margin: 20rem 2.375rem 0;
 
   @media (min-width: ${({ theme }) => theme.breakpoints.desktop}) {
-    margin-top: 10rem;
+    margin-top: 0rem;
   }
 `;
 
@@ -421,6 +422,7 @@ export const SpeakerModal = ({
   return (
     <Overlay
       initial={shouldReduceMotion ? 'visible' : 'initial'}
+      variant={variant}
       animate="visible"
       exit="exit"
       onClick={overlayClickHandler}
