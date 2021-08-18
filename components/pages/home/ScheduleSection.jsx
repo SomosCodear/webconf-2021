@@ -38,7 +38,7 @@ const Days = styled.div`
 `;
 
 const Day = styled.button`
-  padding: 0.5rem 1.5rem;
+  padding: 0.5rem 0.75rem;
   border: none;
   border-radius: 0.5rem 0.5rem 0 0;
   font-size: 0.875rem;
@@ -56,6 +56,7 @@ const Day = styled.button`
   }
 
   @media (min-width: ${({ theme }) => theme.breakpoints.desktop}) {
+    padding: 0.5rem 1.5rem;
     border-radius: 1.25rem 0 0 1.25rem;
     font-size: 2.5rem;
 
