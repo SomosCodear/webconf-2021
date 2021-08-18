@@ -1,3 +1,9 @@
 export const NATIONALITIES = {
-  ARG: 'ARG',
+  AR: 'AR',
+  AT: 'AT',
+  CL: 'CL',
+  PE: 'PE',
+  SV: 'SV',
+  UY: 'UY',
+  VE: 'VE',
 };
