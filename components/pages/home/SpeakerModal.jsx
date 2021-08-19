@@ -499,13 +499,19 @@ export const SpeakerModal = ({
                   </LastName>
                   <SocialNetworks layoutId={`speaker-social-netwokrs-${id}`}>
                     {socialMediaHandles.twitter != null ? (
-                      <SocialNetwork href={`https://twitter.com/${socialMediaHandles.twitter}`}>
+                      <SocialNetwork
+                        href={`https://twitter.com/${socialMediaHandles.twitter}`}
+                        target="_blank"
+                        rel="noreferrer"
+                      >
                         <Image src="/logos/twitter-white.svg" width="33" height="27" />
                       </SocialNetwork>
                     ) : null}
                     {socialMediaHandles.linkedin != null ? (
                       <SocialNetwork
                         href={`https://www.linkedin.com/in/${socialMediaHandles.linkedin}`}
+                        target="_blank"
+                        rel="noreferrer"
                       >
                         <Image src="/logos/linkedin-white.svg" width="27" height="27" />
                       </SocialNetwork>
@@ -513,6 +519,8 @@ export const SpeakerModal = ({
                     {socialMediaHandles.instagram != null ? (
                       <SocialNetwork
                         href={`https://www.instagram.com/${socialMediaHandles.instagram}`}
+                        target="_blank"
+                        rel="noreferrer"
                       >
                         <Image src="/logos/instagram-white.svg" width="27" height="27" />
                       </SocialNetwork>

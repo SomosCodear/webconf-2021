@@ -134,32 +134,48 @@ export const SpeakerPreviewCard = ({
 }) => (
   <Container layoutId={`speaker-${id}`} style={!selected ? { filter: 'blur(20px)' } : {}}>
     <PhotoWrapper photo={photo} onClick={onSelect} layoutId={`speaker-photo-${id}`} />
-    <Info onClick={onSelect}>
+    <Info>
       <NationalityFlagWrapper
         nationality={nationality}
         layoutId={`speaker-nationality-flag-${id}`}
+        onClick={onSelect}
       />
-      <FirstName layoutId={`speaker-first-name-${id}`}>{firstName}</FirstName>
+      <FirstName layoutId={`speaker-first-name-${id}`} onClick={onSelect}>
+        {firstName}
+      </FirstName>
       <LastName
         variant={variant}
         layoutId={`speaker-last-name-${id}`}
         style={calculateTextStyle(lastName)}
+        onClick={onSelect}
       >
         {lastName}
       </LastName>
       <SocialNetworks layoutId={`speaker-social-netwokrs-${id}`}>
         {socialMediaHandles.twitter != null ? (
-          <a href={`https://twitter.com/${socialMediaHandles.twitter}`}>
+          <a
+            href={`https://twitter.com/${socialMediaHandles.twitter}`}
+            target="_blank"
+            rel="noreferrer"
+          >
             <Image src="/logos/twitter-white.svg" width="19.58" height="16" />
           </a>
         ) : null}
         {socialMediaHandles.linkedin != null ? (
-          <a href={`https://www.linkedin.com/in/${socialMediaHandles.linkedin}`}>
+          <a
+            href={`https://www.linkedin.com/in/${socialMediaHandles.linkedin}`}
+            target="_blank"
+            rel="noreferrer"
+          >
             <Image src="/logos/linkedin-white.svg" width="16" height="16" />
           </a>
         ) : null}
         {socialMediaHandles.instagram != null ? (
-          <a href={`https://www.instagram.com/${socialMediaHandles.instagram}`}>
+          <a
+            href={`https://www.instagram.com/${socialMediaHandles.instagram}`}
+            target="_blank"
+            rel="noreferrer"
+          >
             <Image src="/logos/instagram-white.svg" width="16" height="16" />
           </a>
         ) : null}
