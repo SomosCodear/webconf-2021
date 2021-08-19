@@ -490,3 +490,177 @@ export const SPEAKERS = [
     talkSchedule: ['2021-08-27T20:00:00.000-03:00', '2021-08-27T20:30:00.000-03:00'],
   },
 ];
+
+export const WORKSHOPS = [
+  {
+    id: 'pwc',
+    variant: 'A',
+    photo: '/logos/PwC.svg',
+    nationality: NATIONALITIES.AR,
+    firstName: 'Full Stack',
+    lastName: 'Python ',
+    bio: '**PwC** ofrece servicios de Auditoría, Consultoría, Asesoramiento Impositivo y Legal y Outsourcing Services centrados en la industria, para generar confianza pública y crear valor para nuestros clientes y las partes interesadas. Más de 284.000 personas en 155 países trabajan en equipo conectando pensamientos, experiencias y soluciones para desarrollar nuevas perspectivas y brindar asesoramiento práctico.',
+    talkType: TALK_TYPES.WORKSHOP,
+    talkName: 'Desarrollando una aplicación FullStack con Python',
+    talkDescription: (
+      <>
+        <p>
+          En este workshop se hará una práctica Hands-On desde cero sobre el desarrollo de una
+          aplicación FullStack con el lenguaje de programación Python. Los temas a cubrir incluyen:
+          (1) tipos y opciones para bases de datos, (2) características principales de los
+          frameworks Back-end y (3) opciones disponibles para el Front-End.
+        </p>
+        <p>
+          El objetivo del workshop es que al final todos los asistentes tengan una aplicación
+          FullStack corriendo localmente. Se pondrá a disposición un repositorio de Github con todo
+          el código a utilizar. Se asumen conocimientos mínimos tanto de Python como de Javascript.
+        </p>
+        <p>
+          <strong>Requisitos</strong>
+        </p>
+        <ul>
+          <li>Tener instalado Python (3.6 o superior).</li>
+          <li>Tener instalado Node (Versión LTS).</li>
+          <li>
+            El workshop se realizará en un equipo con Windows pero puede usarse cualquier sistema
+            operativo.
+          </li>
+          <li>
+            No se requieren permisos de administrador pero sí asegurarse que los comandos pip y npm
+            puedan usarse sin inconvenientes, esto es especialmente relevante si el workshop se
+            realiza desde una VPN corporativa.
+          </li>
+        </ul>
+      </>
+    ),
+    registrationUrl: 'https://forms.gle/V4ivVH1gaCfrSV1Q9',
+    talkSchedule: ['2021-08-23T14:00:00.000-03:00', '2021-08-23T17:00:00.000-03:00'],
+  },
+  {
+    id: 'cognizant',
+    variant: 'B',
+    photo: '/logos/Cognizant.png',
+    nationality: NATIONALITIES.AR,
+    firstName: 'Frontend',
+    lastName: 'Progressive Web Apps',
+    bio: '**Cognizant** (Nasdaq-100: CTSH) es una de las compañías líderes en servicios profesionales, transformando negocios de los clientes, modelos y operaciones tecnológicas para la era digital. Su acercamiento único en la consultoría basada en la industria ayuda a sus clientes a proyectar, construir y ejecutar negocios más eficientes e innovadores.',
+    talkType: TALK_TYPES.WORKSHOP,
+    talkName: 'Introducción a PWA + Implementación con React y Angular',
+    registrationUrl: 'https://forms.gle/MqcTNeBKUwRhAyXw8',
+    talkDescription: (
+      <>
+        Cubrimos las bases de qué es una PWA, la implementación en React y Angular, y repasamos
+        detalles a tener en cuenta sobre cada una. El workshop va a estar organizado en una
+        introducción, 3 o 4 módulos de actividades organizadas en grupo con soporte de referentes
+        técnicos y conclusiones finales. Es tanto para principiantes como para desarrolladores web
+        de nivel intermedio que estén interesados en el tema.
+      </>
+    ),
+    talkSchedule: ['2021-08-24T14:00:00.000-03:00', '2021-08-24T15:00:00.000-03:00'],
+  },
+  {
+    id: 'coderio',
+    variant: 'C',
+    photo: '/logos/Coderio.svg',
+    nationality: NATIONALITIES.AR,
+    firstName: 'Full Stack',
+    lastName: 'Dart & Flutter  ',
+    bio: '**_coderio** es una compañía de desarrollo de software fundada y basada en los Estados Unidos y Latinoamérica dede 2018, ayudando a sus clientes a alcanzar sus proyectos ideales.',
+    talkType: TALK_TYPES.WORKSHOP,
+    talkName: 'Aprende cómo crear un Rick And Morty Dashboard con Flutter Web',
+    registrationUrl: 'https://forms.gle/6j1v4AZAgiKaNS8e6',
+    talkDescription: (
+      <>
+        <p>
+          En este viaje de no más de 120 minutos conocerás: lo bueno, lo malo y lo feo de Flutter
+          Web y aprenderás los conceptos básicos del lenguaje Dart y el framework Flutter, creando
+          un simple dashboard.
+        </p>
+        <ul>
+          <li>Qué es Dart y Flutter.</li>
+          <li>Qué se puede y que no con Flutter Web.</li>
+          <li>Ventajas de Flutter.</li>
+          <li>Sintaxis básica de Dart.</li>
+          <li>Equivalencia entre código HTML/CSS y Flutter/Dart.</li>
+          <li>Cómo armar un layout responsivo con Flutter Web.</li>
+          <li>Cómo renderiza Flutter para la Web.</li>
+          <li>Widgets. ¿Qué son? y ¿Cuales son los más usados?</li>
+          <li>Publicando en la Web.</li>
+        </ul>
+      </>
+    ),
+    talkSchedule: ['2021-08-24T14:00:00.000-03:00', '2021-08-24T15:00:00.000-03:00'],
+  },
+  {
+    id: 'artssec',
+    variant: 'A',
+    photo: '/logos/ArtsSec.png',
+    nationality: NATIONALITIES.AR,
+    firstName: 'Seguridad',
+    lastName: 'Burp Suite',
+    bio: '**ArtsSec** fue fundada por un grupo de profesionales IT que se dedican a la seguridad informática. Se enfocan en proveer soluciones creativas y entregar servicios de alto valor a sus clientes. La compañía fue formada en 2012 por un equipo de expertos con décadas colectivas de experiencia trabajando para compañías multinacionales.',
+    talkType: TALK_TYPES.WORKSHOP,
+    talkName: 'Seguridad en Aplicaciones Web con Burp Suite Community',
+    registrationUrl: 'https://forms.gle/4exP5d6rd1TP5gNT7',
+    talkDescription: (
+      <>
+        En este Workshop aprenderemos a usar Burp Suite desde el inicio, cómo configurarlo,
+        aprovechar las herramientas y funcionalidades existentes, usaremos las extensiones más
+        conocidas mientras repasamos algunos laboratorios del Web Security Academy.
+      </>
+    ),
+    talkSchedule: ['2021-08-25T15:00:00.000-03:00', '2021-08-25T17:00:00.000-03:00'],
+  },
+  {
+    id: 'adcpueda',
+    variant: 'B',
+    photo: '/logos/ADC.svg',
+    nationality: NATIONALITIES.AR,
+    firstName: 'Accesibilidad',
+    lastName: 'Digital',
+    bio: 'La **Asociación por los Derechos Civiles (ADC)** es una organización de la sociedad civil con sede en Argentina que, desde su creación en 1995, trabaja en la defensa y promoción de los derechos civiles y humanos en Argentina y América Latina. La ADC promueve y defiende los derechos fundamentales de las personas, fomenta el fortalecimiento democrático y aboga por una sociedad inclusiva, con especial atención a los grupos en situación de vulnerabilidad, a través de la identificación e investigación de temáticas de vanguardia, el desarrollo de estrategias de incidencia y comunicación, y en particular, el uso del litigio estratégico de interés público.',
+    talkType: TALK_TYPES.WORKSHOP,
+    talkName:
+      'Accesibilidad Digital: ¿cómo construir webs, apps y plataformas digitales para todas las personas?',
+    registrationUrl: 'https://forms.gle/ey7iZbDgpBDJ9Yik7',
+    talkDescription: (
+      <>
+        Desde la campaña PUEDA - Por Un Entorno Digital Accesible de la Asociación por los Derechos
+        Civiles (ADC) visibilizamos que la accesibilidad digital es un derecho de todas las
+        personas, que posibilita el ejercicio de otros derechos fundamentales. Por este motivo, nos
+        gustaría reflexionar junto a la comunidad WebConf 2021 sobre la importancia de incorporar
+        criterios de accesibilidad en los desarrollos tecnológicos como webs, aplicaciones y
+        plataformas digitales. Proponemos dividir el encuentro en tres partes:
+        <ul>
+          <li>
+            Accesibilidad digital, desde una perspectiva de derecho
+            <ul>
+              <li>Breve historia de la campaña PUEDA</li>
+              <li>
+                El acceso a los servicios de la información y la comunicación y las personas con
+                discapacidad
+              </li>
+              <li>Primeros pasos para la construcción de entornos accesibles</li>
+              <li>
+                Procesos iterativos a través de validaciones con experiencia de personas usuarias
+              </li>
+            </ul>
+          </li>
+          <li>
+            Conceptos técnicos a tener en cuenta en el desarrollo de webs accesibles
+            <ul>
+              <li>
+                Principios de accesibilidad web (WCAG/W3C): Perceptible, operable, comprensible,
+                robusto
+              </li>
+              <li>Metodología estandarizada para validaciones</li>
+              <li>Recursos y herramientas</li>
+            </ul>
+          </li>
+          <li>Reflexiones sobre los beneficios de tener entornos digitales accesibles</li>
+        </ul>
+      </>
+    ),
+    talkSchedule: ['2021-08-27T15:00:00.000-03:00', '2021-08-27T17:00:00.000-03:00'],
+  },
+];

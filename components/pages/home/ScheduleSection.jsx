@@ -3,7 +3,7 @@ import { DateTime } from 'luxon';
 import { useMemo, useState } from 'react';
 import styled from 'styled-components';
 import { AnimatePresence, AnimateSharedLayout } from 'framer-motion';
-import { SPEAKERS } from '~/data/speakers';
+import { SPEAKERS, WORKSHOPS } from '~/data/speakers';
 import { Section } from './Section';
 import { SectionTitle } from './SectionTitle';
 import { SpeakerModal } from './SpeakerModal';
@@ -100,7 +100,7 @@ export function ScheduleSection() {
           ),
         ),
         R.filter(R.compose(R.equals(selectedDay), getTalkDay)),
-      )(SPEAKERS),
+      )(SPEAKERS.concat(WORKSHOPS)),
     [selectedDay],
   );
 

@@ -11,12 +11,34 @@ const Container = styled(motion.div)`
   z-index: 10;
 `;
 
-export const SpeakerPhoto = ({ photo, ...props }) => (
+const Inset = styled(motion.div)`
+  display: grid;
+  place-items: center;
+  width: 100%;
+  height: 100%;
+  padding: 1rem;
+  box-sizing: border-box;
+`;
+
+export const SpeakerPhoto = ({ photo, inset = false, insetWidth = '100%', ...props }) => (
   <Container {...props}>
-    <Image src={photo} layout="fill" />
+    {inset ? (
+      <Inset>
+        <img src={photo} width={insetWidth} alt="" />
+      </Inset>
+    ) : (
+      <Image src={photo} layout="fill" />
+    )}
   </Container>
 );
 
 SpeakerPhoto.propTypes = {
   photo: PropTypes.string.isRequired,
+  inset: PropTypes.bool,
+  insetWidth: PropTypes.string,
+};
+
+SpeakerPhoto.defaultProps = {
+  inset: false,
+  insetWidth: '100%',
 };

@@ -289,6 +289,10 @@ const TalkDescription = styled(motion.p).attrs({
   font-size: 1.125rem;
   font-weight: 400;
 
+  p {
+    margin-bottom: 2rem;
+  }
+
   @media (min-width: ${({ theme }) => theme.breakpoints.desktop}) {
     font-size: 1.875rem;
   }
@@ -355,7 +359,7 @@ const TalkDateTimeValue = styled.div`
   }
 `;
 
-const TalkSaveSchedule = styled(Button).attrs({
+const ActionButton = styled(Button).attrs({
   forwardedAs: motion.a,
   variant: 'dark',
   variants: {
@@ -415,6 +419,7 @@ export const SpeakerModal = ({
   talkSchedule,
   disableTalkNameAnimation,
   onClose,
+  registrationUrl = '',
 }) => {
   const modalContainerRef = useRef(null);
   const modalContainerClickHandler = useCallback(
@@ -480,7 +485,11 @@ export const SpeakerModal = ({
             </CloseButton>
             <SpeakerContainer>
               <Speaker>
-                <PhotoWrapper photo={photo} layoutId={`speaker-photo-${id}`} />
+                <PhotoWrapper
+                  photo={photo}
+                  layoutId={`speaker-photo-${id}`}
+                  inset={talkType === TALK_TYPES.WORKSHOP}
+                />
                 <SpeakerInfo>
                   <NationalityFlagWrapper
                     nationality={nationality}
@@ -493,35 +502,39 @@ export const SpeakerModal = ({
                   >
                     {lastName}
                   </LastName>
-                  <SocialNetworks layoutId={`speaker-social-netwokrs-${id}`}>
-                    {socialMediaHandles.twitter != null ? (
-                      <SocialNetwork
-                        href={`https://twitter.com/${socialMediaHandles.twitter}`}
-                        target="_blank"
-                        rel="noreferrer"
-                      >
-                        <Image src="/logos/twitter-white.svg" width="33" height="27" />
-                      </SocialNetwork>
-                    ) : null}
-                    {socialMediaHandles.linkedin != null ? (
-                      <SocialNetwork
-                        href={`https://www.linkedin.com/in/${socialMediaHandles.linkedin}`}
-                        target="_blank"
-                        rel="noreferrer"
-                      >
-                        <Image src="/logos/linkedin-white.svg" width="27" height="27" />
-                      </SocialNetwork>
-                    ) : null}
-                    {socialMediaHandles.instagram != null ? (
-                      <SocialNetwork
-                        href={`https://www.instagram.com/${socialMediaHandles.instagram}`}
-                        target="_blank"
-                        rel="noreferrer"
-                      >
-                        <Image src="/logos/instagram-white.svg" width="27" height="27" />
-                      </SocialNetwork>
-                    ) : null}
-                  </SocialNetworks>
+                  {socialMediaHandles ? (
+                    <SocialNetworks layoutId={`speaker-social-netwokrs-${id}`}>
+                      {socialMediaHandles.twitter != null ? (
+                        <SocialNetwork
+                          href={`https://twitter.com/${socialMediaHandles.twitter}`}
+                          target="_blank"
+                          rel="noreferrer"
+                        >
+                          <Image src="/logos/twitter-white.svg" width="33" height="27" />
+                        </SocialNetwork>
+                      ) : null}
+                      {socialMediaHandles.linkedin != null ? (
+                        <SocialNetwork
+                          href={`https://www.linkedin.com/in/${socialMediaHandles.linkedin}`}
+                          target="_blank"
+                          rel="noreferrer"
+                        >
+                          <Image src="/logos/linkedin-white.svg" width="27" height="27" />
+                        </SocialNetwork>
+                      ) : null}
+                      {socialMediaHandles.instagram != null ? (
+                        <SocialNetwork
+                          href={`https://www.instagram.com/${socialMediaHandles.instagram}`}
+                          target="_blank"
+                          rel="noreferrer"
+                        >
+                          <Image src="/logos/instagram-white.svg" width="27" height="27" />
+                        </SocialNetwork>
+                      ) : null}
+                    </SocialNetworks>
+                  ) : (
+                    ''
+                  )}
                 </SpeakerInfo>
               </Speaker>
               <Bio variant={variant}>
@@ -532,7 +545,7 @@ export const SpeakerModal = ({
             </SpeakerContainer>
             <TalkContainer variant={variant}>
               <TalkType>
-                CHARLA
+                {talkType === TALK_TYPES.WORKSHOP ? 'TALLER' : 'CHARLA'}
                 {talkType === TALK_TYPES.LIGHTNING ? ' RELÁMPAGO' : null}
               </TalkType>
               <TalkName
@@ -565,9 +578,15 @@ export const SpeakerModal = ({
                   </TalkDateTimeValue>
                 </TalkDateTimeGroup>
               </TalkDateTime>
-              <TalkSaveSchedule target="_blank" href={calendarUrl()}>
-                AGENDAR ESTA CHARLA
-              </TalkSaveSchedule>
+              {talkType === TALK_TYPES.WORKSHOP ? (
+                <ActionButton target="_blank" href={registrationUrl}>
+                  INSCRIBIRME AL TALLER
+                </ActionButton>
+              ) : (
+                <ActionButton target="_blank" href={calendarUrl()}>
+                  AGENDAR ESTA CHARLA
+                </ActionButton>
+              )}
             </TalkSchedule>
           </Modal>
         </ModalContainer>
@@ -595,8 +614,10 @@ SpeakerModal.propTypes = {
   talkSchedule: PropTypes.arrayOf(PropTypes.string).isRequired,
   disableTalkNameAnimation: PropTypes.bool,
   onClose: PropTypes.func.isRequired,
+  registrationUrl: PropTypes.string,
 };
 
 SpeakerModal.defaultProps = {
   disableTalkNameAnimation: false,
+  registrationUrl: '',
 };

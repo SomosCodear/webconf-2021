@@ -131,9 +131,10 @@ export const SpeakerPreviewCard = ({
   socialMediaHandles,
   onSelect,
   selected = false,
+  inset = false,
 }) => (
   <Container layoutId={`speaker-${id}`} style={!selected ? { filter: 'blur(20px)' } : {}}>
-    <PhotoWrapper photo={photo} onClick={onSelect} layoutId={`speaker-photo-${id}`} />
+    <PhotoWrapper photo={photo} onClick={onSelect} layoutId={`speaker-photo-${id}`} inset={inset} />
     <Info>
       <NationalityFlagWrapper
         nationality={nationality}
@@ -151,35 +152,39 @@ export const SpeakerPreviewCard = ({
       >
         {lastName}
       </LastName>
-      <SocialNetworks layoutId={`speaker-social-netwokrs-${id}`}>
-        {socialMediaHandles.twitter != null ? (
-          <a
-            href={`https://twitter.com/${socialMediaHandles.twitter}`}
-            target="_blank"
-            rel="noreferrer"
-          >
-            <Image src="/logos/twitter-white.svg" width="19.58" height="16" />
-          </a>
-        ) : null}
-        {socialMediaHandles.linkedin != null ? (
-          <a
-            href={`https://www.linkedin.com/in/${socialMediaHandles.linkedin}`}
-            target="_blank"
-            rel="noreferrer"
-          >
-            <Image src="/logos/linkedin-white.svg" width="16" height="16" />
-          </a>
-        ) : null}
-        {socialMediaHandles.instagram != null ? (
-          <a
-            href={`https://www.instagram.com/${socialMediaHandles.instagram}`}
-            target="_blank"
-            rel="noreferrer"
-          >
-            <Image src="/logos/instagram-white.svg" width="16" height="16" />
-          </a>
-        ) : null}
-      </SocialNetworks>
+      {socialMediaHandles ? (
+        <SocialNetworks layoutId={`speaker-social-netwokrs-${id}`}>
+          {socialMediaHandles.twitter != null ? (
+            <a
+              href={`https://twitter.com/${socialMediaHandles.twitter}`}
+              target="_blank"
+              rel="noreferrer"
+            >
+              <Image src="/logos/twitter-white.svg" width="19.58" height="16" />
+            </a>
+          ) : null}
+          {socialMediaHandles.linkedin != null ? (
+            <a
+              href={`https://www.linkedin.com/in/${socialMediaHandles.linkedin}`}
+              target="_blank"
+              rel="noreferrer"
+            >
+              <Image src="/logos/linkedin-white.svg" width="16" height="16" />
+            </a>
+          ) : null}
+          {socialMediaHandles.instagram != null ? (
+            <a
+              href={`https://www.instagram.com/${socialMediaHandles.instagram}`}
+              target="_blank"
+              rel="noreferrer"
+            >
+              <Image src="/logos/instagram-white.svg" width="16" height="16" />
+            </a>
+          ) : null}
+        </SocialNetworks>
+      ) : (
+        ''
+      )}
     </Info>
   </Container>
 );
@@ -198,8 +203,10 @@ SpeakerPreviewCard.propTypes = {
   }).isRequired,
   onSelect: PropTypes.func.isRequired,
   selected: PropTypes.bool,
+  inset: PropTypes.bool,
 };
 
 SpeakerPreviewCard.defaultProps = {
   selected: false,
+  inset: false,
 };

@@ -121,8 +121,12 @@ export const TalkPreviewCard = ({
     <Container variant={variant} onClick={onSelect} layoutId={`speaker-${id}`}>
       <TalkInfo>
         <TalkType>
-          CHARLA{' '}
-          {talkType === TALK_TYPES.STANDARD ? '' : <span style={{ color: 'gold' }}>RELÁMPAGO</span>}
+          {talkType === TALK_TYPES.WORKSHOP ? 'TALLER' : 'CHARLA'}{' '}
+          {talkType === TALK_TYPES.LIGHTNING ? (
+            <span style={{ color: 'gold' }}>RELÁMPAGO</span>
+          ) : (
+            ''
+          )}
         </TalkType>
         {' | '}
         <TalkSchedule>
@@ -131,7 +135,12 @@ export const TalkPreviewCard = ({
           {talkEndDateTime.toLocaleString(DateTime.TIME_24_SIMPLE)} HS.
         </TalkSchedule>
       </TalkInfo>
-      <PhotoWrapper photo={photo} layoutId={`speaker-photo-${id}`} />
+      <PhotoWrapper
+        photo={photo}
+        layoutId={`speaker-photo-${id}`}
+        inset={talkType === TALK_TYPES.WORKSHOP}
+        insetWidth="75%"
+      />
       <Info>
         <SpeakerName variant={variant}>
           <motion.span layoutId={`speaker-first-name-${id}`}>{firstName}</motion.span>{' '}

@@ -9,6 +9,7 @@ import {
   SpeakersSection,
   ScheduleSection,
   SponsorsSection,
+  WorkshopsSection,
 } from '~/components/pages/home';
 
 import eventJsonLD from '~/data/json-ld/event.json';
@@ -79,6 +80,7 @@ const Home = () => {
       <Header onLearnMoreClick={goToMainsection} />
       <MainSection ref={mainSectionRef} />
       <SpeakersSection />
+      <WorkshopsSection />
       <ScheduleSection />
       <SponsorsSection />
       <Footer />
