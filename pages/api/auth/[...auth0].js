@@ -4,7 +4,7 @@ import { User } from '~/data/rombian';
 const afterCallback = async (req, res, session) => {
   const [rombianUser] = await User.findOrCreate({
     where: { email: session.user.email },
-    defaults: { alias: session.user.nickname },
+    defaults: { alias: session.user.given_name },
   });
 
   // eslint-disable-next-line no-param-reassign

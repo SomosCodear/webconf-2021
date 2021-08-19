@@ -135,7 +135,7 @@ const TicketPage = ({ id, alias }) => {
       <Container onMouseMove={move} onMouseOut={animate}>
         <BeforeTicket>
           Ya falta poco.
-          <small>¡Únete a @{alias} en WebConf LATAM 2021!</small>
+          <small>¡Únete a {alias} en WebConf LATAM 2021!</small>
         </BeforeTicket>
         <Ticket user={{ rombianUser: { id, alias } }} ref={ticketRef} />
         <AfterTicket>

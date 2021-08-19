@@ -350,7 +350,7 @@ export const Ticket = forwardRef(({ user }, forwardedRef) => (
 Ticket.propTypes = {
   user: PropTypes.shape({
     rombianUser: PropTypes.shape({
-      id: PropTypes.shape({ toString: PropTypes.func }),
+      id: PropTypes.number,
       alias: PropTypes.string,
     }),
   }),
