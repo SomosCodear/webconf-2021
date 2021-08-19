@@ -222,7 +222,7 @@ const Ideas = () => {
 
           html, body {
             background: #272D5B linear-gradient(135deg, #272D5B 20%, #4E0528) fixed;
-            font-family: Epilogue;
+            font-family: Epilogue, sans-serif;
           }
         `}</style>
         <title>WebConf LATAM 2021 | ¡Buscá ideas para tu charla!</title>

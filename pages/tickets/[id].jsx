@@ -24,7 +24,7 @@ const Container = styled.main`
 
 const BeforeTicket = styled.section`
   color: #fff;
-  font-family: Epilogue;
+  font-family: Epilogue, sans-serif;
   font-weight: 900;
   font-size: 2rem;
   padding: 1rem;
@@ -52,7 +52,7 @@ const BeforeTicket = styled.section`
 
 const AfterTicket = styled.section`
   color: #fff;
-  font-family: Epilogue;
+  font-family: Epilogue, sans-serif;
   font-weight: 900;
   font-size: 4rem;
   margin-top: 5rem;

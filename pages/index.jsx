@@ -23,7 +23,7 @@ const PageStyle = createGlobalStyle`
         ${({ theme }) => theme.colors.landingBackgroundGradientEnd}
       )
       fixed;
-    font-family: Epilogue;
+    font-family: Epilogue, sans-serif;
     color: ${({ theme }) => theme.colors.landingText};
   }
 `;
