@@ -1,7 +1,7 @@
 import PropTypes from 'prop-types';
 import styled from 'styled-components';
 import Image from 'next/image';
-import { motion } from 'framer-motion';
+import { motion } from '~/components/motion';
 import { NATIONALITIES } from '~/data/speakers';
 import { SpeakerNationalityFlag } from './SpeakerNationalityFlag';
 import { SpeakerPhoto } from './SpeakerPhoto';

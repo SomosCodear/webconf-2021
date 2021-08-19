@@ -2,7 +2,7 @@ import { DateTime } from 'luxon';
 import { useMemo } from 'react';
 import PropTypes from 'prop-types';
 import styled from 'styled-components';
-import { motion } from 'framer-motion';
+import { motion } from '~/components/motion';
 import { TALK_TYPES } from '~/data/speakers';
 import { SpeakerPhoto } from './SpeakerPhoto';
 
