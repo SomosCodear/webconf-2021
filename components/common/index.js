@@ -4,3 +4,5 @@ export { Input } from './Input';
 export { Textarea } from './Textarea';
 export { Loading } from './Loading';
 export { StructuredData } from './StructuredData';
+export { SponsorLink } from './SponsorLink';
+export { SocialMediaLink } from './SocialMediaLink';
