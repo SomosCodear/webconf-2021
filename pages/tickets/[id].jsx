@@ -153,9 +153,8 @@ TicketPage.propTypes = {
   alias: propTypes.string.isRequired,
 };
 
-export const getServerSideProps = async (ctx) => {
-  const { id } = ctx.query;
-
+export const getStaticProps = async ({ params }) => {
+  const { id } = params;
   const { alias } = await User.findByPk(id);
 
   return {
@@ -165,5 +164,10 @@ export const getServerSideProps = async (ctx) => {
     },
   };
 };
+
+export const getStaticPaths = () => ({
+  paths: [],
+  fallback: 'blocking',
+});
 
 export default TicketPage;
