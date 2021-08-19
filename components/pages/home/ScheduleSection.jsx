@@ -120,14 +120,21 @@ export function ScheduleSection() {
             ))}
           </Days>
           <Talks>
-            {talks.map(({ id, ...speaker }) => (
-              <TalkPreviewCard
-                key={id}
-                id={id}
-                {...speaker}
-                onSelect={() => setSelectedSpeaker({ id, ...speaker })}
-              />
-            ))}
+            {talks
+              .filter((speaker) => !speaker.hideFromSchedule)
+              .map((speaker) =>
+                speaker.cospeaker
+                  ? { ...speaker, cospeaker: talks.find((talk) => talk.id === speaker.cospeaker) }
+                  : speaker,
+              )
+              .map(({ id, ...speaker }) => (
+                <TalkPreviewCard
+                  key={id}
+                  id={id}
+                  {...speaker}
+                  onSelect={() => setSelectedSpeaker({ id, ...speaker })}
+                />
+              ))}
           </Talks>
           <AnimatePresence>
             {selectedSpeaker != null ? (

@@ -393,7 +393,7 @@ const calculateTextStyle = (text) => {
 
   let specificStyles = {};
 
-  if (text.length > 15) {
+  if (text.length > 11) {
     if (global.innerWidth < 640) {
       specificStyles = { fontSize: '0.9rem', letterSpacing: '0px' };
     } else {
@@ -420,6 +420,7 @@ export const SpeakerModal = ({
   disableTalkNameAnimation,
   onClose,
   registrationUrl = '',
+  cospeaker,
 }) => {
   const modalContainerRef = useRef(null);
   const modalContainerClickHandler = useCallback(
@@ -490,17 +491,34 @@ export const SpeakerModal = ({
                   layoutId={`speaker-photo-${id}`}
                   inset={talkType === TALK_TYPES.WORKSHOP}
                 />
+                {cospeaker ? (
+                  <PhotoWrapper
+                    photo={cospeaker.photo}
+                    layoutId={`speaker-photo-${cospeaker.id}`}
+                    style={{ marginLeft: '-3rem' }}
+                  />
+                ) : (
+                  ''
+                )}
                 <SpeakerInfo>
                   <NationalityFlagWrapper
                     nationality={nationality}
                     layoutId={`speaker-nationality-flag-${id}`}
                   />
-                  <FirstName layoutId={`speaker-first-name-${id}`}>{firstName}</FirstName>
+                  <FirstName layoutId={`speaker-first-name-${id}`}>
+                    {firstName}
+                    {cospeaker ? ` / ${cospeaker.firstName}` : ''}
+                  </FirstName>
                   <LastName
                     layoutId={`speaker-last-name-${id}`}
-                    style={calculateTextStyle(lastName)}
+                    style={
+                      cospeaker
+                        ? calculateTextStyle(lastName + cospeaker.lastName)
+                        : calculateTextStyle(lastName)
+                    }
                   >
                     {lastName}
+                    {cospeaker ? ` / ${cospeaker.lastName}` : ''}
                   </LastName>
                   {socialMediaHandles ? (
                     <SocialNetworks layoutId={`speaker-social-netwokrs-${id}`}>
@@ -516,6 +534,15 @@ export const SpeakerModal = ({
                       {socialMediaHandles.linkedin != null ? (
                         <SocialNetwork
                           href={`https://www.linkedin.com/in/${socialMediaHandles.linkedin}`}
+                          target="_blank"
+                          rel="noreferrer"
+                        >
+                          <Image src="/logos/linkedin-white.svg" width="27" height="27" />
+                        </SocialNetwork>
+                      ) : null}
+                      {cospeaker && cospeaker.socialMediaHandles.linkedin != null ? (
+                        <SocialNetwork
+                          href={`https://www.linkedin.com/in/${cospeaker.socialMediaHandles.linkedin}`}
                           target="_blank"
                           rel="noreferrer"
                         >
@@ -540,6 +567,7 @@ export const SpeakerModal = ({
               <Bio variant={variant}>
                 <Suspense fallback={null}>
                   <ReactMarkdown>{bio}</ReactMarkdown>
+                  {cospeaker ? <ReactMarkdown>{cospeaker.bio}</ReactMarkdown> : ''}
                 </Suspense>
               </Bio>
             </SpeakerContainer>
@@ -615,9 +643,22 @@ SpeakerModal.propTypes = {
   disableTalkNameAnimation: PropTypes.bool,
   onClose: PropTypes.func.isRequired,
   registrationUrl: PropTypes.string,
+  cospeaker: PropTypes.shape({
+    photo: PropTypes.string,
+    id: PropTypes.string,
+    firstName: PropTypes.string,
+    lastName: PropTypes.string,
+    bio: PropTypes.string,
+    socialMediaHandles: PropTypes.shape({
+      twitter: PropTypes.string,
+      linkedin: PropTypes.string,
+      instagram: PropTypes.string,
+    }),
+  }),
 };
 
 SpeakerModal.defaultProps = {
   disableTalkNameAnimation: false,
   registrationUrl: '',
+  cospeaker: null,
 };

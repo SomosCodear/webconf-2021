@@ -1,5 +1,5 @@
 import { DateTime } from 'luxon';
-import { useMemo } from 'react';
+import { useEffect, useMemo, useState } from 'react';
 import PropTypes from 'prop-types';
 import styled from 'styled-components';
 import { motion } from 'framer-motion';
@@ -107,6 +107,7 @@ export const TalkPreviewCard = ({
   talkName,
   talkSchedule,
   onSelect,
+  cospeaker,
 }) => {
   const talkStartDateTime = useMemo(
     () => DateTime.fromISO(talkSchedule[0], { locale: 'es-AR' }),
@@ -117,9 +118,19 @@ export const TalkPreviewCard = ({
     [talkSchedule],
   );
 
+  const [talkInfoStyle, setTalkInfoStyle] = useState({});
+  useEffect(() => {
+    const isMobile = global.innerWidth < 1024;
+    if (isMobile) {
+      setTalkInfoStyle({});
+    } else {
+      setTalkInfoStyle({ marginLeft: '11.3rem' });
+    }
+  }, []);
+
   return (
     <Container variant={variant} onClick={onSelect} layoutId={`speaker-${id}`}>
-      <TalkInfo>
+      <TalkInfo style={cospeaker ? talkInfoStyle : {}}>
         <TalkType>
           {talkType === TALK_TYPES.WORKSHOP ? 'TALLER' : 'CHARLA'}{' '}
           {talkType === TALK_TYPES.LIGHTNING ? (
@@ -141,10 +152,26 @@ export const TalkPreviewCard = ({
         inset={talkType === TALK_TYPES.WORKSHOP}
         insetWidth="75%"
       />
+      {cospeaker ? (
+        <PhotoWrapper photo={cospeaker.photo} layoutId={`speaker-photo-${cospeaker.id}`} />
+      ) : (
+        ''
+      )}
       <Info>
         <SpeakerName variant={variant}>
           <motion.span layoutId={`speaker-first-name-${id}`}>{firstName}</motion.span>{' '}
           <motion.span layoutId={`speaker-last-name-${id}`}>{lastName}</motion.span>
+          {cospeaker ? (
+            <>
+              {' y '}
+              <motion.span layoutId={`cospeaker-first-name-${id}`}>
+                {cospeaker.firstName}
+              </motion.span>{' '}
+              <motion.span layoutId={`cospeaker-last-name-${id}`}>{cospeaker.lastName}</motion.span>
+            </>
+          ) : (
+            ''
+          )}
         </SpeakerName>
         <TalkName variant={variant} layoutId={`speaker-talk-name-${id}`}>
           {talkName}
@@ -164,4 +191,14 @@ TalkPreviewCard.propTypes = {
   talkName: PropTypes.string.isRequired,
   talkSchedule: PropTypes.arrayOf(PropTypes.string).isRequired,
   onSelect: PropTypes.func.isRequired,
+  cospeaker: PropTypes.shape({
+    photo: PropTypes.string,
+    id: PropTypes.string,
+    firstName: PropTypes.string,
+    lastName: PropTypes.string,
+  }),
+};
+
+TalkPreviewCard.defaultProps = {
+  cospeaker: null,
 };

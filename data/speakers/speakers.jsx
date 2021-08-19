@@ -128,7 +128,7 @@ export const SPEAKERS = [
     talkDescription:
       'En esta charla compartiremos un caso probado de con pipelines reutilizables en equipos de desarrollo que tienen foco en el delivery de productos digitales.',
     talkSchedule: ['2021-08-23T20:40:00.000-03:00', '2021-08-23T21:10:00.000-03:00'],
-    cospeaker: 'sofia-paoli',
+    hideFromSchedule: true,
   },
   {
     id: 'matias-arabolaza',

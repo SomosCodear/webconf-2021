@@ -34,7 +34,11 @@ export function SpeakersSection() {
       <SectionTitle>Disertantes</SectionTitle>
       <Speakers>
         <AnimateSharedLayout type="crossfade">
-          {SPEAKERS.map(({ id, ...speaker }) => (
+          {SPEAKERS.map((speaker) =>
+            speaker.cospeaker
+              ? { ...speaker, cospeaker: SPEAKERS.find((talk) => talk.id === speaker.cospeaker) }
+              : speaker,
+          ).map(({ id, ...speaker }) => (
             <SpeakerPreviewCard
               key={id}
               id={id}
