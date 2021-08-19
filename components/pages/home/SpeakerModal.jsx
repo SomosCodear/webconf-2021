@@ -16,7 +16,7 @@ const Overlay = styled(motion.div).attrs({
   variants: {
     initial: { opacity: 0 },
     visible: { opacity: 1 },
-    exit: { opacity: 0.5 },
+    exit: { opacity: 0 },
   },
 })`
   z-index: 100;
@@ -33,20 +33,16 @@ const Overlay = styled(motion.div).attrs({
 const ScrollingContainer = styled.div`
   width: 100%;
   height: 100%;
-  overflow: auto;
+  overflow-y: auto;
+  overflow-x: hidden;
+`;
+
+const ModalContainer = styled.div`
+  padding: 10rem 2.375rem;
   display: flex;
   flex-direction: column;
   align-items: center;
   justify-content: center;
-`;
-
-const ModalContainer = styled.div`
-  padding: 10rem 0;
-  margin: 20rem 2.375rem 0;
-
-  @media (min-width: ${({ theme }) => theme.breakpoints.desktop}) {
-    margin-top: 10rem;
-  }
 `;
 
 const Modal = styled(motion.div)`
@@ -420,17 +416,17 @@ export const SpeakerModal = ({
   disableTalkNameAnimation,
   onClose,
 }) => {
-  const scrollingContainerRef = useRef(null);
-  const overlayClickHandler = useCallback(
+  const modalContainerRef = useRef(null);
+  const modalContainerClickHandler = useCallback(
     (event) => {
-      if (event.target === scrollingContainerRef.current) {
+      if (event.target === modalContainerRef.current) {
         onClose();
       }
     },
     [onClose],
   );
   useEffect(() => {
-    disableBodyScroll(scrollingContainerRef.current);
+    disableBodyScroll(modalContainerRef.current);
     return () => clearAllBodyScrollLocks();
   }, []);
 
@@ -472,10 +468,10 @@ export const SpeakerModal = ({
       variant={variant}
       animate="visible"
       exit="exit"
-      onClick={overlayClickHandler}
+      onClick={modalContainerClickHandler}
     >
-      <ScrollingContainer ref={scrollingContainerRef}>
-        <ModalContainer>
+      <ScrollingContainer>
+        <ModalContainer ref={modalContainerRef}>
           <Modal variant={variant} layoutId={`speaker-${id}`}>
             <CloseButton onClick={onClose}>
               <CloseImageContainer>
