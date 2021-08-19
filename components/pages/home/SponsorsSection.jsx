@@ -98,7 +98,7 @@ export function SponsorsSection() {
             </a>
           </SponsorLogoContainer>
           <SponsorLogoContainer>
-            <a href="https://pwc.com.ar" target="_blank" rel="noopener noreferrer">
+            <a href="https://www.pwc.com.ar" target="_blank" rel="noopener noreferrer">
               <Image src={pwcLogo} alt="PwC" width={150} height={150} />
             </a>
           </SponsorLogoContainer>
@@ -124,7 +124,7 @@ export function SponsorsSection() {
             </a>
           </SponsorLogoContainer>
           <SponsorLogoContainer>
-            <a href="https://coderio.com" target="_blank" rel="noopener noreferrer">
+            <a href="https://coderio.co" target="_blank" rel="noopener noreferrer">
               <Image src={coderioLogo} alt="Coderio" width={264} height={44} />
             </a>
           </SponsorLogoContainer>
