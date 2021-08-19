@@ -47,6 +47,7 @@ const WhitePanel = styled.div`
   width: 100vw;
   display: grid;
   place-items: center;
+  box-sizing: border-box;
 `;
 
 const SponsorLogoContainer = styled.div``;
@@ -106,7 +107,7 @@ export function SponsorsSection() {
         <SponsorsLogos>
           <SponsorLogoContainer>
             <a href="https://cognizant.com" target="_blank" rel="noopener noreferrer">
-              <Image src={cognizantLogo} alt="Cognizant" width={321} height={104} />
+              <Image src={cognizantLogo} alt="Cognizant" width={240} height={78} />
             </a>
           </SponsorLogoContainer>
         </SponsorsLogos>
