@@ -82,7 +82,7 @@ export function SponsorsSection() {
         {SPONSOR_CATEGORIES.map((sponsorCategory) => (
           <>
             <SponsorsCategory>{sponsorCategory}</SponsorsCategory>
-            <SponsorsLogos>
+            <SponsorsLogos style={sponsorCategory === 'jakarta' ? { gridAutoFlow: 'row' } : {}}>
               {SPONSORS[sponsorCategory].map((sponsor) => (
                 <SponsorLogoContainer>
                   <Sponsor>
