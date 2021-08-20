@@ -9,6 +9,7 @@ import eryxLogo from '~/public/logos/Eryx.svg';
 import cognizantLogo from '~/public/logos/Cognizant.png';
 import pwcLogo from '~/public/logos/PwC.svg';
 import majorKeyLogo from '~/public/logos/MajorKey.png';
+import naranjaXLogo from '~/public/logos/NaranjaX.png';
 
 const SPONSORS = {
   jakarta: [
@@ -156,6 +157,30 @@ const SPONSORS = {
         {
           provider: 'linkedin',
           handle: 'pwc-argentina',
+        },
+      ],
+    },    
+    {
+      id: 'naranjax',
+      name: 'Naranja X',
+      logo: naranjaXLogo,
+      width: 300,
+      height: 83,
+      url: 'https://naranjax.com',
+      resizeOnMobile: true,
+      scaleFactor: 1.25,
+      links: [
+        {
+          provider: 'twitter',
+          handle: 'naranjax',
+        },
+        {
+          provider: 'instagram',
+          handle: 'naranjax',
+        },
+        {
+          provider: 'linkedin',
+          handle: 'naranjax',
         },
       ],
     },
