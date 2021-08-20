@@ -590,6 +590,30 @@ export const WORKSHOPS = [
           <li>Widgets. ¿Qué son? y ¿Cuales son los más usados?</li>
           <li>Publicando en la Web.</li>
         </ul>
+        <p>
+          <strong>Requerimientos</strong>
+        </p>
+        <ul>
+          <li>Conocimientos en programación orientada a objetos.</li>
+          <li>Un IDE (Visual Studio Code, Android Studio o IntelliJ Idea) y su correspondiente Flutter Plugin.</li>
+          <li>Tener instalado Flutter/Dart SDKs.</li>
+          <li>Navegador Web Chrome.</li>
+        </ul>
+        <p>
+          <strong>Documentación</strong>
+        </p>
+        <ul>
+          <li>
+            <a href="https://flutter.dev/docs/get-started/install" target="_blank" rel="noopener noreferrer">
+              Instación de Flutter
+            </a>
+          </li>  
+          <li>
+            <a href="https://flutter.dev/docs/get-started/editor?tab=androidstudio" target="_blank" rel="noopener noreferrer">
+              Instación de plugin de Flutter/Dart
+            </a>
+          </li>  
+        </ul>
       </>
     ),
     talkSchedule: ['2021-08-24T14:00:00.000-03:00', '2021-08-24T15:00:00.000-03:00'],
