@@ -108,6 +108,7 @@ export const TalkPreviewCard = ({
   talkSchedule,
   onSelect,
   cospeaker,
+  provider,
 }) => {
   const talkStartDateTime = useMemo(
     () => DateTime.fromISO(talkSchedule[0], { locale: 'es-AR' }),
@@ -159,8 +160,14 @@ export const TalkPreviewCard = ({
       )}
       <Info>
         <SpeakerName variant={variant}>
-          <motion.span layoutId={`speaker-first-name-${id}`}>{firstName}</motion.span>{' '}
-          <motion.span layoutId={`speaker-last-name-${id}`}>{lastName}</motion.span>
+          <motion.span layoutId={`speaker-first-name-${id}`}>
+            {talkType !== TALK_TYPES.WORKSHOP ? firstName : provider}
+          </motion.span>{' '}
+          {talkType !== TALK_TYPES.WORKSHOP ? (
+            <motion.span layoutId={`speaker-last-name-${id}`}>{lastName}</motion.span>
+          ) : (
+            ''
+          )}
           {cospeaker ? (
             <>
               {' y '}
@@ -187,6 +194,7 @@ TalkPreviewCard.propTypes = {
   photo: PropTypes.string.isRequired,
   firstName: PropTypes.string.isRequired,
   lastName: PropTypes.string.isRequired,
+  provider: PropTypes.string,
   talkType: PropTypes.oneOf(Object.values(TALK_TYPES)).isRequired,
   talkName: PropTypes.string.isRequired,
   talkSchedule: PropTypes.arrayOf(PropTypes.string).isRequired,
@@ -201,4 +209,5 @@ TalkPreviewCard.propTypes = {
 
 TalkPreviewCard.defaultProps = {
   cospeaker: null,
+  provider: null,
 };

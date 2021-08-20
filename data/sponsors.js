@@ -5,6 +5,7 @@ import digitalOceanLogo from '~/public/logos/DigitalOcean.svg';
 import doctaDevsLogo from '~/public/logos/DoctaDevs.svg';
 import artsSecLogo from '~/public/logos/ArtsSec.png';
 import coderioLogo from '~/public/logos/Coderio.svg';
+import eryxLogo from '~/public/logos/Eryx.svg';
 import cognizantLogo from '~/public/logos/Cognizant.png';
 import pwcLogo from '~/public/logos/PwC.svg';
 
@@ -195,6 +196,17 @@ const SPONSORS = {
       url: 'https://coderio.co',
       width: 300,
       height: 75,
+      resizeOnMobile: true,
+      scaleFactor: 0.5,
+      links: [],
+    },
+    {
+      id: 'eryx',
+      name: 'Eryx',
+      logo: eryxLogo,
+      url: 'https://eryx.co',
+      width: 150,
+      height: 55,
       resizeOnMobile: true,
       scaleFactor: 0.5,
       links: [],
