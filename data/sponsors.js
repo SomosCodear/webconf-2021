@@ -8,6 +8,7 @@ import coderioLogo from '~/public/logos/Coderio.svg';
 import eryxLogo from '~/public/logos/Eryx.svg';
 import cognizantLogo from '~/public/logos/Cognizant.png';
 import pwcLogo from '~/public/logos/PwC.svg';
+import majorKeyLogo from '~/public/logos/MajorKey.png';
 
 const SPONSORS = {
   jakarta: [
@@ -39,6 +40,29 @@ const SPONSORS = {
         },
       ],
     },
+    {
+      id: 'majorkey',
+      name: 'MajorKey',
+      description: '',
+      logo: majorKeyLogo,
+      width: 600,
+      height: 240,
+      url: 'https://majorkeytech.com',
+      links: [
+        {
+          provider: 'twitter',
+          handle: 'majorkeycareers'
+        },
+        {
+          provider: 'instagram',
+          handle: 'majorkeycareers'
+        },
+        {
+          provider: 'linkedin',
+          handle: 'majorkeytechcareers'
+        }
+      ]
+    }
   ],
   gold: [
     {
