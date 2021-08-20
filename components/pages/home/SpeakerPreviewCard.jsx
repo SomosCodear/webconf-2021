@@ -85,9 +85,9 @@ const calculateTextStyle = (text) => {
   } else if (text.length < 6) {
     specificStyles = { letterSpacing: '13px' };
   } else if (text === 'De Caro') {
-    specificStyles = { letterSpacing: '2.5px' };
+    specificStyles = { letterSpacing: '2.2px' };
   } else if (text === 'De Lima') {
-    specificStyles = { letterSpacing: '4.1px' };
+    specificStyles = { letterSpacing: '3.6px' };
   } else if (text === 'Moreno') {
     specificStyles = { letterSpacing: '2px' };
   } else if (text === 'Chavez') {
