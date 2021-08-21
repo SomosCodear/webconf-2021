@@ -77,7 +77,7 @@ const SponsorDescription = styled.p`
 export function SponsorsSection() {
   return (
     <Container>
-      <SectionTitle style={{ margin: '4rem 0' }}>SPONSORS</SectionTitle>
+      <SectionTitle style={{ margin: '4rem 0' }}>Auspiciantes</SectionTitle>
       <WhitePanel>
         {SPONSOR_CATEGORIES.map((sponsorCategory) => (
           <>

@@ -10,6 +10,7 @@ import {
   ScheduleSection,
   SponsorsSection,
   WorkshopsSection,
+  CommunitiesSection,
 } from '~/components/pages/home';
 
 import eventJsonLD from '~/data/json-ld/event.json';
@@ -83,6 +84,7 @@ const Home = () => {
       <WorkshopsSection />
       <ScheduleSection />
       <SponsorsSection />
+      <CommunitiesSection />
       <Footer />
     </>
   );

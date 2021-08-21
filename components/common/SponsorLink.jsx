@@ -16,6 +16,7 @@ export const SponsorLink = ({
   url,
   resizeOnMobile = false,
   scaleFactor = 1,
+  rounded = false,
 }) => {
   const [logoWidth, setLogoWidth] = useState(width);
   const [logoHeight, setLogoHeight] = useState(height);
@@ -31,7 +32,12 @@ export const SponsorLink = ({
     }
   }, [resizeOnMobile, scaleFactor, width, height]);
   return (
-    <Anchor href={url} target="_blank" rel="noopener noreferrer">
+    <Anchor
+      href={url}
+      target="_blank"
+      rel="noopener noreferrer"
+      style={rounded ? { borderRadius: '50%' } : {}}
+    >
       <Image src={logo} alt={name} width={logoWidth} height={logoHeight} />
     </Anchor>
   );
@@ -45,9 +51,11 @@ SponsorLink.propTypes = {
   url: PropTypes.string.isRequired,
   resizeOnMobile: PropTypes.bool,
   scaleFactor: PropTypes.number,
+  rounded: PropTypes.bool,
 };
 
 SponsorLink.defaultProps = {
   resizeOnMobile: false,
   scaleFactor: 1,
+  rounded: false,
 };
