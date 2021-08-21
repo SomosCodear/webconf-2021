@@ -35,9 +35,8 @@ const META = {
 
 const WhitePanel = styled.div`
   background: #fff;
-  padding: 5rem;
-  margin: 5rem auto;
-  width: 80%;
+  padding: 2rem;
+  width: 100%;
   display: grid;
   box-sizing: border-box;
 
@@ -53,7 +52,7 @@ const WhitePanel = styled.div`
   }
 
   strong {
-    font-size: 4rem;
+    font-size: 2rem;
     color: #000;
     text-align: left;
     margin: 5rem 0;
@@ -70,6 +69,16 @@ const WhitePanel = styled.div`
   em {
     font-weight: 500;
     font-style: normal;
+  }
+
+  @media (min-width: ${({ theme }) => theme.breakpoints.desktop}) {
+    padding: 5rem;
+    margin: 5rem auto;
+    width: 80%;
+
+    strong {
+      font-size: 4rem;
+    }
   }
 `;
 
