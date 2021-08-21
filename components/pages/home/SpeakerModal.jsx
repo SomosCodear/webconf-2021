@@ -421,6 +421,7 @@ export const SpeakerModal = ({
   onClose,
   registrationUrl = '',
   cospeaker,
+  closed = false,
 }) => {
   const modalContainerRef = useRef(null);
   const modalContainerClickHandler = useCallback(
@@ -607,8 +608,12 @@ export const SpeakerModal = ({
                 </TalkDateTimeGroup>
               </TalkDateTime>
               {talkType === TALK_TYPES.WORKSHOP ? (
-                <ActionButton target="_blank" href={registrationUrl}>
-                  INSCRIBIRME AL TALLER
+                <ActionButton
+                  onClick={(e) => (closed ? e.preventDefault() : true)}
+                  target="_blank"
+                  href={!closed ? registrationUrl : '#'}
+                >
+                  {closed ? 'CUPOS AGOTADOS' : 'INSCRIBIRME AL TALLER'}
                 </ActionButton>
               ) : (
                 <ActionButton target="_blank" href={calendarUrl()}>
@@ -655,10 +660,12 @@ SpeakerModal.propTypes = {
       instagram: PropTypes.string,
     }),
   }),
+  closed: PropTypes.bool,
 };
 
 SpeakerModal.defaultProps = {
   disableTalkNameAnimation: false,
   registrationUrl: '',
   cospeaker: null,
+  closed: false,
 };

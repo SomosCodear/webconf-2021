@@ -536,6 +536,7 @@ export const WORKSHOPS = [
     ),
     registrationUrl: 'https://forms.gle/V4ivVH1gaCfrSV1Q9',
     talkSchedule: ['2021-08-23T14:00:00.000-03:00', '2021-08-23T17:00:00.000-03:00'],
+    closed: true,
   },
   {
     id: 'cognizant',
@@ -595,7 +596,10 @@ export const WORKSHOPS = [
         </p>
         <ul>
           <li>Conocimientos en programación orientada a objetos.</li>
-          <li>Un IDE (Visual Studio Code, Android Studio o IntelliJ Idea) y su correspondiente Flutter Plugin.</li>
+          <li>
+            Un IDE (Visual Studio Code, Android Studio o IntelliJ Idea) y su correspondiente Flutter
+            Plugin.
+          </li>
           <li>Tener instalado Flutter/Dart SDKs.</li>
           <li>Navegador Web Chrome.</li>
         </ul>
@@ -604,15 +608,23 @@ export const WORKSHOPS = [
         </p>
         <ul>
           <li>
-            <a href="https://flutter.dev/docs/get-started/install" target="_blank" rel="noopener noreferrer">
+            <a
+              href="https://flutter.dev/docs/get-started/install"
+              target="_blank"
+              rel="noopener noreferrer"
+            >
               Instación de Flutter
             </a>
-          </li>  
+          </li>
           <li>
-            <a href="https://flutter.dev/docs/get-started/editor?tab=androidstudio" target="_blank" rel="noopener noreferrer">
+            <a
+              href="https://flutter.dev/docs/get-started/editor?tab=androidstudio"
+              target="_blank"
+              rel="noopener noreferrer"
+            >
               Instación de plugin de Flutter/Dart
             </a>
-          </li>  
+          </li>
         </ul>
       </>
     ),
