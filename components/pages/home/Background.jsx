@@ -1,4 +1,5 @@
 import styled, { keyframes } from 'styled-components';
+import propTypes from 'prop-types';
 
 const move = keyframes`
   0% {
@@ -74,11 +75,21 @@ const BackgroundBlur = styled(ActualBackground)`
   filter: blur(5px);
 `;
 
-export const Background = (props) => (
+export const Background = ({ hideBlur = false, alwaysInfinite = false, ...props }) => (
   <Container {...props}>
     <Mask>
-      <ActualBackground />
+      <ActualBackground style={alwaysInfinite ? { animationIterationCount: 'infinite' } : {}} />
     </Mask>
-    <BackgroundBlur />
+    {hideBlur ? '' : <BackgroundBlur />}
   </Container>
 );
+
+Background.propTypes = {
+  hideBlur: propTypes.bool,
+  alwaysInfinite: propTypes.bool,
+};
+
+Background.defaultProps = {
+  hideBlur: false,
+  alwaysInfinite: false,
+};
