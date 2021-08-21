@@ -32,4 +32,10 @@ export const GlobalStyle = createGlobalStyle`
     font-size: inherit;
     color: inherit;
   }
+
+  @media (min-width: 1024px) and (max-width: 1440px) {
+    html {
+      font-size: 90%;
+    }
+  }
 `;

@@ -8,6 +8,8 @@ import coderioLogo from '~/public/logos/Coderio.svg';
 import eryxLogo from '~/public/logos/Eryx.svg';
 import cognizantLogo from '~/public/logos/Cognizant.png';
 import pwcLogo from '~/public/logos/PwC.svg';
+import majorKeyLogo from '~/public/logos/MajorKey.png';
+import naranjaXLogo from '~/public/logos/NaranjaX.png';
 
 const SPONSORS = {
   jakarta: [
@@ -39,6 +41,29 @@ const SPONSORS = {
         },
       ],
     },
+    {
+      id: 'majorkey',
+      name: 'MajorKey',
+      description: '',
+      logo: majorKeyLogo,
+      width: 600,
+      height: 240,
+      url: 'https://majorkeytech.com',
+      links: [
+        {
+          provider: 'twitter',
+          handle: 'majorkeycareers'
+        },
+        {
+          provider: 'instagram',
+          handle: 'majorkeycareers'
+        },
+        {
+          provider: 'linkedin',
+          handle: 'majorkeytechcareers'
+        }
+      ]
+    }
   ],
   gold: [
     {
@@ -134,6 +159,30 @@ const SPONSORS = {
           handle: 'pwc-argentina',
         },
       ],
+    },    
+    {
+      id: 'naranjax',
+      name: 'Naranja X',
+      logo: naranjaXLogo,
+      width: 300,
+      height: 83,
+      url: 'https://naranjax.com',
+      resizeOnMobile: true,
+      scaleFactor: 1.25,
+      links: [
+        {
+          provider: 'twitter',
+          handle: 'naranjax',
+        },
+        {
+          provider: 'instagram',
+          handle: 'naranjax',
+        },
+        {
+          provider: 'linkedin',
+          handle: 'naranjax',
+        },
+      ],
     },
   ],
   silver: [
@@ -172,8 +221,8 @@ const SPONSORS = {
       name: 'DoctaDevs',
       logo: doctaDevsLogo,
       url: 'https://doctadevs.com',
-      width: 300,
-      height: 75,
+      width: 240,
+      height: 60,
       resizeOnMobile: true,
       scaleFactor: 0.5,
       links: [],
@@ -183,8 +232,8 @@ const SPONSORS = {
       name: 'ARTSSEC',
       logo: artsSecLogo,
       url: 'https://artssec.com',
-      width: 214,
-      height: 45,
+      width: 171,
+      height: 36,
       resizeOnMobile: true,
       scaleFactor: 0.5,
       links: [],
@@ -194,8 +243,8 @@ const SPONSORS = {
       name: 'Coderio',
       logo: coderioLogo,
       url: 'https://coderio.co',
-      width: 300,
-      height: 75,
+      width: 240,
+      height: 60,
       resizeOnMobile: true,
       scaleFactor: 0.5,
       links: [],
@@ -205,8 +254,8 @@ const SPONSORS = {
       name: 'Eryx',
       logo: eryxLogo,
       url: 'https://eryx.co',
-      width: 150,
-      height: 55,
+      width: 120,
+      height: 44,
       resizeOnMobile: true,
       scaleFactor: 0.5,
       links: [],
