@@ -50,6 +50,18 @@ const Social = styled.div`
   }
 `;
 
+const Legal = styled.div`
+  margin-top: 3.375rem;
+
+  a {
+    color: #aaa;
+  }
+
+  a:hover {
+    text-decoration: underline;
+  }
+`;
+
 export const Footer = () => (
   <Container>
     <Logos>
@@ -77,5 +89,14 @@ export const Footer = () => (
         <Image src={facebookLogo} alt="Facebook Logo" width={17} height={32} />
       </a>
     </Social>
+    <Legal>
+      <a href="https://codear.org/coc" target="_blank" rel="noopener noreferrer">
+        Código de conducta
+      </a>
+      {' | '}
+      <a href="https://codear.org/coc" target="_blank" rel="noopener noreferrer">
+        Política de privacidad
+      </a>
+    </Legal>
   </Container>
 );
