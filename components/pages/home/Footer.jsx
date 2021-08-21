@@ -94,7 +94,7 @@ export const Footer = () => (
         Código de conducta
       </a>
       {' | '}
-      <a href="https://codear.org/coc" target="_blank" rel="noopener noreferrer">
+      <a href="/privacidad" target="_blank" rel="noopener noreferrer">
         Política de privacidad
       </a>
     </Legal>
