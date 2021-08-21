@@ -136,6 +136,13 @@ const Privacy = () => (
         hayas respondido que no deseas compartir tus datos con la organización (que puede ser un
         auspiciante o no), <em>no compatiremos esa información. Punto.</em>
       </p>
+      <p>
+        Es posible que utilicemos tu información para contactarte acerca de nuevas ediciones de
+        WebConf LATAM 2021, o de nuevas actividades relacionadas a la conferencia, desarrolladas por
+        la Comunidad de Desarrolladores de Argentina (CoDeAr). En todo momento podrás solicitar la
+        baja de estas comunicaciones, respondiendo a cualquier mensaje que hayas recibido y pidiendo
+        la baja efectiva.
+      </p>
       <h2>¿Dónde almacenan esta información?</h2>
       <p>
         Almacenamos tus datos en dos repositorios de información:
