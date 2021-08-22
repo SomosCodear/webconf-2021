@@ -32,6 +32,36 @@ module.exports = {
         destination: 'https://forms.gle/d8d447ajQEvp2dR9A',
         permanent: false,
       },
+      {
+        source: '/stream/1',
+        destination: 'https://streamyard.com/mz38af6vmm',
+        permanent: false,
+      },
+      {
+        source: '/stream/2',
+        destination: 'https://streamyard.com/743p3tkzh8',
+        permanent: false,
+      },
+      {
+        source: '/stream/3',
+        destination: 'https://streamyard.com/wqzdwd2y9u',
+        permanent: false,
+      },
+      {
+        source: '/stream/4',
+        destination: 'https://streamyard.com/m5r8bp5bgq',
+        permanent: false,
+      },
+      {
+        source: '/stream/5',
+        destination: 'https://streamyard.com/k4ufeevsre',
+        permanent: false,
+      },
+      {
+        source: '/en-vivo',
+        destination: 'https://rombian-city.experiments.codear.org/',
+        permanent: false,
+      },
     ];
   },
 };
