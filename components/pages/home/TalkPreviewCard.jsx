@@ -97,6 +97,17 @@ const TalkName = styled(motion.div)`
   }
 `;
 
+const talkTypeToTitle = {
+  [TALK_TYPES.STANDARD]: 'CHARLA',
+  [TALK_TYPES.LIGHTNING]: (
+    <>
+      CHARLA <span style={{ color: 'gold' }}>RELÁMPAGO</span>
+    </>
+  ),
+  [TALK_TYPES.KEYNOTE]: <span style={{ color: 'gold' }}>KEYNOTE</span>,
+  [TALK_TYPES.WORKSHOP]: 'TALLER',
+};
+
 export const TalkPreviewCard = ({
   id,
   variant,
@@ -132,14 +143,7 @@ export const TalkPreviewCard = ({
   return (
     <Container variant={variant} onClick={onSelect} layoutId={`speaker-${id}`}>
       <TalkInfo style={cospeaker ? talkInfoStyle : {}}>
-        <TalkType>
-          {talkType === TALK_TYPES.WORKSHOP ? 'TALLER' : 'CHARLA'}{' '}
-          {talkType === TALK_TYPES.LIGHTNING ? (
-            <span style={{ color: 'gold' }}>RELÁMPAGO</span>
-          ) : (
-            ''
-          )}
-        </TalkType>
+        <TalkType>{talkTypeToTitle[talkType]}</TalkType>
         {' | '}
         <TalkSchedule>
           {talkStartDateTime.toLocaleString(DateTime.TIME_24_SIMPLE)}

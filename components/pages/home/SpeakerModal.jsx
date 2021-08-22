@@ -404,6 +404,13 @@ const calculateTextStyle = (text) => {
   return { ...baseStyles, ...specificStyles };
 };
 
+const talkTypeToTitle = {
+  [TALK_TYPES.STANDARD]: 'CHARLA',
+  [TALK_TYPES.LIGHTNING]: 'CHARLA RELÁMPAGO',
+  [TALK_TYPES.KEYNOTE]: 'KEYNOTE',
+  [TALK_TYPES.WORKSHOP]: 'TALLER',
+};
+
 export const SpeakerModal = ({
   id,
   variant,
@@ -573,10 +580,7 @@ export const SpeakerModal = ({
               </Bio>
             </SpeakerContainer>
             <TalkContainer variant={variant}>
-              <TalkType>
-                {talkType === TALK_TYPES.WORKSHOP ? 'TALLER' : 'CHARLA'}
-                {talkType === TALK_TYPES.LIGHTNING ? ' RELÁMPAGO' : null}
-              </TalkType>
+              <TalkType>{talkTypeToTitle[talkType]}</TalkType>
               <TalkName
                 initial={disableTalkNameAnimation ? 'visible' : 'initial'}
                 animate="visible"

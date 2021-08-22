@@ -80,7 +80,9 @@ const calculateTextStyle = (text) => {
 
   let specificStyles = {};
 
-  if (text === 'Paoli') {
+  if (text === 'Díaz') {
+    specificStyles = { letterSpacing: '29px' };
+  } else if (text === 'Paoli') {
     specificStyles = { letterSpacing: '17px' };
   } else if (text.length < 6) {
     specificStyles = { letterSpacing: '13px' };
