@@ -17,6 +17,8 @@ const PageStyle = createGlobalStyle`
       fixed;
     font-family: Epilogue, sans-serif;
     color: ${({ theme }) => theme.colors.landingText};
+    margin: 0;
+    padding: 0;
   }
 `;
 const META = {
