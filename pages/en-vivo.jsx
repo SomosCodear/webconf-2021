@@ -67,8 +67,8 @@ const Live = () => (
       frameSpacing={0}
     />
     <p style={{ textAlign: 'center' }}>
-      <strong>Controles:</strong> W = Adelante, A = Izquierda, S = Atrás, D = Derecha, T = Chat |
-      ¿No podés ver las charlas? Entrá a{' '}
+      <strong>Controles:</strong> Usá las flechitas para moverte | ENTER para chatear | ¿No podés
+      ver las charlas? Entrá a{' '}
       <a href="https://youtube.com/codear" target="_blank" rel="noreferrer">
         YouTube
       </a>{' '}
