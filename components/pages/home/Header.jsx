@@ -98,7 +98,7 @@ const Text = styled.h1`
 
   @media (min-width: ${({ theme }) => theme.breakpoints.desktop}) {
     padding: 20% 0 10%;
-    align-self: flex-end;
+    align-self: flex-start;
     justify-self: flex-start;
     text-align: left;
     font-size: 6.875rem;
@@ -172,7 +172,12 @@ export function Header({ onLearnMoreClick, ...props }) {
             <Buttons>
               <Button as="a" href="/api/auth/login?returnTo=/tickets" variant="primary">
                 <span style={{ fontSize: '2rem', display: 'inline-block', padding: '0 2rem' }}>
-                  ¡INSCRIBITE!
+                  OBTENÉ TU TICKET
+                </span>
+              </Button>
+              <Button as="a" href="/en-vivo" variant="secondary">
+                <span style={{ fontSize: '2rem', display: 'inline-block', padding: '0 2rem' }}>
+                  ENTRÁ A LA CONFERENCIA
                 </span>
               </Button>
             </Buttons>
