@@ -61,6 +61,15 @@ const Live = () => (
     <iframe
       width="100%"
       height="100%"
+      src="https://www.youtube.com/embed/live_stream?channel=UCl86c2Wxlyouq8F1K8l-wGg"
+      title="WebConf LATAM 2021"
+      frameBorder="0"
+      allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture"
+      allowFullScreen
+    />
+    <iframe
+      width="100%"
+      height="100%"
       title="Rombian"
       src="https://rombian-city.experiments.codear.org/"
       frameBorder={0}
