@@ -54,7 +54,7 @@ const CoolBackground = styled(Background)`
 
 const zeroed = (num, digits = 2) => num.toString().padStart(digits, '0');
 const ThreeTwoOne = () => {
-  const launch = DateTime.fromRFC2822('23 Aug 2021 17:00:00 -0300');
+  const launch = DateTime.fromRFC2822('23 Aug 2021 17:30:00 -0300');
   const [remaining, setRemaining] = useState('...');
 
   useEffect(() => {
