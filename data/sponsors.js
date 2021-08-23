@@ -52,18 +52,18 @@ const SPONSORS = {
       links: [
         {
           provider: 'twitter',
-          handle: 'majorkeycareers'
+          handle: 'majorkeycareers',
         },
         {
           provider: 'instagram',
-          handle: 'majorkeycareers'
+          handle: 'majorkeycareers',
         },
         {
           provider: 'linkedin',
-          handle: 'majorkeytechcareers'
-        }
-      ]
-    }
+          handle: 'majorkeytechcareers',
+        },
+      ],
+    },
   ],
   gold: [
     {
@@ -159,7 +159,7 @@ const SPONSORS = {
           handle: 'pwc-argentina',
         },
       ],
-    },    
+    },
     {
       id: 'naranjax',
       name: 'Naranja X',
@@ -181,6 +181,30 @@ const SPONSORS = {
         {
           provider: 'linkedin',
           handle: 'naranjax',
+        },
+      ],
+    },
+    {
+      id: 'doctadevs',
+      name: 'DoctaDevs',
+      logo: doctaDevsLogo,
+      url: 'https://doctadevs.com',
+      width: 240,
+      height: 60,
+      resizeOnMobile: true,
+      scaleFactor: 0.5,
+      links: [
+        {
+          provider: 'twitter',
+          handle: 'doctadevs',
+        },
+        {
+          provider: 'instagram',
+          handle: 'doctadevs_',
+        },
+        {
+          provider: 'linkedin',
+          handle: 'doctadevs',
         },
       ],
     },
@@ -216,17 +240,6 @@ const SPONSORS = {
     },
   ],
   bronze: [
-    {
-      id: 'doctadevs',
-      name: 'DoctaDevs',
-      logo: doctaDevsLogo,
-      url: 'https://doctadevs.com',
-      width: 240,
-      height: 60,
-      resizeOnMobile: true,
-      scaleFactor: 0.5,
-      links: [],
-    },
     {
       id: 'artssec',
       name: 'ARTSSEC',
