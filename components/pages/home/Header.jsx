@@ -182,7 +182,7 @@ export function Header({ onLearnMoreClick, ...props }) {
                   VER EN YOUTUBE
                 </span>
               </Button>
-              <Button as="a" href="/en-vivo" variant="secondary">
+              <Button as="a" href="/rombian" variant="secondary">
                 <span style={{ fontSize: '1rem', display: 'inline-block', padding: '0 2rem' }}>
                   IR A ROMBIAN
                 </span>

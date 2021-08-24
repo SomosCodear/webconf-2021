@@ -57,6 +57,11 @@ module.exports = {
         destination: 'https://streamyard.com/k4ufeevsre',
         permanent: false,
       },
+      {
+        source: '/rombian',
+        destination: 'https://rombian-city.experiments.codear.org/',
+        permanent: false,
+      },
     ];
   },
 };
