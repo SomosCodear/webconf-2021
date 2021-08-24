@@ -578,6 +578,7 @@ export const WORKSHOPS = [
       </>
     ),
     talkSchedule: ['2021-08-24T14:00:00.000-03:00', '2021-08-24T15:00:00.000-03:00'],
+    closed: true,
   },
   {
     id: 'coderio',
@@ -647,6 +648,7 @@ export const WORKSHOPS = [
       </>
     ),
     talkSchedule: ['2021-08-24T14:00:00.000-03:00', '2021-08-24T15:00:00.000-03:00'],
+    closed: true,
   },
   {
     id: 'artssec',
