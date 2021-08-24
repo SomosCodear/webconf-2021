@@ -113,9 +113,11 @@ const Text = styled.h1`
 
 const Buttons = styled.div`
   display: flex;
+  flex-direction: column;
   gap: 1rem;
 
   @media (min-width: ${({ theme }) => theme.breakpoints.desktop}) {
+    flex-direction: row;
     place-self: flex-start;
   }
 `;
