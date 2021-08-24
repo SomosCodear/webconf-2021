@@ -171,13 +171,18 @@ export function Header({ onLearnMoreClick, ...props }) {
             </Text>
             <Buttons>
               <Button as="a" href="/api/auth/login?returnTo=/tickets" variant="primary">
-                <span style={{ fontSize: '2rem', display: 'inline-block', padding: '0 2rem' }}>
+                <span style={{ fontSize: '1rem', display: 'inline-block', padding: '0 2rem' }}>
                   OBTENÉ TU TICKET
                 </span>
               </Button>
+              <Button as="a" href="https://youtube.com/codear" variant="secondary">
+                <span style={{ fontSize: '1rem', display: 'inline-block', padding: '0 2rem' }}>
+                  VER EN YOUTUBE
+                </span>
+              </Button>
               <Button as="a" href="/en-vivo" variant="secondary">
-                <span style={{ fontSize: '2rem', display: 'inline-block', padding: '0 2rem' }}>
-                  ENTRÁ A LA CONFERENCIA
+                <span style={{ fontSize: '1rem', display: 'inline-block', padding: '0 2rem' }}>
+                  IR A ROMBIAN
                 </span>
               </Button>
             </Buttons>
