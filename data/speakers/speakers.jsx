@@ -724,5 +724,6 @@ export const WORKSHOPS = [
       </>
     ),
     talkSchedule: ['2021-08-27T15:00:00.000-03:00', '2021-08-27T17:00:00.000-03:00'],
+    closed: true,
   },
 ];
