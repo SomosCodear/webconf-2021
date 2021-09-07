@@ -172,12 +172,11 @@ export function Header({ onLearnMoreClick, ...props }) {
               DE AGOSTO
             </Text>
             <Buttons>
-              <Button as="a" href="/api/auth/login?returnTo=/tickets" variant="primary">
-                <span style={{ fontSize: '1rem', display: 'inline-block', padding: '0 2rem' }}>
-                  OBTENÉ TU TICKET
-                </span>
-              </Button>
-              <Button as="a" href="https://youtube.com/codear" variant="secondary">
+              <Button 
+                as="a" 
+                href="https://www.youtube.com/watch?v=uVmgfmNEhis&list=PLOSm8YmXdTyhOowxSe0emyeFBwtbUs8rm"
+                variant="secondary"
+              >
                 <span style={{ fontSize: '1rem', display: 'inline-block', padding: '0 2rem' }}>
                   VER EN YOUTUBE
                 </span>
