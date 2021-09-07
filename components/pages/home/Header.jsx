@@ -172,7 +172,11 @@ export function Header({ onLearnMoreClick, ...props }) {
               DE AGOSTO
             </Text>
             <Buttons>
-              <Button as="a" href="https://www.youtube.com/watch?v=uVmgfmNEhis&list=PLOSm8YmXdTyhOowxSe0emyeFBwtbUs8rm" variant="secondary">
+              <Button 
+                as="a" 
+                href="https://www.youtube.com/watch?v=uVmgfmNEhis&list=PLOSm8YmXdTyhOowxSe0emyeFBwtbUs8rm"
+                variant="secondary"
+              >
                 <span style={{ fontSize: '1rem', display: 'inline-block', padding: '0 2rem' }}>
                   VER EN YOUTUBE
                 </span>
