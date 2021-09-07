@@ -456,26 +456,26 @@ export const SpeakerModal = ({
     [talkSchedule],
   );
 
-  const calendarUrl = () => {
-    const baseUrl =
-      global.innerWidth >= 640
-        ? 'https://www.google.com/calendar/render'
-        : 'https://calendar.google.com/calendar/gp#~calendar:view=e&bm=1';
-    const parameters = new URLSearchParams();
-    parameters.append('action', 'TEMPLATE');
-    parameters.append('text', `WebConf LATAM 2021 | ${firstName} ${lastName} - ${talkName}`);
-    parameters.append(
-      'dates',
-      talkSchedule.map((schedule) => schedule.split('.')[0].replaceAll(/[:-]/g, '')).join('/'),
-    );
-    parameters.append(
-      'details',
+  // const calendarUrl = () => {
+  //   const baseUrl =
+  //     global.innerWidth >= 640
+  //       ? 'https://www.google.com/calendar/render'
+  //       : 'https://calendar.google.com/calendar/gp#~calendar:view=e&bm=1';
+  //   const parameters = new URLSearchParams();
+  //   parameters.append('action', 'TEMPLATE');
+  //   parameters.append('text', `WebConf LATAM 2021 | ${firstName} ${lastName} - ${talkName}`);
+  //   parameters.append(
+  //     'dates',
+  //     talkSchedule.map((schedule) => schedule.split('.')[0].replaceAll(/[:-]/g, '')).join('/'),
+  //   );
+  //   parameters.append(
+  //     'details',
 
-      `Presenciá esta charla en https://webconf.tech/\n\n${bio}\n\n${talkDescription}`,
-    );
-    parameters.append('ctz', 'Argentina/Buenos_Aires');
-    return `${baseUrl}?${parameters.toString()}`;
-  };
+  //     `Presenciá esta charla en https://webconf.tech/\n\n${bio}\n\n${talkDescription}`,
+  //   );
+  //   parameters.append('ctz', 'Argentina/Buenos_Aires');
+  //   return `${baseUrl}?${parameters.toString()}`;
+  // };
 
   return (
     <Overlay
