@@ -18,7 +18,7 @@ export const SPEAKERS = [
     talkType: TALK_TYPES.KEYNOTE,
     talkName: 'Piedra, papel, ¡web!',
     talkDescription:
-      'Desde el comienzo de los tiempos el hombre ha ido comunicando su paso a través de la historia. Veremos cómo evolucionaron los medios de comunicación y como afectan a nuestra vida cotidiana haciendo incapié en nuestro rol como creadores de la web.',
+      'Desde el comienzo de los tiempos el hombre ha ido comunicando su paso a través de la historia. Veremos cómo evolucionaron los medios de comunicación y como afectan a nuestra vida cotidiana haciendo hincapié en nuestro rol como creadores de la web.',
     talkSchedule: ['2021-08-23T17:40:00.000-03:00', '2021-08-23T17:50:00.000-03:00'],
     youtubeLink: 'https://www.youtube.com/watch?v=uVmgfmNEhis&t=995s'
   },
