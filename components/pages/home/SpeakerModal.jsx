@@ -429,6 +429,7 @@ export const SpeakerModal = ({
   registrationUrl = '',
   cospeaker,
   closed = false,
+  youtubeLink,
 }) => {
   const modalContainerRef = useRef(null);
   const modalContainerClickHandler = useCallback(
@@ -620,8 +621,8 @@ export const SpeakerModal = ({
                   {closed ? 'CUPOS AGOTADOS' : 'INSCRIBIRME AL TALLER'}
                 </ActionButton>
               ) : (
-                <ActionButton target="_blank" href={calendarUrl()}>
-                  AGENDAR ESTA CHARLA
+                <ActionButton target="_blank" href={youtubeLink}>
+                  VER ESTA CHARLA
                 </ActionButton>
               )}
             </TalkSchedule>
@@ -665,6 +666,7 @@ SpeakerModal.propTypes = {
     }),
   }),
   closed: PropTypes.bool,
+  youtubeLink: PropTypes.string.isRequired,
 };
 
 SpeakerModal.defaultProps = {
