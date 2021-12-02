@@ -1,37 +1,6 @@
-import styled, { keyframes } from 'styled-components';
+import styled from 'styled-components';
 import propTypes from 'prop-types';
 
-const move = keyframes`
-  0% {
-    opacity: 0;
-    transform: rotate(30deg) scale(1) translateX(0%);
-  }
-  5% {
-    opacity: 1;
-  }
-  99.5% {
-    transform: rotate(30deg) scale(2) translateX(-50%);
-    opacity: 0;
-  }
-  100% {
-    transform: rotate(30deg) scale(1) translateX(0%);
-    opacity: 0;
-  }
-`;
-
-const moveMobile = keyframes`
-  0% {
-    opacity: 0;
-    transform: rotate(30deg) scale(1) translateX(0%);
-  }
-  5% {
-    opacity: 1;
-  }
-  100% {
-    transform: rotate(30deg) scale(1.5) translateX(-5%);
-    opacity: 1;
-  }
-`;
 const Container = styled.div`
   position: relative;
   width: 100%;
@@ -57,17 +26,11 @@ const ActualBackground = styled.div`
   left: -50%;
   top: -50%;
   mix-blend-mode: hard-light;
-  animation: ${moveMobile} 20s linear forwards;
   filter: brightness(1.15) saturate(1.5);
 
   @media (min-width: ${({ theme }) => theme.breakpoints.desktop}) {
     height: 200%;
     background-size: 200px;
-    animation: ${move} 60s linear infinite;
-  }
-
-  @media (prefers-reduced-motion) {
-    animation: none;
   }
 `;
 
@@ -75,10 +38,10 @@ const BackgroundBlur = styled(ActualBackground)`
   filter: blur(5px);
 `;
 
-export const Background = ({ hideBlur = false, alwaysInfinite = false, ...props }) => (
+export const Background = ({ hideBlur = false, ...props }) => (
   <Container {...props}>
     <Mask>
-      <ActualBackground style={alwaysInfinite ? { animationIterationCount: 'infinite' } : {}} />
+      <ActualBackground />
     </Mask>
     {hideBlur ? '' : <BackgroundBlur />}
   </Container>
@@ -86,10 +49,8 @@ export const Background = ({ hideBlur = false, alwaysInfinite = false, ...props 
 
 Background.propTypes = {
   hideBlur: propTypes.bool,
-  alwaysInfinite: propTypes.bool,
 };
 
 Background.defaultProps = {
   hideBlur: false,
-  alwaysInfinite: false,
 };

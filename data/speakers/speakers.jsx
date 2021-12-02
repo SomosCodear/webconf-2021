@@ -20,7 +20,7 @@ export const SPEAKERS = [
     talkDescription:
       'Desde el comienzo de los tiempos el hombre ha ido comunicando su paso a través de la historia. Veremos cómo evolucionaron los medios de comunicación y como afectan a nuestra vida cotidiana haciendo hincapié en nuestro rol como creadores de la web.',
     talkSchedule: ['2021-08-23T17:40:00.000-03:00', '2021-08-23T17:50:00.000-03:00'],
-    youtubeLink: 'https://www.youtube.com/watch?v=uVmgfmNEhis&t=995s'
+    youtubeLink: 'https://www.youtube.com/watch?v=uVmgfmNEhis&t=995s',
   },
   {
     id: 'ivan-olivares',
@@ -39,7 +39,7 @@ export const SPEAKERS = [
     talkDescription:
       'Construyes tu app, llegas a producción y todo dejó de funcionar sin explicación. ¿Qué haces? Además una apología al meme "This is fine", pensar en observabilidad es lo que aprenderás en esta charla.',
     talkSchedule: ['2021-08-23T18:00:00.000-03:00', '2021-08-23T18:30:00.000-03:00'],
-    youtubeLink: 'https://www.youtube.com/watch?v=uVmgfmNEhis&t=1921s',
+    youtubeLink: 'https://www.youtube.com/watch?v=cKZcAnA35To',
   },
   {
     id: 'francisco-daines',
@@ -59,7 +59,7 @@ export const SPEAKERS = [
     talkDescription:
       'Para asegurar la calidad de la arquitectura de nuestros productos necesitamos una manera automatizada de verificar si nuestro código adhiere a nuestros lineamientos de arquitectura. En esta charla vamos a analizar la importancia de verificar continuamente nuestros lineamientos de arquitectura, los beneficios que podemos obtener, alternativas de cómo incluir estas pruebas en nuestro flujo de integración continua y finalmente un breve análisis de las diferentes librerías y herramientas disponibles para los lenguajes más utilizados actualmente.',
     talkSchedule: ['2021-08-23T18:40:00.000-03:00', '2021-08-23T19:10:00.000-03:00'],
-    youtubeLink: 'https://www.youtube.com/watch?v=uVmgfmNEhis&t=4350s',
+    youtubeLink: 'https://www.youtube.com/watch?v=DpVC7CNIYrs',
   },
   {
     id: 'carlos-santiago',
@@ -77,7 +77,7 @@ export const SPEAKERS = [
     talkDescription:
       'Una introducción al mundo de Docker y sus conceptos como si se estuviéramos explicando a un niño, ¡con dibujos!',
     talkSchedule: ['2021-08-23T19:20:00.000-03:00', '2021-08-23T19:30:00.000-03:00'],
-    youtubeLink: 'https://www.youtube.com/watch?v=uVmgfmNEhis&t=7015s',
+    youtubeLink: 'https://www.youtube.com/watch?v=h0BFe_89cgI',
   },
   {
     id: 'denny-portillo',
@@ -97,7 +97,7 @@ export const SPEAKERS = [
     talkDescription:
       'Luego de hacer muchas interfaces y encontrar que hay un patrón o cosas similares en esas interfaces se me ocurrió que puede crearse una librería y reutilizar esos componentes, distribuirlos y con buena documentación, da la casualidad que luego de investigar las distintas librerías de UI me di cuenta que resultaron de un proceso mucho más complejo y beneficio, los Sistemas de Diseño.',
     talkSchedule: ['2021-08-23T19:40:00.000-03:00', '2021-08-23T19:50:00.000-03:00'],
-    youtubeLink: 'https://www.youtube.com/watch?v=uVmgfmNEhis&t=7895s',
+    youtubeLink: 'https://www.youtube.com/watch?v=ny25H2_VYwY',
   },
   {
     id: 'mariano-vazquez',
@@ -116,7 +116,7 @@ export const SPEAKERS = [
     talkDescription:
       'En esta charla vamos a explicar lo que hicimos para desarrollar desde cero una plataforma para múltiples bancos de Argentina, utilizando OpenAPI/Swagger y un enfoque design-first. Vamos a hablar de lecciones aprendidas al implementar la solución: desde las fallas que encontramos en la arquitectura inicial hasta cómo estamos aprendiendo a enfocar el feedback valioso de múltiples consumidores de manera efectiva.',
     talkSchedule: ['2021-08-23T20:00:00.000-03:00', '2021-08-23T20:30:00.000-03:00'],
-    youtubeLink: 'https://www.youtube.com/watch?v=uVmgfmNEhis&t=9281s',
+    youtubeLink: 'https://www.youtube.com/watch?v=jVeoJhALAtg',
   },
   {
     id: 'sofia-paoli',
@@ -135,7 +135,7 @@ export const SPEAKERS = [
       'En esta charla compartiremos un caso probado de con pipelines reutilizables en equipos de desarrollo que tienen foco en el delivery de productos digitales.',
     talkSchedule: ['2021-08-23T20:40:00.000-03:00', '2021-08-23T21:10:00.000-03:00'],
     cospeaker: 'antonella-de-caro',
-    youtubeLink: 'https://www.youtube.com/watch?v=uVmgfmNEhis&t=11621s',
+    youtubeLink: 'https://www.youtube.com/watch?v=jzhA2Ty45Bs',
   },
   {
     id: 'antonella-de-caro',
@@ -154,7 +154,7 @@ export const SPEAKERS = [
       'En esta charla compartiremos un caso probado de con pipelines reutilizables en equipos de desarrollo que tienen foco en el delivery de productos digitales.',
     talkSchedule: ['2021-08-23T20:40:00.000-03:00', '2021-08-23T21:10:00.000-03:00'],
     hideFromSchedule: true,
-    youtubeLink: 'https://www.youtube.com/watch?v=uVmgfmNEhis&t=11621s',
+    youtubeLink: 'https://www.youtube.com/watch?v=jzhA2Ty45Bs',
   },
   {
     id: 'matias-arabolaza',
@@ -174,7 +174,7 @@ export const SPEAKERS = [
     talkDescription:
       '¿Has oído hablar de Micro Frontends y no sabes qué son? ¿Tenés curiosidad acerca de cómo las micro-aplicaciones de diferentes tecnologías pueden coexistir juntas en el mismo sitio web/aplicación? Vamos a echar un vistazo a cómo realmente funciona esta gran arquitectura y cómo puede ayudarnos a hacer aplicaciones increíbles sin preocuparse por la tecnología que cada equipo está utilizando, porque Micro Frontends se trata de colaboración.',
     talkSchedule: ['2021-08-24T17:40:00.000-03:00', '2021-08-24T18:10:00.000-03:00'],
-    youtubeLink: 'https://www.youtube.com/watch?v=R74tB3cI_5A&t=468s',
+    youtubeLink: 'https://www.youtube.com/watch?v=oziuEYCLHms',
   },
   {
     id: 'fernando-chavez',
@@ -193,7 +193,7 @@ export const SPEAKERS = [
     talkDescription:
       'Repasa rápidamente que hay detrás de tus frameworks favoritos, aprende qué es el Virtual DOM, cómo funciona, qué problemas resuelve y cómo los resuelve en esta charla relámpago sobre el Virtual DOM.',
     talkSchedule: ['2021-08-24T18:20:00.000-03:00', '2021-08-24T18:30:00.000-03:00'],
-    youtubeLink: 'https://www.youtube.com/watch?v=R74tB3cI_5A&t=3342s',
+    youtubeLink: 'https://www.youtube.com/watch?v=gINDTEjmjUs',
   },
   {
     id: 'martin-pastore',
@@ -213,7 +213,7 @@ export const SPEAKERS = [
     talkDescription:
       '¿Cuántas veces te encontraste en la situación de tener que poner un !important a tus estilos porque por "alguna razón" no te los toma? En 10 minutos te cuento por qué y cómo resolverlo 🥳',
     talkSchedule: ['2021-08-24T18:40:00.000-03:00', '2021-08-24T18:50:00.000-03:00'],
-    youtubeLink: 'https://www.youtube.com/watch?v=R74tB3cI_5A&t=4311s',
+    youtubeLink: 'https://www.youtube.com/watch?v=Tme5jFs_0fQ',
   },
   {
     id: 'daiana-szwimer',
@@ -232,7 +232,7 @@ export const SPEAKERS = [
     talkDescription:
       'El objetivo es dar a conocer las herramientas que provee Google Chrome para debuggear el código. Vamos a mostrar el debugger, breakpoints, como hacer watch de expresiones, etc.',
     talkSchedule: ['2021-08-24T19:00:00.000-03:00', '2021-08-24T19:30:00.000-03:00'],
-    youtubeLink: 'https://www.youtube.com/watch?v=R74tB3cI_5A&t=5455s',
+    youtubeLink: 'https://www.youtube.com/watch?v=-Y-D0ZwJbjg',
   },
   {
     id: 'agustin-mulet',
@@ -251,7 +251,7 @@ export const SPEAKERS = [
     talkDescription:
       'Cómo al dar un paso atrás para intenter ver una solución más abstracta y pensar en componentes puede ayudarnos a resolver mejor ciertos problemas y a diagramar una mejor estructura de nuestro código.',
     talkSchedule: ['2021-08-24T19:40:00.000-03:00', '2021-08-24T20:10:00.000-03:00'],
-    youtubeLink: 'https://www.youtube.com/watch?v=R74tB3cI_5A&t=7919s',
+    youtubeLink: 'https://www.youtube.com/watch?v=YkV2RRebHZg',
   },
   {
     id: 'martin-thiessen',
@@ -269,7 +269,7 @@ export const SPEAKERS = [
     talkDescription:
       'Se trata de un conjunto de prácticas y herramientas orientadas a desarrolladores que ayudan no solo a la "experiencia de usuario", si no también al desarrollo de un producto digital. La idea es repasar algunas de las prácticas más básicas y útiles del UX para que los devs puedan aplicarlas fácilmente en sus proyectos. De esta manera podrán mejorar la experiencia de los usuarios y de ellos mismos dentro del proyecto.',
     talkSchedule: ['2021-08-24T20:20:00.000-03:00', '2021-08-24T20:50:00.000-03:00'],
-    youtubeLink: 'https://www.youtube.com/watch?v=R74tB3cI_5A&t=10569s',
+    youtubeLink: 'https://www.youtube.com/watch?v=_HXAvD1DaUM',
   },
   {
     id: 'nacho-anaya',
@@ -363,7 +363,7 @@ export const SPEAKERS = [
     talkDescription:
       'Ser mentor es una gran responsabilidad pero aporta al bienestar de una comunidad tech. En mi charla compartiré como mis experiencias se han convertido en una serie de consejos para mentorear.',
     talkSchedule: ['2021-08-26T17:40:00.000-03:00', '2021-08-26T18:10:00.000-03:00'],
-    youtubeLink: 'https://www.youtube.com/watch?v=Lh8PDrHb5xo&t=691s',
+    youtubeLink: 'https://www.youtube.com/watch?v=AJtbNwYXW7k',
   },
   {
     id: 'pilar-chanampe',
@@ -383,7 +383,7 @@ export const SPEAKERS = [
     talkDescription:
       'En esta charla deseo contar cómo me incursioné en el universo tech viniendo de una formación artística (música y artes visuales) y qué cosas aprendí como persona en el trayecto.',
     talkSchedule: ['2021-08-26T18:20:00.000-03:00', '2021-08-26T18:50:00.000-03:00'],
-    youtubeLink: 'https://www.youtube.com/watch?v=Lh8PDrHb5xo&t=3641s',
+    youtubeLink: 'https://www.youtube.com/watch?v=RGwGq4_RD5Y',
   },
   {
     id: 'facundo-giuliani',
@@ -403,7 +403,7 @@ export const SPEAKERS = [
     talkDescription:
       'La pandemia nos empujó a virtualizar actividades que hacíamos de manera presencial. Esto afectó a nuestras interacciones con otras personas, pero también abrió nuevas puertas y expandió fronteras.',
     talkSchedule: ['2021-08-26T19:00:00.000-03:00', '2021-08-26T19:30:00.000-03:00'],
-    youtubeLink: 'https://www.youtube.com/watch?v=Lh8PDrHb5xo&t=6712s',
+    youtubeLink: 'https://www.youtube.com/watch?v=8INM2YZ7l9U',
   },
   {
     id: 'erika-la-torre',
@@ -423,7 +423,7 @@ export const SPEAKERS = [
     talkDescription:
       'Esta charla es mi recorrido de auto aprendizaje que fomenta el desarrollo de habilidades humanas necesarias para el trabajo en equipo, atravesado por los procesos de diseño, la gestión y que fui aprendiendo de gestionar personas.',
     talkSchedule: ['2021-08-26T19:40:00.000-03:00', '2021-08-26T20:10:00.000-03:00'],
-    youtubeLink: 'https://www.youtube.com/watch?v=Lh8PDrHb5xo&t=9566s',
+    youtubeLink: 'https://www.youtube.com/watch?v=2GegeyAhDSs',
   },
   {
     id: 'mailen-knoblovits',
@@ -442,7 +442,7 @@ export const SPEAKERS = [
     talkDescription:
       'Muchas veces sentimos que estamos cobrando poco en relación al tiempo y dedicación que un proyecto está tomando. ¿Cómo podemos cambiar eso? En esta charla vamos a hacer un recorrido por distintos modelos de fijación de precios, para proponer finalmente un modelo que creo yo suele resultar muy beneficioso para ambas partes pero que es sin embargo poco conocido o poco aplicado por la mayoría de los freelancers.',
     talkSchedule: ['2021-08-26T20:20:00.000-03:00', '2021-08-26T20:50:00.000-03:00'],
-    youtubeLink: 'https://www.youtube.com/watch?v=Lh8PDrHb5xo&t=11835s',
+    youtubeLink: 'https://www.youtube.com/watch?v=kEdiwBsOuaE',
   },
   {
     id: 'facundo-corradini',
@@ -461,7 +461,7 @@ export const SPEAKERS = [
     talkDescription:
       'En esta charla les contaré cómo mi experiencia personal con una discapacidad temporal cambió por completo mi forma de ver la accesibilidad, y con suerte, sirva para inspirarlos a crear webs y apps más inclusivas. Compartiré tips para crear mejores UI que mantienen en mente cada una de estas condiciones, aunque la lección principal es mucho más práctica: la accesibilidad no es cuestión de "nosotros" trabajando un poco más para "ellos", sino que todos formamos parte del "nosotros".',
     talkSchedule: ['2021-08-27T17:40:00.000-03:00', '2021-08-27T18:10:00.000-03:00'],
-    youtubeLink: 'https://www.youtube.com/watch?v=wbH_lWr5gj8&t=632s',
+    youtubeLink: 'https://www.youtube.com/watch?v=iyeSAaDdLv0',
   },
   {
     id: 'federico-santana',
@@ -480,7 +480,7 @@ export const SPEAKERS = [
     talkDescription:
       '¿Cómo pueden mezclarse mundos como el arte, la matemática y la programación? ¡Descubrámoslo! A través de la programación creativa, podemos crear arte estático o en movimiento con el apoyo de la matemática.',
     talkSchedule: ['2021-08-27T18:20:00.000-03:00', '2021-08-27T18:30:00.000-03:00'],
-    youtubeLink: 'https://www.youtube.com/watch?v=wbH_lWr5gj8&t=3110s',
+    youtubeLink: 'https://www.youtube.com/watch?v=YfAFTh4htKk',
   },
   {
     id: 'agustina-hufschmid',
@@ -496,7 +496,7 @@ export const SPEAKERS = [
     talkDescription:
       '¿Cuáles son los tipos de inteligencia artificial? ¿Qué podemos crear con ellas? ¿Acaso las películas de ciencia ficción nos mintieron? ¿Qué papel juega la moral?',
     talkSchedule: ['2021-08-27T18:40:00.000-03:00', '2021-08-27T19:10:00.000-03:00'],
-    youtubeLink: 'https://www.youtube.com/watch?v=wbH_lWr5gj8&t=5023s',
+    youtubeLink: 'https://www.youtube.com/watch?v=CqYQEYjl2I4',
   },
   {
     id: 'manuel-puentes',
@@ -515,7 +515,7 @@ export const SPEAKERS = [
     talkDescription:
       'Esta charla es una historia narrativa en torno al desarrollo de un backtracing para desencriptar una nota, firmada por mi bisabuela y fechada casi 100 años atrás. Es un relato que ilustra algunos conceptos -basicos- de criptografía a la par que nos lleva a pensar nuestras comunidades como las herederas de generaciones, de radioaficionados, criptografos amateur, y mas generalmente todos aquellos que se animaron a jugar con la tecnología.',
     talkSchedule: ['2021-08-27T19:20:00.000-03:00', '2021-08-27T19:50:00.000-03:00'],
-    youtubeLink: 'https://www.youtube.com/watch?v=wbH_lWr5gj8&t=7638s',
+    youtubeLink: 'https://www.youtube.com/watch?v=MEOVmDx_IlE',
   },
   {
     id: 'romina-pontiroli',
@@ -533,7 +533,7 @@ export const SPEAKERS = [
     talkDescription:
       'Una reflexión sobre el poder de la tecnología para eliminar barreras. Cómo es posible enseñar a mujeres privadas de su libertad y que trabajen desde la cárcel. La charla es para dar a conocer la experiencia y contagiar ganas de involucrarse en un futuro mejor. Contar cómo hay barreras que son mentales y no físicas, que se puede transmitir mucho aunque sea a través de una pantalla y que para gente privada de su libertad es un montón.',
     talkSchedule: ['2021-08-27T20:00:00.000-03:00', '2021-08-27T20:30:00.000-03:00'],
-    youtubeLink: 'https://www.youtube.com/watch?v=wbH_lWr5gj8&t=9828s',
+    youtubeLink: 'https://www.youtube.com/watch?v=mM6kqgGXVPU',
   },
 ];
 
