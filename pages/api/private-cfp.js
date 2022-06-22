@@ -2,6 +2,8 @@ import * as joi from 'joi';
 import AWSSDK from 'aws-sdk';
 import nodemailer from 'nodemailer';
 import { cfpFieldValidations } from '~/services/cfp';
+import { guardarBSNotion } from '~/data/dataNotion';
+
 
 const envOr = (varName, fallback = '') => process.env[`WEBCONF_2021_CFP_${varName}`] || fallback;
 
@@ -72,7 +74,11 @@ export default async (req, res) => {
   }
 
   try {
-    await Promise.all([
+    const verificarGuardadoBS = await guardarBSNotion(req.body)
+    if(!verificarGuardadoBS){
+      return res.status(500).json({ error:'error al guardar en la Base de Datos' });
+    }
+   /*  await Promise.all([
       mailer.sendMail({
         from: CONFIG.notification.address,
         to: CONFIG.notification.address,
@@ -85,7 +91,7 @@ export default async (req, res) => {
         subject: CONFIG.confirmation.subject,
         html: CONFIRMATION_TEMPLATE,
       }),
-    ]);
+    ]); */
 
     return res.status(200).json({ success: true });
   } catch (error) {
